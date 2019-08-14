@@ -29,6 +29,8 @@
 {% from "govuk/components/textarea/macro.njk"         import govukTextarea %}
 {% from "govuk/components/warning-text/macro.njk"     import govukWarningText %}
 
+{%- from "header/macro.njk"                           import mojHeader -%}
+
 {% block head %}
   {% include "includes/head.html" %}
 {% endblock %}
@@ -38,14 +40,29 @@
 {% endblock %}
 
 {% block header %}
-  {% include "includes/cookie-banner.html" %}
-  {# Set serviceName in config.js. #}
-  {{ govukHeader({
-    homepageUrl: "/",
-    serviceName: serviceName,
-    serviceUrl: "/",
-    containerClasses: "govuk-width-container"
-  }) }}
+  {{ mojHeader({
+    organisationLabel: {
+      text: 'HMPPS'
+    },
+    serviceLabel: {
+      text: serviceName,
+      href: '#'
+    },
+    navigation: {
+      label: 'Account navigation',
+      items: [{
+        text: 'Sarah Smith',
+        href: '#'
+    }, 
+    {
+      text: 'Sign out',
+      href: '#'
+    }]
+  }
+
+  }) }} 
+
+  {% block afterHeader %}{% endblock %}
 {% endblock %}
 
 {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}

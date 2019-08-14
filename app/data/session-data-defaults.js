@@ -19,6 +19,22 @@ Example usage:
 
 module.exports = {
 
-  // Insert values here
+  "offenders": [
+    {
+      "id": "1",
+      "name": "Gary Hart",
+      "crn": "X087946",
+      "noms": "AE1234BD",
+      "keyworker": "Sarah Smith",
+      "summary": [
+        { title:"Main offence(s)", value: "Death by dangerous driving"},
+        { title:"Sentence length", value:"Life imprisonment, 25 years"},
+        { title:"Start date", value: "18 April 2019"},
+        { title:"Date ISP due", value:"20 July 2019"},
+        { title:"PAROM eligibility date", value: "9 October 2019"},
+        { title:"Expected HDC/release date", value:"28 November 2028"}
+      ]
+    }
+  ]
 
 }

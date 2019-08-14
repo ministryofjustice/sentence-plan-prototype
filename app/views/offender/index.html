@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  <section class="key-details-bar" role="contentinfo" aria-label="Key details">
+    <dl class="key-details-bar__key-details">
+      <div class="key-details-bar__top-block">
+        <dt class="govuk-visually-hidden">Name:</dt>
+        <dd class="key-details-bar__name">{{ offender.name }}</dd>
+
+        <dt class="key-details-bar__identifier">CRN:</dt>
+        <dd class="key-details-bar__identifier">{{ offender.crn }}</dd>
+
+        {# <dt class="govuk-visually-hidden">Claim status:</dt>
+        <dd class="key-details-bar__status">Complete</dd> #}
+      </div>
+
+      <div class="key-details-bar__bottom-block">
+        {% for item in offender.summary.slice(0, 2) %}
+          <dt>
+            {{ item.title }}:
+          </dt>
+          <dd>
+            {{ item.value }}
+          </dd>
+        {% endfor %}
+      </div>
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            More details
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          {% for item in offender.summary.slice(3, 99) %}
+            <dt>
+              {{ item.title }}:
+            </dt>
+            <dd>
+              {{ item.value }}
+            </dd>
+          {% endfor %}
+        </div>
+      </details>
+    </dl>
+  </section>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    {# <div class="govuk-grid-column-full">
+
+      <div class="case-header">
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-0">
+          <span class="govuk-caption-l">Offender's name</span>
+          {{ offender.name }}
+        </h1>
+
+        <dl class="case-header__details">
+          <dt class="/govuk-visually-hidden">
+            CRN number:
+          </dt>
+          <dd>
+            {{ offender.crn }}
+          </dd>
+
+          <dt>
+            NOMS number:
+          </dt>
+          <dd>
+            {{ offender.noms }}
+          </dd>
+          
+          <dt>
+            Keyworker:
+          </dt>
+          <dd>
+            {{ offender.keyworker }}
+          </dd>
+        </dl>
+      </div>
+
+    </div> #}
+
+
+
+
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-visually-hidden">Offender details: {{ offender.name }}</h1>
+
+      <h2 class="govuk-heading-m govuk-visually-hidden">
+        Current plan
+      </h2>
+      <p>There is no active plan.</p>
+      {{ govukButton ({
+        text: 'Start a new plan',
+        href: '#'
+      }) }}
+
+
+      <h2 class="govuk-heading-m">
+        Previous plans
+      </h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="#">Plan 1</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">Plan 2</a>
+        </li>
+      </ul>
+
+
+
+
+
+      {# <h2 class="govuk-heading-m">
+        Summary
+      </h2>
+
+      <dl class="govuk-summary-list /govuk-summary-list--no-border">
+        {% for item in offender.summary %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{ item.title }}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ item.value }}
+            </dd>
+          </div>
+        {% endfor %}
+      </dl> #}
+
+    </div>
+  </div>
+{% endblock %}

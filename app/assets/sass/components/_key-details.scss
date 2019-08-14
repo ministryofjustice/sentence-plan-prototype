@@ -1,0 +1,119 @@
+$white-transparent: rgba(255, 255, 255, .3);
+
+.key-details-bar {
+  background-color: $govuk-brand-colour;
+
+  .key-details-bar__key-details {
+    @include govuk-width-container;
+    padding: 10px 30px 20px;
+    position: relative;
+    @media(max-width: 670px) {
+      padding: 10px 15px 20px;
+    }
+
+    * {
+      color:  govuk-colour("white")
+    }
+
+    .key-details-bar__top-block,
+    .key-details-bar__bottom-block,
+    .govuk-details__text {
+      &::after {
+        clear: both;
+        content: ' ';
+        display: block;
+      }
+    }
+
+    .key-details-bar__bottom-block {
+      border-top: 1px solid $white-transparent;
+      content: ' ';
+      padding-top: 10px;
+      margin-top: 6px;
+      
+      @media(max-width: 670px) {
+        border: 0;
+      }
+    }
+
+    .govuk-details {
+      margin: 10px 0 0 0;
+    }
+
+    .key-details-bar__bottom-block dd,
+    .govuk-details dd {
+      border-right: 1px solid $white-transparent;
+      margin: 0 10px 0 0;
+      padding: 0 10px 0 0;
+
+      &:last-of-type {
+        border: 0;
+      }
+    }
+
+    dd,
+    dt {
+      @include govuk-font(19);
+      float: left;
+      margin-right: 5px;
+
+      @media(max-width: 670px) {
+        float: none;
+        margin: 0;
+      }
+    }
+
+    dd {
+      margin: 0 20px 0 0;
+
+      @media(max-width: 670px) {
+        margin-bottom: 20px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .key-details-bar__name {
+      @include govuk-font($size: 36, $weight: bold);
+      margin-right: 10px;
+
+      @media(max-width: 670px) {
+        float: left;
+        margin: 0 5px 0 0;
+      }
+    }
+
+    .key-details-bar__identifier {
+      @include govuk-font(24);
+      line-height: 1;
+      margin-top: 10px;
+      @media(max-width: 670px) {
+        float: left;
+        margin: 5px 0 0 0;
+      }
+    }
+
+    // .key-details-bar__status {
+    //   @include govuk-font(16);
+    //   font-weight: 700;
+    //   line-height: 1.25;
+    //   padding: 5px 8px 0;
+    //   color: #005ea5;
+    //   background-color: #fff;
+    //   letter-spacing: 1px;
+    //   text-decoration: none;
+    //   text-transform: uppercase;
+
+    //   float: right;
+    //   margin: 5px 0 0;
+    //   @media(max-width: 670px) {
+    //     font-size: 14px;
+    //     float: left;
+    //     clear: both;
+    //     margin-top: 5px;
+    //   }
+    // }
+  }
+}
