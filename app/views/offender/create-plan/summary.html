@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="motivations" method="post">
+
+      <span class="govuk-caption-l">Create a plan</span>
+
+        {{ govukTextarea ({
+          id: 'offender-summary',
+          name: 'offender-summary',
+          value: data['offender-summary'] if data['offender-summary'] else '',
+          label: {
+            html: 'Individual&rsquo;s summary',
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          hint: {
+            text: "This is their chance to tell tell you anything they want you to know in their own words."
+          }
+        }) }}
+
+        {{ govukButton ({
+          html: 'Continue'
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

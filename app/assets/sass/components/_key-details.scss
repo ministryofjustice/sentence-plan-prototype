@@ -7,6 +7,7 @@ $white-transparent: rgba(255, 255, 255, .3);
     @include govuk-width-container;
     padding: 10px 30px 20px;
     position: relative;
+    
     @media(max-width: 670px) {
       padding: 10px 15px 20px;
     }
@@ -77,11 +78,9 @@ $white-transparent: rgba(255, 255, 255, .3);
 
     .key-details-bar__top-block dt,
     .key-details-bar__top-block dd {
-      font-size: 22px;
-      margin-top: 10px;
+      margin-top: 5px;
 
       @media(max-width: 670px) {
-        font-size: 19px;
         margin-top: 0;
       }
     }
@@ -89,12 +88,12 @@ $white-transparent: rgba(255, 255, 255, .3);
     .key-details-bar__top-block dt {
       @media(max-width: 670px) {
         float: left;
-        margin-right: 5px;
+        margin-right: 8px;
       }
     }
 
     dd.key-details-bar__name {
-      @include govuk-font($size: 36, $weight: bold);
+      @include govuk-font($size: 27, $weight: bold);
       margin: 0 10px 0 0;
       border: 0;
 

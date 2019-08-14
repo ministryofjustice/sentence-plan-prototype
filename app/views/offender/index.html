@@ -1,55 +1,7 @@
 {% extends "layout.html" %}
 
 {% block afterHeader %}
-  <section class="key-details-bar" role="contentinfo" aria-label="Key details">
-    <dl class="key-details-bar__key-details">
-      <div class="key-details-bar__top-block">
-        <dt class="govuk-visually-hidden">Name:</dt>
-        <dd class="key-details-bar__name">{{ offender.name }}</dd>
-
-        <dt>CRN:</dt>
-        <dd>{{ offender.crn }}</dd>
-
-        <dt>
-          NOMS:
-        </dt>
-        <dd>
-          {{ offender.noms }}
-        </dd>
-
-        {# <dt class="govuk-visually-hidden">Claim status:</dt>
-        <dd class="key-details-bar__status">Complete</dd> #}
-      </div>
-
-      <div class="key-details-bar__bottom-block">
-        {% for item in offender.summary.slice(0, 2) %}
-          <dt>
-            {{ item.title }}:
-          </dt>
-          <dd>
-            {{ item.value }}
-          </dd>
-        {% endfor %}
-      </div>
-      <details class="govuk-details" data-module="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            More details
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          {% for item in offender.summary.slice(3, 99) %}
-            <dt>
-              {{ item.title }}:
-            </dt>
-            <dd>
-              {{ item.value }}
-            </dd>
-          {% endfor %}
-        </div>
-      </details>
-    </dl>
-  </section>
+  {% include "includes/key-details.html" %}
 {% endblock %}
 
 {% block content %}
@@ -102,7 +54,7 @@
       <p>There is no active plan.</p>
       {{ govukButton ({
         text: 'Start a new plan',
-        href: '#'
+        href: 'offender/create-plan/summary'
       }) }}
 
 

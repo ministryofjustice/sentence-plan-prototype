@@ -42,17 +42,19 @@
 {% block header %}
   {{ mojHeader({
     organisationLabel: {
-      text: 'HMPPS'
+      text: 'HMPPS',
+      href: '/index'
     },
     serviceLabel: {
       text: serviceName,
-      href: '#'
+      href: '/offender'
     },
     navigation: {
       label: 'Account navigation',
       items: [{
         text: 'Sarah Smith',
-        href: '#'
+        href: '#',
+        active: true
     }, 
     {
       text: 'Sign out',
