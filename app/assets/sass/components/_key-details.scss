@@ -40,19 +40,8 @@ $white-transparent: rgba(255, 255, 255, .3);
       margin: 10px 0 0 0;
     }
 
-    .key-details-bar__bottom-block dd,
-    .govuk-details dd {
-      border-right: 1px solid $white-transparent;
-      margin: 0 10px 0 0;
-      padding: 0 10px 0 0;
-
-      &:last-of-type {
-        border: 0;
-      }
-    }
-
-    dd,
-    dt {
+    dt,
+    dd {
       @include govuk-font(19);
       float: left;
       margin-right: 5px;
@@ -63,11 +52,22 @@ $white-transparent: rgba(255, 255, 255, .3);
       }
     }
 
+    dt {
+      font-weight: bold;
+    }
+
     dd {
-      margin: 0 20px 0 0;
+      border-right: 1px solid $white-transparent;
+      margin: 0 10px 0 0;
+      padding: 0 10px 0 0;
+
+      &:last-of-type {
+        border: 0;
+      }
 
       @media(max-width: 670px) {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        border: 0;
 
         &:last-of-type {
           margin-bottom: 0;
@@ -75,45 +75,33 @@ $white-transparent: rgba(255, 255, 255, .3);
       }
     }
 
-    .key-details-bar__name {
-      @include govuk-font($size: 36, $weight: bold);
-      margin-right: 10px;
-
-      @media(max-width: 670px) {
-        float: left;
-        margin: 0 5px 0 0;
-      }
-    }
-
-    .key-details-bar__identifier {
-      @include govuk-font(24);
-      line-height: 1;
+    .key-details-bar__top-block dt,
+    .key-details-bar__top-block dd {
+      font-size: 22px;
       margin-top: 10px;
+
       @media(max-width: 670px) {
-        float: left;
-        margin: 5px 0 0 0;
+        font-size: 19px;
+        margin-top: 0;
       }
     }
 
-    // .key-details-bar__status {
-    //   @include govuk-font(16);
-    //   font-weight: 700;
-    //   line-height: 1.25;
-    //   padding: 5px 8px 0;
-    //   color: #005ea5;
-    //   background-color: #fff;
-    //   letter-spacing: 1px;
-    //   text-decoration: none;
-    //   text-transform: uppercase;
+    .key-details-bar__top-block dt {
+      @media(max-width: 670px) {
+        float: left;
+        margin-right: 5px;
+      }
+    }
 
-    //   float: right;
-    //   margin: 5px 0 0;
-    //   @media(max-width: 670px) {
-    //     font-size: 14px;
-    //     float: left;
-    //     clear: both;
-    //     margin-top: 5px;
-    //   }
-    // }
+    dd.key-details-bar__name {
+      @include govuk-font($size: 36, $weight: bold);
+      margin: 0 10px 0 0;
+      border: 0;
+
+      @media(max-width: 670px) {
+        float: none;
+        margin: 0 5px 10px 0;
+      }
+    }
   }
 }
