@@ -51,9 +51,21 @@
       <h2 class="govuk-heading-m govuk-visually-/hidden">
         Current plan
       </h2>
+
+      <div class="govuk-form-group govuk-!-margin-bottom-0">
+        <div class="govuk-checkboxes govuk-checkboxes--small">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="show-completed" name="show-completed" type="checkbox" value="show-completed">
+            <label class="govuk-label govuk-checkboxes__label" for="show-completed">
+              Show completed tasks
+            </label>
+          </div>
+        </div>
+      </div>
       
       {% if data['answers-checked'] %}
         {{ govukTable({
+          classes: 'sortable-table',
           firstCellIsHeader: false,
           head: [
             {
@@ -63,7 +75,8 @@
               text: "Status"
             },
             {
-              text: "Last updated"
+              text: "Last updated",
+              classes: "active"
             }
           ],
           rows: [
@@ -80,7 +93,7 @@
             ],
             [
               {
-                html: "<a href='#0'>"+data['step-description']+"</a>"
+                html: "<a href=''>"+data['step-description']+"</a>"
               },
               {
                 text: "In progress"

@@ -1,0 +1,31 @@
+.sortable-table {
+  border: 1px solid $govuk-border-colour;
+
+  th, td {
+    padding: 10px 20px 10px 10px;
+  }
+
+  tr:nth-child(even){
+    background: #f8f8f8;//govuk-colour("light-grey")
+  }
+
+  th {
+    background: #dee0e2;//govuk-colour("mid-grey");
+
+    &:hover {
+      background: $govuk-link-hover-colour;
+      color: govuk-colour("white");
+      cursor: pointer;
+    }
+  }
+
+  .active {
+    background: $govuk-link-colour;
+    color: govuk-colour("white");
+  
+    &::after {
+      content: '\25bc';
+      padding-left: 0.25em;
+    }
+  }
+}
