@@ -19,3 +19,13 @@ $govuk-assets-path: '/govuk/assets/';
 @import "components/key-details";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+
+.risk {
+  color: $govuk-error-colour;
+  font-weight: bold;
+}
+
+.delete-link {
+  color: $govuk-error-colour!important;
+}

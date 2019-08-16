@@ -48,14 +48,59 @@
 
       <h1 class="govuk-visually-hidden">Offender details: {{ offender.name }}</h1>
 
-      <h2 class="govuk-heading-m govuk-visually-hidden">
+      <h2 class="govuk-heading-m govuk-visually-/hidden">
         Current plan
       </h2>
-      <p>There is no active plan.</p>
-      {{ govukButton ({
-        text: 'Start a new plan',
-        href: 'offender/create-plan/summary'
-      }) }}
+      
+      {% if data['answers-checked'] %}
+        {{ govukTable({
+          firstCellIsHeader: false,
+          head: [
+            {
+              text: "Step"
+            },
+            {
+              text: "Status"
+            },
+            {
+              text: "Last updated"
+            }
+          ],
+          rows: [
+            [
+              {
+                html: "<a href='#0'>Improve employment opportunities by completing a CV.</a>"
+              },
+              {
+                text: "In progress"
+              },
+              {
+                text: "12 Spet 2019"
+              }
+            ],
+            [
+              {
+                html: "<a href='#0'>"+data['step-description']+"</a>"
+              },
+              {
+                text: "In progress"
+              },
+              {
+                text: "12 Spet 2019"
+              }
+            ]
+          ]
+        }) }}
+      {% else %}
+        <p>There is no active plan.</p>
+        {{ govukButton ({
+          text: 'Start a new plan',
+          href: 'offender/create-plan/summary'
+        }) }}
+      {% endif %}
+
+
+
 
 
       <h2 class="govuk-heading-m">

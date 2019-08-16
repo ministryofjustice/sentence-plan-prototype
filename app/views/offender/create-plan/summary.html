@@ -4,20 +4,26 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back',
+    href: '/offender?id=1'
+  }) }}
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       <form class="form" action="motivations" method="post">
 
-      <span class="govuk-caption-l">Create a plan</span>
-
+        <span class="govuk-caption-l">Create plan</span>
         {{ govukTextarea ({
           id: 'offender-summary',
           name: 'offender-summary',
           value: data['offender-summary'] if data['offender-summary'] else '',
           label: {
-            html: 'Individual&rsquo;s summary',
+            html: offender.firstname+'&rsquo;s summary',
             isPageHeading: true,
             classes: "govuk-label--l"
           },

@@ -1,0 +1,234 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back',
+    href: 'steps'
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Create plan</span>
+      <h1 class="govuk-heading-l">Check the plan before saving</h1>
+
+      <h2 class="govuk-heading-m">Summary</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ offender.firstname }}&rsquo;s summary
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['offender-summary'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="summary">
+              Change
+              <span class="govuk-visually-hidden"> summary</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Motivations
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              {% for need in offender.needs %}
+                <li>
+                  {{ need.type }}: 
+                  {{ data["motivation-"+loop.index] }}
+                </li>
+              {% endfor %}
+            </ul>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="motivations">
+              Change
+              <span class="govuk-visually-hidden"> motivations</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Step 1</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Description
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Improve employment opportunities by completing a CV.
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#0">
+              Change
+              <span class="govuk-visually-hidden"> description</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Needs
+          </dt>
+          <dd class="govuk-summary-list__value">
+            ETE
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#0">
+              Change
+              <span class="govuk-visually-hidden"> needs</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Intervention
+          </dt>
+          <dd class="govuk-summary-list__value">
+            No
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#">
+              Change
+              <span class="govuk-visually-hidden"> intervention</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Strength
+          </dt>
+          <dd class="govuk-summary-list__value">
+            No
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#">
+              Change
+              <span class="govuk-visually-hidden"> strength</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Responsible
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Other: Sarah
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="#">
+              Change
+              <span class="govuk-visually-hidden"> strength</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      {% if data['step-description'] %}
+      <h2 class="govuk-heading-m">Step 2</h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Description
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['step-description'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="add-step">
+              Change
+              <span class="govuk-visually-hidden"> description</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Needs
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              {% for need in data['step-needs'] %}
+                <li>{{ need }}</li>
+              {% else %}
+                <li>No needs selected</li>
+              {% endfor %}
+            </ul>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="add-step">
+              Change
+              <span class="govuk-visually-hidden"> needs</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Intervention
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['intervention-type'] if data['intervention-type'] else 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="add-step">
+              Change
+              <span class="govuk-visually-hidden"> intervention</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Strength
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['strength'] if data['strength'] else 'No' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="add-step">
+              Change
+              <span class="govuk-visually-hidden"> strength</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Responsible
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              {% for person in data['step-done'] %}
+                <li>{{ person }}</li>
+              {% else %}
+                <li>Nobody selected</li>
+              {% endfor %}
+            </ul>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="add-step">
+              Change
+              <span class="govuk-visually-hidden"> strength</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+      {% endif %}
+
+      <form action="/offender?id=1" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save plan
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -4,28 +4,88 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back',
+    href: 'summary'
+  }) }}
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="add-step" method="post">
 
-      <form class="form" action="/offender?id=1" method="post">
+        <span class="govuk-caption-l">Create plan</span>
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-3">{{ offender.firstname }}&rsquo;s motivations</h1>
+        <span class="govuk-hint govuk-!-margin-bottom-6">
+          Rate how motivated they are to address their needs.
+        </span>
 
-      <span class="govuk-caption-l">Create a plan</span>
-      <h1 class="govuk-heading-l">Set motivations</h1>
+        {% for need in offender.needs %}
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s">
+              {{ need.type }}
+              {% if need.risk %}
+                {# <br><strong class="govuk-tag moj-tag--red">Risk of serious harm</strong> #}
+                &ndash; <span class="risk">Risk of serious harm</span>
+              {% endif %}
+            </label>
 
-        {{ govukTextarea ({
-          id: 'offender-summary',
-          name: 'offender-summary',
-          value: data['offender-summary'] if data['offender-summary'] else '',
-          label: {
-            html: 'Individual&rsquo;s summary',
-            isPageHeading: true,
-            classes: "govuk-label--l"
+            <select class="govuk-select" name="motivation-{{ loop.index }}">
+              <option value="Not aware of it">Not aware of it</option>
+              <option value="Thinking about it">Thinking about it</option>
+              <option value="Getting ready">Getting ready</option>
+              <option value="Doing it">Doing it</option>
+              <option value="Keeping going">Keeping going</option>
+              <option value="Off track">Off track</option>
+              <option value="The new me">The new me</option>
+            </select>
+          </div>
+        {% endfor %}
+
+        
+
+        {# {{ govukRadios ({
+          idPrefix: 'motivation-accommodation',
+          name: 'motivation-accommodation',
+          fieldset: {
+            legend: {
+              html: 'Accommodation <br><strong class="govuk-tag moj-tag--red">Risk of serious harm</strong>',
+              classes: 'govuk-fieldset__legend--m'
+            }
           },
-          hint: {
-            text: "This is their chance to tell tell you anything they want you to know in their own words."
-          }
-        }) }}
+          items: [
+            {
+              text: 'Not aware of it',
+              value: 'Not aware of it'
+            },
+            {
+              text: 'Thinking about it',
+              value: 'Thinking about it'
+            },
+            {
+              text: 'Getting ready',
+              value: 'Getting ready'
+            },
+            {
+              text: 'Doing it',
+              value: 'Doing it'
+            },
+            {
+              text: 'Keeping going',
+              value: 'Keeping going'
+            },
+            {
+              text: 'Off track',
+              value: 'Off track'
+            },
+            {
+              text: 'The new me',
+              value: 'The new me'
+            }
+          ]
+        }) }} #}
 
         {{ govukButton ({
           html: 'Continue'

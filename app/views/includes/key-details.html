@@ -2,7 +2,7 @@
   <dl class="key-details-bar__key-details">
     <div class="key-details-bar__top-block">
       <dt class="govuk-visually-hidden">Name:</dt>
-      <dd class="key-details-bar__name">{{ offender.name }}</dd>
+      <dd class="key-details-bar__name">{{ offender.firstname }} {{ offender.lastname }}</dd>
 
       <dt>CRN:</dt>
       <dd>{{ offender.crn }}</dd>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="key-details-bar__bottom-block">
-      {% for item in offender.summary.slice(0, 2) %}
+      {% for item in offender.summary.slice(0, 3) %}
         <dt>
           {{ item.title }}:
         </dt>
