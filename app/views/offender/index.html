@@ -48,23 +48,55 @@
 
       <h1 class="govuk-visually-hidden">Offender details: {{ offender.name }}</h1>
 
-      <h2 class="govuk-heading-m govuk-visually-/hidden">
-        Current plan
+      <h2 class="govuk-heading-l govuk-visually-/hidden">
+        Active plan
       </h2>
-
-      <div class="govuk-form-group govuk-!-margin-bottom-0">
-        <div class="govuk-checkboxes govuk-checkboxes--small">
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="show-completed" name="show-completed" type="checkbox" value="show-completed">
-            <label class="govuk-label govuk-checkboxes__label" for="show-completed">
-              Show completed tasks
-            </label>
-          </div>
-        </div>
-      </div>
       
       {% if data['answers-checked'] %}
-        {{ govukTable({
+        <h3 class="govuk-heading-m">
+          Summary
+        </h3>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{ offender.firstname }}&rsquo;s summary
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['offender-summary'] }}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Motivations
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <ul class="govuk-list govuk-list--bullet">
+                {% for need in offender.needs %}
+                  <li>
+                    {{ need.type }}: 
+                    {{ data["motivation-"+loop.index] }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </dd>
+          </div>
+        </dl>
+
+        <h3 class="govuk-heading-m">
+          Steps
+        </h3>
+        <div class="govuk-form-group govuk-!-margin-bottom-0">
+          <div class="govuk-checkboxes govuk-checkboxes--small">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="show-completed" name="show-completed" type="checkbox" value="show-completed">
+              <label class="govuk-label govuk-checkboxes__label" for="show-completed">
+                Show completed steps
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        {# {{ govukTable({
           classes: 'sortable-table',
           firstCellIsHeader: false,
           head: [
@@ -88,27 +120,47 @@
                 text: "In progress"
               },
               {
-                text: "12 Spet 2019"
+                text: "12 Sept 2019"
               }
             ],
             [
               {
-                html: "<a href=''>"+data['step-description']+"</a>"
+                html: "<a href='/offender/step'>"+data['step-description']+"</a>"
               },
               {
                 text: "In progress"
               },
               {
-                text: "12 Spet 2019"
+                text: "12 Sept 2019"
               }
             ]
           ]
-        }) }}
+        }) }} #}
+
+        <ul class="govuk-list">
+          <li>
+            <a href="#0" class="task">
+              <span class="task__heading">
+                Improve employment opportunities by completing a CV.
+              </span>
+              In progress · Last updated on {{ moment | date("subtract", 10, "days") | date("D MMMM YYYY") }}
+            </a>
+          </li>
+          
+          <li>
+            <a href="/offender/step" class="task">
+              <span class="task__heading">
+                {{ data['step-description'] }}
+              </span>
+              In progress · Last updated on {{ moment | date("subtract", 10, "days") | date("D MMMM YYYY") }}
+            </a>
+          </li>
+        </ul>
       {% else %}
         <p>There is no active plan.</p>
         {{ govukButton ({
           text: 'Start a new plan',
-          href: 'offender/create-plan/summary'
+          href: '/offender/create-plan/summary'
         }) }}
       {% endif %}
 
@@ -116,7 +168,7 @@
 
 
 
-      <h2 class="govuk-heading-m">
+      <h2 class="govuk-heading-l">
         Previous plans
       </h2>
 

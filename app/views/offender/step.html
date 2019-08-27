@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back to plan',
+    href: 'index'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {# {{ mojBanner({
+        type: 'success',
+        text: 'You have successfully added 1 question.',
+        iconFallbackText: 'Success'
+      }) }}  #}
+
+
+
+
+      <div class="moj-page-header-actions govuk-!-margin-bottom-3">
+        <div class="moj-page-header-actions__title">
+          <h1 class="govuk-heading-l">
+            <span class="govuk-caption-l">Step details</span>
+            {{ data['step-description'] }}
+          </h1>
+        </div>
+
+        <div class="moj-page-header-actions__actions">
+          <div class="moj-button-menu">
+            <div class="moj-button-menu__wrapper">
+
+              {{ govukButton ({
+                text: 'Update progress',
+                href: '#',
+                classes: 'moj-button-menu__item moj-page-header-actions__action'
+              }) }}
+
+            </div>
+          </div>
+        </div>
+      </div> 
+
+      {{ govukTag({
+        text: 'In progress',
+        classes: 'govuk-!-margin-bottom-6'
+      }) }}
+
+
+
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Needs
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              {% for need in data['step-needs'] %}
+                <li>{{ need }}</li>
+              {% else %}
+                <li>No needs selected</li>
+              {% endfor %}
+            </ul>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Intervention
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['intervention-type'] if data['intervention-type'] else 'No' }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Strength
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['strength'] if data['strength'] else 'No' }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Responsible
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              {% for person in data['step-done'] %}
+                <li>{{ person }}</li>
+              {% else %}
+                <li>Nobody selected</li>
+              {% endfor %}
+            </ul>
+          </dd>
+        </div>
+      </dl>
+
+
+
+      <h2 class="govuk-heading-m">
+        Progress
+      </h2>
+      <div class="moj-timeline">
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <h2 class="moj-timeline__title">Step completed</h2>
+            <p class="moj-timeline__byline">by Sarah Smith</p>
+          </div>
+
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">14 June 2019 at 2:01pm</time>
+          </p>
+
+          <div class="moj-timeline__description">
+            <p>Lots of effort put in by {{ offender.firstname }} to finish the course.</p>
+          </div>
+        </div>
+
+
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <h2 class="moj-timeline__title">Step added</h2>
+            <p class="moj-timeline__byline">by Sarah Smith</p>
+          </div>
+
+          <p class="moj-timeline__date">
+            <time datetime="2019-05-21T13:15:00.000Z">21 May 2019 at 1:15pm</time>
+          </p>
+        </div>
+
+      </div> {# timeline #}
+
+    </div>
+  </div>
+{% endblock %}
