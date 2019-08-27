@@ -2,6 +2,14 @@ const express = require('express')
 const router = express.Router()
 
 
+// On sign out delete session data
+router.get('/signout', function (req, res) {
+  req.session.destroy()
+  res.redirect('/sign-in/')
+})
+
+
+
 // Search offenders from default session data file and render view
 router.get('/offender*', (req, res, next) => {
   if (req.session.data['id']) {
