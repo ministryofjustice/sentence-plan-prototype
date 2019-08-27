@@ -1,0 +1,37 @@
+.task {
+  @include govuk-font(16);
+  text-decoration: none;
+  color: $govuk-text-colour;
+  display: block;
+  margin: 15px 0;
+  padding: 20px 15px;
+  border-left: 5px solid $govuk-link-colour;
+  border-bottom: 1px solid $govuk-border-colour;
+  border-top: 1px solid #fff;
+  border-right: 1px solid #fff;
+  background-color: govuk-colour("light-grey");
+  
+
+  &:hover {
+    background-color: #fff;
+    color: $govuk-text-colour;
+    border-bottom: 1px solid $govuk-border-colour;
+    border-top: 1px solid $govuk-border-colour;
+    border-right: 1px solid $govuk-border-colour;
+
+    .task__heading {
+      text-decoration: underline;
+    }
+  }
+
+  &:visited {
+    color: $govuk-text-colour;
+  }
+}
+
+.task__heading {
+  @include govuk-font(19);
+  font-weight: bold;
+  color: $govuk-link-colour;
+  display: block;
+}
