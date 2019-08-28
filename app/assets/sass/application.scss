@@ -35,6 +35,18 @@ $govuk-assets-path: '/govuk/assets/';
   color: $govuk-error-colour!important;
 }
 
+
+
+
+// Change vertical alignment so it works with header captions
+.moj-page-header-actions__actions {
+  vertical-align: bottom;
+}
+
+
+
+
+// Add a blob at the bottom of the MOJ timeline
 .moj-timeline {
   overflow: visible;
 

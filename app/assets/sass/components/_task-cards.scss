@@ -3,8 +3,8 @@
   text-decoration: none;
   color: $govuk-text-colour;
   display: block;
-  margin: 15px 0;
-  padding: 20px 15px;
+  margin: 10px 0;
+  padding: 15px 10px;
   border-left: 5px solid $govuk-link-colour;
   border-bottom: 1px solid $govuk-border-colour;
   border-top: 1px solid #fff;
@@ -26,6 +26,11 @@
 
   &:visited {
     color: $govuk-text-colour;
+  }
+
+  @include govuk-media-query($from: desktop) {
+    margin: 15px 0;
+    padding: 20px 15px;
   }
 }
 
