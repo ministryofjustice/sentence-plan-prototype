@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/offender/print-page" method="post">
+
+        {{ govukRadios ({
+          idPrefix: 'print',
+          name: 'print',
+          fieldset: {
+            legend: {
+              text: 'What do you want to print?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--l'
+            }
+          },
+          items: [
+            {
+              text: 'Full plan',
+              value: 'Full plan'
+            },
+            {
+              text: 'Overview for '+offender.firstname,
+              value: 'Overview for '+offender.firstname
+            }
+          ]
+        }) }}
+
+        <input type="hidden" name="comment-added" value="true">
+
+        {{ govukButton ({
+          html: 'Continue',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="/offender">cancel printing</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

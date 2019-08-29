@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/offender" method="post">
+
+        <h1 class="govuk-heading-l">
+          Add a comment to the plan
+        </h1>
+
+        {{ govukTextarea ({
+          id: 'offender-comment',
+          name: 'offender-comment',
+          value: data['offender-comment'] if data['offender-comment'] else '',
+          label: {
+            html: offender.firstname+'&rsquo;s words'
+          },
+          hint: {
+            text: ''
+          }
+        }) }}
+
+        {{ govukTextarea ({
+          id: 'practitioner-comment',
+          name: 'practitioner-comment',
+          value: data['practitioner-comment'] if data['practitioner-comment'] else '',
+          label: {
+            html: 'Practitioner&rsquo;s words'
+          },
+          hint: {
+            text: ''
+          }
+        }) }}
+
+        <input type="hidden" name="comment-added" value="true">
+
+        {{ govukButton ({
+          html: 'Save comment',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="/offender">cancel comment</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -8,10 +8,10 @@
   <div class="govuk-grid-row">
     {# <div class="govuk-grid-column-full">
 
-      <div class="case-header">
+       <div class="case-header">
         <h1 class="govuk-heading-l govuk-!-margin-bottom-0">
           <span class="govuk-caption-l">Offender's name</span>
-          {{ offender.name }}
+          {{ offender.firstname }} {{ offender.lastname }}
         </h1>
 
         <dl class="case-header__details">
@@ -46,11 +46,56 @@
 
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-visually-hidden">Offender details: {{ offender.name }}</h1>
+      <h1 class="govuk-visually-hidden">
+        Offender plans: {{ offender.name }}
+      </h1>
 
-      <h2 class="govuk-heading-l govuk-visually-/hidden">
-        Active plan
-      </h2>
+      <div class="moj-page-header-actions govuk-!-margin-bottom-3">
+        <div class="moj-page-header-actions__title">
+          <h1 class="govuk-heading-l">
+            Active plan
+          </h1>
+        </div>
+
+        {% if data['answers-checked'] %}
+        <div class="moj-page-header-actions__actions">
+          <div class="moj-button-menu">
+            <div class="moj-button-menu__wrapper">
+
+              {# <div style="float: right;">
+                {{ mojButtonMenu({
+                items: [{
+                  text: "First action",
+                  href: "#"
+                }, {
+                  text: "Second action",
+                  href: "#",
+                  classes: "govuk-button--secondary"
+                }, {
+                  text: "Third action",
+                  href: "#",
+                  classes: "govuk-button--secondary"
+                }]
+                }) }}
+              </div>  #}
+
+              {{ govukButton ({
+                text: 'Add a comment',
+                href: '/offender/comment',
+                classes: 'govuk-button--secondary moj-button-menu__item moj-page-header-actions__action'
+              }) }}
+
+              {{ govukButton ({
+                text: 'Print',
+                href: '/offender/print/',
+                classes: 'govuk-button--secondary moj-button-menu__item moj-page-header-actions__action'
+              }) }}
+
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div> 
       
       {% if data['answers-checked'] %}
         <h3 class="govuk-heading-m">
@@ -80,6 +125,23 @@
               </ul>
             </dd>
           </div>
+          {% if data['comment-added'] == "true" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Comment from {{ moment | date("D MMMM YYYY") }}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['offender-comment'] %}
+              <p>{{ offender.firstname }}&rsquo;s words: {{ data['offender-comment'] }}</p>
+              {% endif %}
+
+              {% if data['practitioner-comment'] %}
+              <p>Practitioner&rsquo;s words: {{ data['practitioner-comment'] }}</p>
+              {% endif %}
+              <p>
+            </dd>
+          </div>
+          {% endif %}
         </dl>
 
         <h3 class="govuk-heading-m">
@@ -152,10 +214,11 @@
               <span class="task__heading">
                 {{ data['step-description'] }}
               </span>
-              In progress · Last updated on {{ moment | date("subtract", 10, "days") | date("D MMMM YYYY") }}
+              {{ data['step-description'] }} · Last updated on {{ moment | date("subtract", 10, "days") | date("D MMMM YYYY") }}
             </a>
           </li>
         </ul>
+        <p><a href="#0">Add a step</a></p>
       {% else %}
         <p>There is no active plan.</p>
         {{ govukButton ({
@@ -167,17 +230,19 @@
 
 
 
+      <hr class="govuk-section-break section-break-large">
 
-      <h2 class="govuk-heading-l">
+
+      <h2 class="govuk-heading-m">
         Previous plans
       </h2>
 
       <ul class="govuk-list">
         <li>
-          <a class="govuk-link" href="#">Plan 1</a>
+          <a class="govuk-link" href="#">Plan closed {{ moment | date("subtract", 100, "days") | date("D MMMM YYYY") }}</a>
         </li>
         <li>
-          <a class="govuk-link" href="#">Plan 2</a>
+          <a class="govuk-link" href="#">Plan closed {{ moment | date("subtract", 211, "days") | date("D MMMM YYYY") }}</a>
         </li>
       </ul>
 

@@ -26,6 +26,19 @@ router.get('/offender*', (req, res, next) => {
 
 
 
+router.get('/offender/print-page', (req, res) => {
+  let printChoice = req.session.data['print']
+
+  if (printChoice == 'Full plan') {
+    res.render('offender/print/full')
+  } else {
+    res.render('offender/print/overview')
+  }
+})
+
+
+
+
 
 
 

@@ -29,8 +29,9 @@
 {% from "govuk/components/textarea/macro.njk"         import govukTextarea %}
 {% from "govuk/components/warning-text/macro.njk"     import govukWarningText %}
 
-{%- from "header/macro.njk"                           import mojHeader -%}
-{%- from "banner/macro.njk"            import mojBanner -%}
+{% from "header/macro.njk"                            import mojHeader %}
+{% from "banner/macro.njk"                            import mojBanner %}
+{% from "button-menu/macro.njk"                       import mojButtonMenu %}
 
 {% block head %}
   {% include "includes/head.html" %}
