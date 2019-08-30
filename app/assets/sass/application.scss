@@ -44,6 +44,10 @@ $govuk-assets-path: '/govuk/assets/';
 
 
 
+.moj-page-header-actions__title {
+  max-width: 750px;
+}
+
 // Change vertical alignment so it works with header captions
 .moj-page-header-actions__actions {
   vertical-align: bottom;
@@ -71,5 +75,26 @@ $govuk-assets-path: '/govuk/assets/';
     position: absolute;
     left: -11px;
     bottom: -10px;
+  }
+}
+
+
+.filters {
+  
+  .govuk-label {
+    display: inline;
+    vertical-align: middle;
+  }
+
+  .govuk-form-group {
+    height: 44px;
+    margin: 0;
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+  .govuk-select {
+    padding: 0 5px;
+    height: 37px;
   }
 }

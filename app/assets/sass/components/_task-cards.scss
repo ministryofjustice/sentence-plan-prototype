@@ -40,3 +40,22 @@
   color: $govuk-link-colour;
   display: block;
 }
+
+
+.task--complete {
+  border-left-color: govuk-colour("green");
+}
+
+
+.list-tags {
+  @include govuk-font(16);
+  margin: 0;
+
+  li {
+    display: inline;
+  }
+}
+.tag:not(:last-child)::after {
+  content: "\00b7";
+  margin: 0 .15em;
+}

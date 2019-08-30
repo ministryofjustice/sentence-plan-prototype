@@ -1,0 +1,234 @@
+{% extends "layout.html" %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+<!-- Adds spacing for pages without a back button -->
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-3">Create a mock plan</h1>
+      <p class="govuk-body-l govuk-!-margin-bottom-9">This lets you add in a fake plan quickly, for example if you want to show the prototype to a stakeholder.</p>
+
+      <form class="form" action="/offender" method="post">
+
+        {{ govukTextarea ({
+          id: 'offender-summary',
+          name: 'offender-summary',
+          value: 'I had a very difficult life.  My mum was a drug user and it was bad growing up.  You probably won’t believe me but she used me as a drug runner when I was a child.  That has really messed up how I feel about other people as well as how I think I will be treated by them, I still can’t believe she did that to me.  I still don’t see my mum and I wonder if this has caused my own relationships to break down.  I find it really hard trust people and I haven’t got on with the probation officer I had before you.  I don’t think he treated me very well, he didn’t listen to what I was trying to tell him most of the time and that still pisses me off.  I have tried to top myself a few times because of all this going on.  I think that I take drugs and drink to block all that out really. 
+          
+          I have autism and that means that I get angry when I don’t know what is happening or stuff gets thrown at me with short notice.  I really don’t like being made to wait in reception.  Sometimes I just can’t leave the house in the morning and I want to be honest about that because I have been recalled for not coming into appointments.  Also, my reading and writing isn’t that clever either.
+          
+          I like work want to be busy have gained qualifications in custody (numeracy, literacy, painting & decorating), and I want to be there for my kids, they mean everything to me.  I am OK living at the hostel as I can’t really think about where I want to live right now.',
+          label: {
+            html: 'Offender wants you to know',
+            classes: "govuk-label--m"
+          }
+        }) }}
+
+
+
+        {{ govukTextarea ({
+          id: 'goal',
+          name: 'goal',
+          value: 'This is the main goal for the plan.',
+          label: {
+            html: 'Goal for the plan',
+            classes: "govuk-label--m"
+          }
+        }) }}
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              Needs are related to the step
+            </legend>
+            <span class="govuk-hint">
+               Select all that apply. 
+            </span>
+
+            <div class="govuk-checkboxes govuk-checkboxes--small">
+              {% for need in offender.needs %}
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="step-needs-{{ loop.index }}" name="step-needs" type="checkbox" value="{{ need.type }}" checked>
+                  <label class="govuk-label govuk-checkboxes__label" for="step-needs-{{ loop.index }}">
+                    {{ need.type }}
+                    {% if need.risk %}
+                      {# <strong class="govuk-tag moj-tag--red">Risk of serious harm</strong> #}
+                      &ndash; <span class="risk">Risk of serious harm</span>
+                    {% endif %}
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+
+          </fieldset>
+        </div>
+
+
+
+
+
+        {% set interventionYes %}
+        {{ govukInput ({
+          id: 'intervention-type',
+          name: 'intervention-type',
+          value: 'Alcohol Related Violence (ARV)',
+          classes: 'govuk-input--width-20',
+          label: {
+            text: 'Intervention'
+          }
+        }) }}
+        {% endset -%}
+
+        {% set interventionNo %}
+        {{ govukTextarea ({
+          id: 'step-description',
+          name: 'step-description',
+          value: 'Start thinking about their relationships by creating a life map, so they can start to make sense of their childhood.',
+          label: {
+            text: 'Step description'
+          }
+        }) }}
+        {% endset -%}
+
+        {{ govukRadios ({
+          classes: "govuk-radios--small",
+          idPrefix: 'step-intervention',
+          name: 'step-intervention',
+          fieldset: {
+            legend: {
+              text: 'Intervention?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Yes',
+              value: 'Yes',
+              checked: true,
+              conditional: {
+                html: interventionYes
+              }
+            },
+            {
+              text: 'No',
+              value: 'No',
+              conditional: {
+                html: interventionNo
+              }
+            }
+          ]
+        }) }}
+
+
+
+
+        {% set strengthHMTL %}
+          {{ govukTextarea ({
+            id: 'strength',
+            name: 'strength',
+            rows: "3",
+            label: {
+              text: 'Strength'
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios ({
+          classes: "govuk-radios--small",
+          idPrefix: 'step-strength',
+          name: 'step-strength',
+          fieldset: {
+            legend: {
+              text: 'Strength',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Yes',
+              value: 'yes',
+              conditional: {
+                html: strengthHMTL
+              }
+            },
+            {
+              text: 'No',
+              value: 'no',
+              checked: true
+            }
+          ]
+        }) }}
+
+
+
+
+        {% set doneHMTL %}
+          {{ govukInput ({
+            id: 'step-done-other',
+            name: 'step-done-other',
+            value: data['step-done-other'] if data['step-done-other'] else '',
+            classes: 'govuk-input--width-20',
+            label: {
+              text: 'Other',
+              classes: 'govuk-input--width-20'
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukCheckboxes ({
+          classes: "govuk-checkboxes--small",
+          idPrefix: 'step-done',
+          name: 'step-done',
+          fieldset: {
+            legend: {
+              text: 'Responsible',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Individual',
+              value: 'Individual',
+              checked: true
+            },
+            {
+              text: 'Responsible officer',
+              value: 'Responsible officer'
+            },
+            {
+              text: 'Other',
+              value: 'Other',
+              conditional: {
+                html: doneHMTL
+              }
+            }
+          ]
+        }) }}
+
+
+
+
+
+
+        <input type="hidden" name="answers-checked" value="true">
+        <input type="hidden" name="status" value="In progress">
+
+        {{ govukButton ({
+          html: 'Continue',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a class="delete-link" href="/">cancel</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

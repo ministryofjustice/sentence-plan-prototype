@@ -7,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink ({
     text: 'Back',
-    href: 'motivations'
+    href: 'intervention'
   }) }}
 {% endblock %}
 
@@ -20,93 +20,37 @@
         <span class="govuk-caption-l">Create plan</span>
         <h1 class="govuk-heading-l">Add a step</h1>
 
-        {{ govukTextarea ({
-          id: 'step-description',
-          name: 'step-description',
-          value: data['step-description'] if data['step-description'] else '',
-          label: {
-            text: 'What step is '+offender.firstname+' going to take?',
-            classes: "govuk-label--m"
-          },
-          hint: {
-            text: "Describe the actions they will take."
-          }
-        }) }}
+        {% if data['step-intervention'] == 'Yes' %}
 
-
-
-
-
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              Which needs are related to this step?
-            </legend>
-            <span class="govuk-hint">
-               Select all that apply. 
-            </span>
-
-            <div class="govuk-checkboxes govuk-checkboxes--small">
-              {% for need in offender.needs %}
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="step-needs-{{ loop.index }}" name="step-needs" type="checkbox" value="{{ need.type }}" {{ checked( "step-needs", need.type ) }}>
-                  <label class="govuk-label govuk-checkboxes__label" for="step-needs-{{ loop.index }}">
-                    {{ need.type }}
-                    {% if need.risk %}
-                      {# <strong class="govuk-tag moj-tag--red">Risk of serious harm</strong> #}
-                      &ndash; <span class="risk">Risk of serious harm</span>
-                    {% endif %}
-                  </label>
-                </div>
-              {% endfor %}
-            </div>
-
-          </fieldset>
-        </div>
-
-
-
-
-
-        {% set interventionHMTL %}
           {{ govukInput ({
             id: 'intervention-type',
             name: 'intervention-type',
             value: data['intervention-type'] if data['intervention-type'] else '',
             classes: 'govuk-input--width-20',
             label: {
-              text: 'Intervention type',
-              classes: 'govuk-input--width-20'
+              text: 'What intervention is '+offender.firstname+' going to take?',
+              classes: "govuk-label--m"
             }
           }) }}
-        {% endset -%}
 
-        {{ govukRadios ({
-          classes: "govuk-radios--small",
-          idPrefix: 'step-intervention',
-          name: 'step-intervention',
-          fieldset: {
-            legend: {
-              text: 'Will the step involve an intervention?',
-              classes: 'govuk-fieldset__legend--m'
-            }
-          },
-          items: [
-            {
-              text: 'Yes',
-              value: 'yes',
-              checked: checked('step-intervention', 'yes'),
-              conditional: {
-                html: interventionHMTL
-              }
+        {% else %}
+
+          {{ govukTextarea ({
+            id: 'step-description',
+            name: 'step-description',
+            rows: '3',
+            value: data['step-description'] if data['step-description'] else '',
+            label: {
+              text: 'What step is '+offender.firstname+' going to take?',
+              classes: "govuk-label--m"
             },
-            {
-              text: 'No',
-              value: 'no',
-              checked: checked('step-intervention', 'no')
+            hint: {
+              text: "Describe the actions they will take."
             }
-          ]
-        }) }}
+          }) }}
+
+        {% endif %}
+
 
 
 
@@ -116,6 +60,7 @@
           {{ govukTextarea ({
             id: 'strength',
             name: 'strength',
+            rows: "3",
             value: data['strength'] if data['strength'] else '',
             label: {
               text: 'Strength'
@@ -179,18 +124,18 @@
           },
           items: [
             {
-              text: offender.firstname,
-              value: 'individual',
+              text: 'Individual',
+              value: 'Individual',
               checked: checked('step-done', 'individual')
             },
             {
               text: 'Responsible officer',
-              value: 'responsible-officer',
+              value: 'Responsible officer',
               checked: checked('step-done', 'responsible-officer')
             },
             {
               text: 'Other',
-              value: 'other',
+              value: 'Other',
               checked: checked('step-done', 'other'),
               conditional: {
                 html: doneHMTL
@@ -203,8 +148,10 @@
 
 
         {{ govukButton ({
-          html: 'Continue'
+          html: 'Continue',
+          classes: 'govuk-!-margin-bottom-3'
         }) }}
+        <p>or <a class="delete-link" href="/offender">cancel plan</a></p>
 
       </form>
 

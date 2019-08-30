@@ -25,7 +25,7 @@
             {{ offender.firstname }}&rsquo;s summary
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['offender-summary'] }}
+            {{ data['offender-summary'] | nl2br | safe }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="summary">
@@ -35,6 +35,20 @@
           </dd>
         </div>
         <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Goal
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['goal'] | nl2br | safe }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="goal">
+              Change
+              <span class="govuk-visually-hidden"> summary</span>
+            </a>
+          </dd>
+        </div>
+        {# <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Motivations
           </dt>
@@ -54,7 +68,7 @@
               <span class="govuk-visually-hidden"> motivations</span>
             </a>
           </dd>
-        </div>
+        </div> #}
       </dl>
 
       <h2 class="govuk-heading-m">Step 1</h2>
@@ -131,23 +145,11 @@
         </div>
       </dl>
 
-      {% if data['step-description'] %}
+      
+      
       <h2 class="govuk-heading-m">Step 2</h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Description
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['step-description'] }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="add-step">
-              Change
-              <span class="govuk-visually-hidden"> description</span>
-            </a>
-          </dd>
-        </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Needs
@@ -162,26 +164,62 @@
             </ul>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="add-step">
+            <a href="needs">
               Change
               <span class="govuk-visually-hidden"> needs</span>
             </a>
           </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Intervention
+            Is intervention
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['intervention-type'] if data['intervention-type'] else 'No' }}
+            {{ data['step-intervention'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="add-step">
+            <a href="Intervention">
               Change
               <span class="govuk-visually-hidden"> intervention</span>
             </a>
           </dd>
         </div>
+
+
+        {% if data['step-intervention'] == 'Yes' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Intervention
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['intervention-type'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="step-details">
+              Change
+              <span class="govuk-visually-hidden"> intervention</span>
+            </a>
+          </dd>
+        </div>
+        {% else %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Description
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['step-description'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="step-details">
+              Change
+              <span class="govuk-visually-hidden"> description</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        
+        
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Strength
@@ -190,12 +228,14 @@
             {{ data['strength'] if data['strength'] else 'No' }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="add-step">
+            <a href="step-details">
               Change
               <span class="govuk-visually-hidden"> strength</span>
             </a>
           </dd>
         </div>
+
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Responsible
@@ -210,23 +250,25 @@
             </ul>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="add-step">
+            <a href="step-details">
               Change
-              <span class="govuk-visually-hidden"> strength</span>
+              <span class="govuk-visually-hidden"> responsible persons</span>
             </a>
           </dd>
         </div>
       </dl>
-      {% endif %}
 
-      <form action="/offender?id=1" method="post" novalidate>
+
+      <form action="/offender/plan-saved" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
-        <input type="hidden" name="status" value="in-progress">
+        <input type="hidden" name="status" value="In progress">
 
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-          Save plan
-        </button>
+        {{ govukButton ({
+          html: 'Save plan',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a class="delete-link" href="/offender">cancel plan</a></p>
 
       </form>
 

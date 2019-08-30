@@ -4,18 +4,11 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
-{% block beforeContent %}
-  {{ govukBackLink ({
-    text: 'Back to plan',
-    href: 'index'
-  }) }}
-{% endblock %}
-
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="index" method="post">
+      <form class="form" action="/offender/step/plan-updated" method="post">
       
         <h1 class="govuk-heading-l">
           <span class="govuk-caption-l">Update step</span>
@@ -81,8 +74,10 @@
           <input type="hidden" name="status-updated" value="true">
 
           {{ govukButton ({
-            html: 'Continue'
+            html: 'Save update',
+          classes: 'govuk-!-margin-bottom-3'
           }) }}
+          <p>or <a class="delete-link" href="./">cancel update</a></p>
 
 
         </form>

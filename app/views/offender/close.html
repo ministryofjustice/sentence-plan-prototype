@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/offender/plan-closed" method="post">
+
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
+          Are you sure you want to close the plan?
+        </h1>
+        <p class="govuk-!-margin-bottom-6">This will close any incomplete tasks and cannot be undone.</p>
+
+        {{ govukButton ({
+          html: 'Yes, close',
+          classes: 'govuk-button--warning / govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a class="govuk-link govuk-link--no-visited-state" href="/offender">cancel</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

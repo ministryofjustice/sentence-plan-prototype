@@ -4,24 +4,31 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back',
+    href: 'summary'
+  }) }}
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="goal" method="post">
+      <form class="form" action="needs" method="post">
 
         <span class="govuk-caption-l">Create plan</span>
         {{ govukTextarea ({
-          id: 'offender-summary',
-          name: 'offender-summary',
-          value: data['offender-summary'] if data['offender-summary'] else '',
+          id: 'goal',
+          name: 'goal',
+          value: data['goal'] if data['goal'] else '',
           label: {
-            html: offender.firstname+' wants you to know',
+            html: 'What is the goal for the plan?',
             isPageHeading: true,
             classes: "govuk-label--l"
           },
           hint: {
-            text: "Note anything that they want you to know. Use their words."
+            text: "Describe the overall objective for the plan, individual steps and interventions can be added later."
           }
         }) }}
 

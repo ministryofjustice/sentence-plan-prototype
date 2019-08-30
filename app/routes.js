@@ -8,6 +8,13 @@ router.get('/signout', function (req, res) {
   res.redirect('/sign-in/')
 })
 
+// Close plan
+router.get('/offender/plan-closed', function (req, res) {
+  req.session.destroy()
+  res.locals.planClosed = 'The plan has been closed'
+  res.redirect('/offender?plan-closed=true')
+})
+
 
 
 // Search offenders from default session data file and render view
@@ -21,6 +28,14 @@ router.get('/offender*', (req, res, next) => {
   const offender = req.session.data['offenders'].filter(offender => offender.id === currentOffender)
   res.locals.offender = offender[0]
   next()
+})
+
+router.get('/offender/plan-saved', (req, res) => {
+  res.render('offender/index', { 'planSaved' : 'The plan has been saved' });
+})
+
+router.get('/offender/step/plan-updated', (req, res) => {
+  res.render('offender/step/index', { 'planUpdated' : 'The step has been updated' });
 })
 
 
