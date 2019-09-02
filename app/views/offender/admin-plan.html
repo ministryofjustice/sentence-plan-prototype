@@ -27,7 +27,7 @@
           I like work want to be busy have gained qualifications in custody (numeracy, literacy, painting & decorating), and I want to be there for my kids, they mean everything to me.  I am OK living at the hostel as I can’t really think about where I want to live right now.',
           label: {
             html: 'Offender wants you to know',
-            classes: "govuk-label--m"
+            classes: "govuk-label--s"
           }
         }) }}
 
@@ -39,14 +39,22 @@
           value: 'This is the main goal for the plan.',
           label: {
             html: 'Goal for the plan',
-            classes: "govuk-label--m"
+            classes: "govuk-label--s"
           }
         }) }}
 
 
+
+
+
+
+
+        <h2 class="govuk-heading-m">
+          Step 1
+        </h2>
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
               Needs are related to the step
             </legend>
             <span class="govuk-hint">
@@ -70,10 +78,6 @@
 
           </fieldset>
         </div>
-
-
-
-
 
         {% set interventionYes %}
         {{ govukInput ({
@@ -105,14 +109,13 @@
           fieldset: {
             legend: {
               text: 'Intervention?',
-              classes: 'govuk-fieldset__legend--m'
+              classes: 'govuk-fieldset__legend--s'
             }
           },
           items: [
             {
               text: 'Yes',
               value: 'Yes',
-              checked: true,
               conditional: {
                 html: interventionYes
               }
@@ -120,14 +123,13 @@
             {
               text: 'No',
               value: 'No',
+              checked: true,
               conditional: {
                 html: interventionNo
               }
             }
           ]
         }) }}
-
-
 
 
         {% set strengthHMTL %}
@@ -148,7 +150,7 @@
           fieldset: {
             legend: {
               text: 'Strength',
-              classes: 'govuk-fieldset__legend--m'
+              classes: 'govuk-fieldset__legend--s'
             }
           },
           items: [
@@ -166,8 +168,6 @@
             }
           ]
         }) }}
-
-
 
 
         {% set doneHMTL %}
@@ -190,7 +190,7 @@
           fieldset: {
             legend: {
               text: 'Responsible',
-              classes: 'govuk-fieldset__legend--m'
+              classes: 'govuk-fieldset__legend--s'
             }
           },
           items: [
@@ -218,8 +218,181 @@
 
 
 
+        <h2 class="govuk-heading-m">
+          Step 2
+        </h2>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              Needs are related to the step
+            </legend>
+            <span class="govuk-hint">
+               Select all that apply. 
+            </span>
+
+            <div class="govuk-checkboxes govuk-checkboxes--small">
+              {% for need in offender.needs %}
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="step-needs-{{ loop.index }}" name="step-needs-2" type="checkbox" value="{{ need.type }}" checked>
+                  <label class="govuk-label govuk-checkboxes__label" for="step-needs-{{ loop.index }}">
+                    {{ need.type }}
+                    {% if need.risk %}
+                      {# <strong class="govuk-tag moj-tag--red">Risk of serious harm</strong> #}
+                      &ndash; <span class="risk">Risk of serious harm</span>
+                    {% endif %}
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+
+          </fieldset>
+        </div>
+
+
+        {% set interventionYes2 %}
+        {{ govukInput ({
+          id: 'intervention-type-2',
+          name: 'intervention-type-2',
+          value: 'Alcohol Related Violence (ARV)',
+          classes: 'govuk-input--width-20',
+          label: {
+            text: 'Intervention'
+          }
+        }) }}
+        {% endset -%}
+
+        {% set interventionNo2 %}
+        {{ govukTextarea ({
+          id: 'step-description-2',
+          name: 'step-description-2',
+          value: 'Start thinking about their relationships by creating a life map, so they can start to make sense of their childhood.',
+          label: {
+            text: 'Step description'
+          }
+        }) }}
+        {% endset -%}
+
+        {{ govukRadios ({
+          classes: "govuk-radios--small",
+          idPrefix: 'step-intervention-2',
+          name: 'step-intervention-2',
+          fieldset: {
+            legend: {
+              text: 'Intervention?',
+              classes: 'govuk-fieldset__legend--s'
+            }
+          },
+          items: [
+            {
+              text: 'Yes',
+              value: 'Yes',
+              checked: true,
+              conditional: {
+                html: interventionYes2
+              }
+            },
+            {
+              text: 'No',
+              value: 'No',
+              conditional: {
+                html: interventionNo2
+              }
+            }
+          ]
+        }) }}
+
+        {% set strengthHMTL2 %}
+          {{ govukTextarea ({
+            id: 'strength-2',
+            name: 'strength-2',
+            rows: "3",
+            label: {
+              text: 'Strength'
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios ({
+          classes: "govuk-radios--small",
+          idPrefix: 'step-strength-2',
+          name: 'step-strength-2',
+          fieldset: {
+            legend: {
+              text: 'Strength',
+              classes: 'govuk-fieldset__legend--s'
+            }
+          },
+          items: [
+            {
+              text: 'Yes',
+              value: 'yes',
+              conditional: {
+                html: strengthHMTL2
+              }
+            },
+            {
+              text: 'No',
+              value: 'no',
+              checked: true
+            }
+          ]
+        }) }}
+
+
+
+
+        {% set doneHMTL2 %}
+          {{ govukInput ({
+            id: 'step-done-other-2',
+            name: 'step-done-other-2',
+            value: data['step-done-other'] if data['step-done-other'] else '',
+            classes: 'govuk-input--width-20',
+            label: {
+              text: 'Other',
+              classes: 'govuk-input--width-20'
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukCheckboxes ({
+          classes: "govuk-checkboxes--small",
+          idPrefix: 'step-done-2',
+          name: 'step-done-2',
+          fieldset: {
+            legend: {
+              text: 'Responsible',
+              classes: 'govuk-fieldset__legend--s'
+            }
+          },
+          items: [
+            {
+              text: 'Individual',
+              value: 'Individual',
+              checked: true
+            },
+            {
+              text: 'Responsible officer',
+              value: 'Responsible officer',
+              checked: true
+            },
+            {
+              text: 'Other',
+              value: 'Other',
+              conditional: {
+                html: doneHMTL2
+              }
+            }
+          ]
+        }) }}
+
+
+
+
+
+        <input type="hidden" name="step-2-added" value="true">
         <input type="hidden" name="answers-checked" value="true">
         <input type="hidden" name="status" value="In progress">
+        <input type="hidden" name="status-2" value="In progress">
 
         {{ govukButton ({
           html: 'Continue',

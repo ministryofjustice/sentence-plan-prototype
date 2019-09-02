@@ -45,7 +45,6 @@ module.exports = {
         { type:"Emotional well-being" },
         { type:"Thinking and behaviour" }
       ]
-          
     }
   ]
 

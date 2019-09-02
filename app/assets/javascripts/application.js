@@ -50,9 +50,21 @@ const topics = [
   'Living as New Me (LNM)'
 ]
 
-accessibleAutocomplete({
-  element: document.querySelector('#intervention-type-container'),
-  id: 'intervention-type', // To match it to the existing <label>.
-  source: topics,
-  showAllValues: true
-})
+
+if ($('#intervention-type-container').length > 0) {
+  accessibleAutocomplete ({
+    element: document.querySelector('#intervention-type-container'),
+    id: 'intervention-type', // To match it to the existing <label>.
+    name: 'intervention-type',
+    source: topics,
+    showAllValues: true
+  })
+} else if ($('#intervention-type-2-container').length > 0) {
+  accessibleAutocomplete ({
+    element: document.querySelector('#intervention-type-2-container'),
+    id: 'intervention-type-2', // To match it to the existing <label>.
+    name: 'intervention-type-2',
+    source: topics,
+    showAllValues: true
+  })
+}

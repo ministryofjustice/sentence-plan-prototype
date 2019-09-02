@@ -7,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink ({
     text: 'Back',
-    href: 'needs'
+    href: 'needs-2'
   }) }}
 {% endblock %}
 
@@ -15,17 +15,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="step-details" method="post">
+      <form class="form" action="step-details-2" method="post">
 
         <span class="govuk-caption-l">Create plan</span>
-        <h1 class="govuk-heading-l">Add first step</h1>
+        <h1 class="govuk-heading-l">Add a step</h1>
 
         
 
         {{ govukRadios ({
           classes: "govuk-radios--inline govuk-radios--/small",
-          idPrefix: 'step-intervention',
-          name: 'step-intervention',
+          idPrefix: 'step-intervention-2',
+          name: 'step-intervention-2',
           fieldset: {
             legend: {
               text: 'Will the step involve an intervention?',
@@ -36,12 +36,12 @@
             {
               text: 'Yes',
               value: 'Yes',
-              checked: checked('step-intervention', 'Yes')
+              checked: checked('step-intervention-2', 'Yes')
             },
             {
               text: 'No',
               value: 'No',
-              checked: checked('step-intervention', 'No')
+              checked: checked('step-intervention-2', 'No')
             }
           ]
         }) }}
@@ -52,7 +52,7 @@
           html: 'Continue',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a class="delete-link" href="/offender">cancel plan</a></p>
+        <p>or <a class="delete-link" href="/steps">cancel new step</a></p>
 
       </form>
 

@@ -48,19 +48,19 @@
       rows: [
         [
           {
-            text: "Improve employment opportunities by completing a CV."
+            text: data['intervention-type'] if data['step-intervention'] == 'Yes' else data['step-description']
           },
           {
-            text: "In progress",
+            text: data['status'],
             format: "numeric"
           }
         ],
         [
           {
-            text: data['step-description']
+            text: data['intervention-type-2'] if data['step-intervention-2'] == 'Yes' else data['step-description-2']
           },
           {
-            text: data['step-description'],
+            text: data['status-2'],
             format: "numeric"
           }
         ]

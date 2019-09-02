@@ -49,10 +49,18 @@
           {{ offender.firstname }}&rsquo;s summary
         </dt>
         <dd class="govuk-summary-list__value">
-          {{ data['offender-summary'] }}
+          {{ data['offender-summary'] | nl2br | safe }}
         </dd>
       </div>
       <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Goal
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['goal'] | nl2br | safe }}
+        </dd>
+      </div>
+      {# <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Motivations
         </dt>
@@ -66,7 +74,7 @@
             {% endfor %}
           </ul>
         </dd>
-      </div>
+      </div> #}
       {% if data['comment-added'] == "true" %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -97,19 +105,19 @@
       rows: [
         [
           {
-            text: "Improve employment opportunities by completing a CV."
+            text: data['intervention-type'] if data['step-intervention'] == 'Yes' else data['step-description']
           },
           {
-            text: "In progress",
+            text: data['status'],
             format: "numeric"
           }
         ],
         [
           {
-            text: data['step-description']
+            text: data['intervention-type-2'] if data['step-intervention-2'] == 'Yes' else data['step-description-2']
           },
           {
-            text: data['step-description'],
+            text: data['status-2'],
             format: "numeric"
           }
         ]

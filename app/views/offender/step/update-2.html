@@ -8,7 +8,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/offender/step/step-updated" method="post">
+      <form class="form" action="/offender/step/step-updated-2" method="post">
       
         <h1 class="govuk-heading-l">
           <span class="govuk-caption-l">Update step</span>
@@ -16,8 +16,8 @@
         </h1>
 
         {{ govukRadios ({
-          idPrefix: 'status',
-          name: 'status',
+          idPrefix: 'status-2',
+          name: 'status-2',
           fieldset: {
             legend: {
               text: 'Current status',
@@ -32,35 +32,35 @@
             {
               text: 'In progress',
               value: 'In progress',
-              checked: checked('status', 'In progress')
+              checked: checked('status-2', 'In progress')
             },
             {
               text: 'Paused',
               value: 'Paused',
-              checked: checked('status', 'Paused')
+              checked: checked('status-2', 'Paused')
             },
             {
               text: 'Completed',
               value: 'Completed',
-              checked: checked('status', 'Completed')
+              checked: checked('status-2', 'Completed')
             },
             {
               text: 'Partly completed',
               value: 'Partly completed',
-              checked: checked('status', 'Partly completed')
+              checked: checked('status-2', 'Partly completed')
             },
             {
               text: 'Abandoned',
               value: 'Abandoned',
-              checked: checked('status', 'Abandoned')
+              checked: checked('status-2', 'Abandoned')
             }
           ]
         }) }}
 
         {{ govukTextarea ({
-            id: 'status-comment',
-            name: 'status-comment',
-            value: data['status-comment'] if data['status-comment'] else '',
+            id: 'status-comment-2',
+            name: 'status-comment-2',
+            value: data['status-comment-2'] if data['status-comment-2'] else '',
             label: {
               html: 'Comment',
               isPageHeading: false,
@@ -71,13 +71,13 @@
             }
           }) }}
 
-          <input type="hidden" name="status-updated" value="true">
+          <input type="hidden" name="status-updated-2" value="true">
 
           {{ govukButton ({
             html: 'Save update',
           classes: 'govuk-!-margin-bottom-3'
           }) }}
-          <p>or <a class="delete-link" href="1">cancel update</a></p>
+          <p>or <a class="delete-link" href="2">cancel update</a></p>
 
 
         </form>

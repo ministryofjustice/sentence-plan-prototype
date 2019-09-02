@@ -7,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink ({
     text: 'Back',
-    href: 'intervention'
+    href: 'intervention-2'
   }) }}
 {% endblock %}
 
@@ -18,24 +18,24 @@
       <form class="form" action="steps" method="post">
 
         <span class="govuk-caption-l">Create plan</span>
-        <h1 class="govuk-heading-l">Add first step</h1>
+        <h1 class="govuk-heading-l">Add another step</h1>
 
-        {% if data['step-intervention'] == 'Yes' %}
+        {% if data['step-intervention-2'] == 'Yes' %}
 
           <div class="govuk-form-group">
-            <label for="intervention-type" class="govuk-label govuk-label--m">What intervention is {{ offender.firstname }} going to take?</label>
+            <label for="intervention-type-2" class="govuk-label govuk-label--m">What intervention is {{ offender.firstname }} going to take?</label>
             <div class="govuk-grid-row">
-              <div id="intervention-type-container" class="govuk-grid-column-two-thirds"></div>
+              <div id="intervention-type-2-container" class="govuk-grid-column-two-thirds"></div>
             </div>
           </div>
 
         {% else %}
 
           {{ govukTextarea ({
-            id: 'step-description',
-            name: 'step-description',
+            id: 'step-description-2',
+            name: 'step-description-2',
             rows: '3',
-            value: data['step-description'] if data['step-description'] else '',
+            value: data['step-description-2'] if data['step-description-2'] else '',
             label: {
               text: 'What step is '+offender.firstname+' going to take?',
               classes: "govuk-label--m"
@@ -54,10 +54,10 @@
 
         {% set strengthHMTL %}
           {{ govukTextarea ({
-            id: 'strength',
-            name: 'strength',
+            id: 'strength-2',
+            name: 'strength-2',
             rows: "3",
-            value: data['strength'] if data['strength'] else '',
+            value: data['strength-2'] if data['strength-2'] else '',
             label: {
               text: 'Strength'
             }
@@ -66,8 +66,8 @@
 
         {{ govukRadios ({
           classes: "govuk-radios--small",
-          idPrefix: 'step-strength',
-          name: 'step-strength',
+          idPrefix: 'step-strength-2',
+          name: 'step-strength-2',
           fieldset: {
             legend: {
               text: 'Does '+offender.firstname+' have a strength that will help them complete this step?',
@@ -78,7 +78,7 @@
             {
               text: 'Yes',
               value: 'yes',
-              checked: checked('step-strength', 'yes'),
+              checked: checked('step-strength-2', 'yes'),
               conditional: {
                 html: strengthHMTL
               }
@@ -86,7 +86,7 @@
             {
               text: 'No',
               value: 'no',
-              checked: checked('step-strength', 'yes')
+              checked: checked('step-strength-2', 'yes')
             }
           ]
         }) }}
@@ -97,9 +97,9 @@
 
         {% set doneHMTL %}
           {{ govukInput ({
-            id: 'step-done-other',
-            name: 'step-done-other',
-            value: data['step-done-other'] if data['step-done-other'] else '',
+            id: 'step-done-2-other-2',
+            name: 'step-done-2-other-2',
+            value: data['step-done-2-other-2'] if data['step-done-other-2'] else '',
             classes: 'govuk-input--width-20',
             label: {
               text: 'Other',
@@ -110,8 +110,8 @@
 
         {{ govukCheckboxes ({
           classes: "govuk-checkboxes--small",
-          idPrefix: 'step-done',
-          name: 'step-done',
+          idPrefix: 'step-done-2',
+          name: 'step-done-2',
           fieldset: {
             legend: {
               text: 'Who will make sure the step is done?',
@@ -122,17 +122,17 @@
             {
               text: 'Individual',
               value: 'Individual',
-              checked: checked('step-done', 'individual')
+              checked: checked('step-done-2', 'individual')
             },
             {
               text: 'Responsible officer',
               value: 'Responsible officer',
-              checked: checked('step-done', 'responsible-officer')
+              checked: checked('step-done-2', 'responsible-officer')
             },
             {
               text: 'Other',
               value: 'Other',
-              checked: checked('step-done', 'other'),
+              checked: checked('step-done-2', 'other'),
               conditional: {
                 html: doneHMTL
               }
@@ -142,12 +142,13 @@
 
 
 
+        <input type="hidden" name="step-2-added" value="true">
 
         {{ govukButton ({
           html: 'Continue',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a class="delete-link" href="/offender">cancel plan</a></p>
+        <p>or <a class="delete-link" href="/steps">cancel new step</a></p>
 
       </form>
 

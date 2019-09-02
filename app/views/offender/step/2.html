@@ -1,0 +1,167 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back to plan',
+    href: '/offender'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      
+      {% if stepUpdated2 %}
+        {{ mojBanner({
+          type: 'success',
+          text: stepUpdated2,
+          iconFallbackText: 'Success'
+        }) }} 
+      {% endif %}
+
+
+
+      <div class="moj-page-header-actions">
+        <div class="moj-page-header-actions__title">
+          <h1 class="govuk-heading-l">
+            <span class="govuk-caption-l">Step details</span>
+            {{ data['intervention-type-2'] if data['step-intervention-2'] == 'Yes' else data['step-description-2']  }}
+          </h1>
+          {{ govukTag({
+            text: data['status-2']
+          }) }}
+        </div>
+
+        <div class="moj-page-header-actions__actions">
+          <div class="moj-button-menu">
+            <div class="moj-button-menu__wrapper">
+
+              {{ govukButton ({
+                text: 'Update progress',
+                href: 'update-2',
+                classes: 'moj-button-menu__item moj-page-header-actions__action'
+              }) }}
+
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+
+
+
+
+    <div class="govuk-grid-column-two-thirds">
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+
+          <dt class="govuk-summary-list__key">
+            Needs
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['step-needs-2'].length > 1 %}
+            <ul class="govuk-list govuk-list--bullet">
+              {% for need in data['step-needs-2'] %}
+                <li>{{ need }}</li>
+              {% endfor %}
+            </ul>
+            {% else %}
+              {% for need in data['step-needs-2'] %}
+                {{ need }}
+              {% else %}
+                No needs selected
+              {% endfor %}
+            {% endif %}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Is intervention
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['step-intervention-2'] }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Strength
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['strength-2'] if data['strength-2'] else 'No' }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Responsible
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['step-done-2'].length > 1 %}
+            <ul class="govuk-list govuk-list--bullet">
+              {% for person in data['step-done-2'] %}
+                <li>{{ person }}</li>
+              {% endfor %}
+            </ul>
+            {% else %}
+              {% for person in data['step-done-2'] %}
+                {{ person }}
+              {% else %}
+                Nobody selected
+              {% endfor %}
+            {% endif %}
+          </dd>
+        </div>
+        
+      </dl>
+    </div>
+
+
+
+
+    
+    <div class="govuk-grid-column-one-third">
+      <h2 class="govuk-heading-m">
+        History
+      </h2>
+      <div class="moj-timeline">
+        {% if data['status-updated-2'] %}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <h2 class="moj-timeline__title">{{ data['status-2'] }}</h2>
+            <p class="moj-timeline__byline">by Sarah Smith</p>
+          </div>
+
+          <p class="moj-timeline__date">
+            <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
+          </p>
+
+          <div class="moj-timeline__description">
+            <p>{{ data['status-comment-2'] }}</p>
+          </div>
+        </div>
+        {% endif %}
+
+
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <h2 class="moj-timeline__title">In progress</h2>
+            <p class="moj-timeline__byline">by Sarah Smith</p>
+          </div>
+
+          <p class="moj-timeline__date">
+            <time datetime="2019-05-21T13:15:00.000Z">21 May 2019 at 1:15pm</time>
+          </p>
+        </div>
+
+      </div> {# timeline #}
+
+    </div>
+  </div>
+{% endblock %}

@@ -202,28 +202,11 @@
 
         <ul class="govuk-list govuk-!-margin-bottom-3">
           <li>
-            <a href="#0" class="task">
+            <a href="/offender/step/1" class="task">
               <span class="task__heading">
-                Improve employment opportunities by completing a CV.
+                {{ data['intervention-type'] if data['step-intervention'] == 'Yes' else data['step-description']  }}
               </span>
-              In progress · Last updated on {{ moment | date("subtract", 10, "days") | date("D MMMM YYYY") }}
-              <ul class="govuk-list list-tags">
-                <li class="govuk-!-font-weight-bold">Needs:</li>
-                <li>ETE</li>
-              </ul>
-            </a>
-          </li>
-          
-          <li>
-            <a href="/offender/step/" class="task">
-              <span class="task__heading">
-                {% if data['step-intervention'] == 'Yes' %}
-                  {{ data['input-autocomplete'] }}
-                {% else %}
-                  {{ data['step-description'] }}
-                {% endif %}
-              </span>
-              {{ data['status'] }} &middot; Last updated on {{ moment | date("subtract", 10, "days") | date("D MMMM YYYY") }}
+              {{ data['status'] }} &middot; Last updated on {{ moment | date("D MMMM YYYY") }}
               <ul class="govuk-list list-tags">
                 <li class="govuk-!-font-weight-bold">Needs:</li>
                 {% for need in data['step-needs'] %}
@@ -232,6 +215,25 @@
               </ul>
             </a>
           </li>
+
+          {% if data['step-2-added'] == 'true' %}
+          <li>
+            <a href="/offender/step/2" class="task">
+              <span class="task__heading">
+                {{ data['intervention-type-2'] if data['step-intervention-2'] == 'Yes' else data['step-description-2']  }}
+              </span>
+              {{ data['status-2'] }} &middot; Last updated on {{ moment | date("D MMMM YYYY") }}
+              <ul class="govuk-list list-tags">
+                <li class="govuk-!-font-weight-bold">Needs:</li>
+                {% for need in data['step-needs-2'] %}
+                  <li class="tag">{{ need }}</li>
+                {% endfor %}
+              </ul>
+            </a>
+          </li>
+          {% endif %}
+
+ 
 
 
           <li class="js-hidden">
@@ -248,6 +250,10 @@
           </li>
         </ul>
         <p><a class="govuk-link govuk-link--no-visited-state" href="#0">Add a step</a></p>
+
+
+
+
       {% else %}
         <p>There is no active plan.</p>
         {{ govukButton ({
