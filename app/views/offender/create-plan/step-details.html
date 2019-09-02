@@ -22,16 +22,12 @@
 
         {% if data['step-intervention'] == 'Yes' %}
 
-          {{ govukInput ({
-            id: 'intervention-type',
-            name: 'intervention-type',
-            value: data['intervention-type'] if data['intervention-type'] else '',
-            classes: 'govuk-input--width-20',
-            label: {
-              text: 'What intervention is '+offender.firstname+' going to take?',
-              classes: "govuk-label--m"
-            }
-          }) }}
+          <div class="govuk-form-group">
+            <label for="intervention-type" class="govuk-label govuk-label--m">What intervention is {{ offender.firstname }} going to take?</label>
+            <div class="govuk-grid-row">
+              <div id="intervention-type-container" class="govuk-grid-column-two-thirds"></div>
+            </div>
+          </div>
 
         {% else %}
 

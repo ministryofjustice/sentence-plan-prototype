@@ -155,13 +155,19 @@
             Needs
           </dt>
           <dd class="govuk-summary-list__value">
+            {% if data['step-needs'].length > 1 %}
             <ul class="govuk-list govuk-list--bullet">
               {% for need in data['step-needs'] %}
                 <li>{{ need }}</li>
-              {% else %}
-                <li>No needs selected</li>
               {% endfor %}
             </ul>
+            {% else %}
+              {% for need in data['step-needs'] %}
+                {{ need }}
+              {% else %}
+                No needs selected
+              {% endfor %}
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="needs">
@@ -241,13 +247,19 @@
             Responsible
           </dt>
           <dd class="govuk-summary-list__value">
+            {% if data['step-done'].length > 1 %}
             <ul class="govuk-list govuk-list--bullet">
               {% for person in data['step-done'] %}
                 <li>{{ person }}</li>
-              {% else %}
-                <li>Nobody selected</li>
               {% endfor %}
             </ul>
+            {% else %}
+              {% for person in data['step-done'] %}
+                {{ person }}
+              {% else %}
+                Nobody selected
+              {% endfor %}
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="step-details">

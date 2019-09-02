@@ -14,6 +14,7 @@ $govuk-assets-path: '/govuk/assets/';
 @import "patterns/changelog";
 
 // Components that aren't in Frontend
+@import "components/autocomplete";
 @import "components/cookie-banner";
 @import "components/case-header";
 @import "components/key-details";

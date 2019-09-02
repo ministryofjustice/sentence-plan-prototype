@@ -193,8 +193,8 @@
 
             <select class="govuk-select" id="sort" name="sort">
             <option value="All">All</option>
-            {% for need in data['step-needs'] %}
-              <option value="{{ need }}">{{ need }}</option>
+            {% for need in offender.needs %}
+              <option value="{{ need.type }}">{{ need.type }}</option>
             {% endfor %}
             </select>
           </div>
@@ -218,7 +218,7 @@
             <a href="/offender/step/" class="task">
               <span class="task__heading">
                 {% if data['step-intervention'] == 'Yes' %}
-                  {{ data['intervention-type'] }}
+                  {{ data['input-autocomplete'] }}
                 {% else %}
                   {{ data['step-description'] }}
                 {% endif %}
