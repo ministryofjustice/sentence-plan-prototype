@@ -48,6 +48,20 @@
             </a>
           </dd>
         </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Notes
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['notes'] | nl2br | safe }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="notes">
+              Change
+              <span class="govuk-visually-hidden"> notes</span>
+            </a>
+          </dd>
+        </div>
         {# <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Motivations
@@ -148,6 +162,23 @@
           </dd>
         </div>
         {% endif %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Due date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% set dueDate1 = data['step-date-year'] + "-" + data['step-date-month'] + "-" + data['step-date-day'] %}
+
+            {{ dueDate1 | date("D MMMM YYYY") }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="step-details">
+              Change
+              <span class="govuk-visually-hidden"> date</span>
+            </a>
+          </dd>
+        </div>
         
         
         <div class="govuk-summary-list__row">
@@ -276,6 +307,23 @@
           </dd>
         </div>
         {% endif %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Due date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% set dueDate2 = data['step-date-2-year'] + "-" + data['step-date-2-month'] + "-" + data['step-date-2-day'] %}
+
+            {{ dueDate2 | date("D MMMM YYYY") }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="step-details-2">
+              Change
+              <span class="govuk-visually-hidden"> date</span>
+            </a>
+          </dd>
+        </div>
         
         
         <div class="govuk-summary-list__row">

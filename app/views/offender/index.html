@@ -128,6 +128,14 @@
               {{ data['goal'] | nl2br | safe }}
             </dd>
           </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Notes
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['notes'] | nl2br | safe }}
+            </dd>
+          </div>
           {# <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Motivations
@@ -200,13 +208,18 @@
           </div>
         </div>
 
+
+{% set dueDate1 = data['step-date-year'] + "-" + data['step-date-month'] + "-" + data['step-date-day'] %}
+{% set dueDate2 = data['step-date-2-year'] + "-" + data['step-date-2-month'] + "-" + data['step-date-2-day'] %}
+
         <ul class="govuk-list govuk-!-margin-bottom-3">
           <li>
             <a href="/offender/step/1" class="task">
               <span class="task__heading">
                 {{ data['intervention-type'] if data['step-intervention'] == 'Yes' else data['step-description']  }}
               </span>
-              {{ data['status'] }} &middot; Last updated on {{ moment | date("D MMMM YYYY") }}
+
+              {{ data['status'] }} &middot; Due by {{ dueDate | date("D MMMM YYYY") }}
               <ul class="govuk-list list-tags">
                 <li class="govuk-!-font-weight-bold">Needs:</li>
                 {% for need in data['step-needs'] %}
@@ -222,7 +235,9 @@
               <span class="task__heading">
                 {{ data['intervention-type-2'] if data['step-intervention-2'] == 'Yes' else data['step-description-2']  }}
               </span>
-              {{ data['status-2'] }} &middot; Last updated on {{ moment | date("D MMMM YYYY") }}
+
+
+              {{ data['status-2'] }} &middot; Due by {{ dueDate2 | date("D MMMM YYYY") }}
               <ul class="govuk-list list-tags">
                 <li class="govuk-!-font-weight-bold">Needs:</li>
                 {% for need in data['step-needs-2'] %}

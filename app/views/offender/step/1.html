@@ -82,10 +82,21 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Is intervention
+            Intervention
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['step-intervention'] }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Due date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% set dueDate1 = data['step-date-year'] + "-" + data['step-date-month'] + "-" + data['step-date-day'] %}
+
+            {{ dueDate1 | date("D MMMM YYYY") }}
           </dd>
         </div>
 

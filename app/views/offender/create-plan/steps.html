@@ -61,15 +61,15 @@
       </dl>
       <p class="govuk-!-margin-bottom-6">
         {% if data['step-2-added'] %}
-        <a class="govuk-link" href="#0">Add another step</a>
+        <a class="govuk-link govuk-link--no-visited-state" href="#0">Add another step</a> or <a class="govuk-link govuk-link--no-visited-state" href="#0">reorder steps</a>
         {% else %}
-        <a class="govuk-link" href="needs-2">Add another step</a>
+        <a class="govuk-link govuk-link--no-visited-state" href="needs-2">Add another step</a> or <a class="govuk-link govuk-link--no-visited-state" href="#0">reorder steps</a>
         {% endif %}
       </p>
       
       {{ govukButton ({
         text: 'Continue',
-        href: 'check-your-answers',
+        href: 'notes',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
         <p>or <a class="delete-link" href="/offender">cancel plan</a></p>
