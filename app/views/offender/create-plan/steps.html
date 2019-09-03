@@ -21,9 +21,15 @@
       <dl class="govuk-summary-list / govuk-!-margin-bottom-3">
 
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
-            {{ data['intervention-type'] if data['step-intervention'] == 'Yes' else data['step-description']  }}
-          </dt>
+          {% if data['reordered'] == 'true' %}
+            <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+              {{ data['intervention-type-2'] if data['step-intervention-2'] == 'Yes' else data['step-description-2']  }}
+            </dt>
+          {% else %} 
+            <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+              {{ data['intervention-type'] if data['step-intervention'] == 'Yes' else data['step-description']  }}
+            </dt>
+          {% endif %}
           
           <dd class="govuk-summary-list__actions">
             <ul class="govuk-summary-list__actions-list">
@@ -40,9 +46,16 @@
 
         {% if data['step-2-added'] == 'true' %}
         <div class="govuk-summary-list__row">
+        {% if data['reordered'] == 'true' %}
+          <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+            {{ data['intervention-type'] if data['step-intervention'] == 'Yes' else data['step-description']  }}
+          </dt>
+        {% else %} 
           <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
             {{ data['intervention-type-2'] if data['step-intervention-2'] == 'Yes' else data['step-description-2']  }}
           </dt>
+        {% endif %}
+          
           
           <dd class="govuk-summary-list__actions">
             <ul class="govuk-summary-list__actions-list">
@@ -61,15 +74,15 @@
       </dl>
       <p class="govuk-!-margin-bottom-6">
         {% if data['step-2-added'] %}
-        <a class="govuk-link govuk-link--no-visited-state" href="#0">Add another step</a> or <a class="govuk-link govuk-link--no-visited-state" href="#0">reorder steps</a>
+        <a class="govuk-link govuk-link--no-visited-state" href="#0">Add another</a> or <a class="govuk-link govuk-link--no-visited-state" href="steps-reorder">reorder</a>
         {% else %}
-        <a class="govuk-link govuk-link--no-visited-state" href="needs-2">Add another step</a> or <a class="govuk-link govuk-link--no-visited-state" href="#0">reorder steps</a>
+        <a class="govuk-link govuk-link--no-visited-state" href="needs-2">Add another</a>
         {% endif %}
       </p>
       
       {{ govukButton ({
         text: 'Continue',
-        href: 'notes',
+        href: 'check-your-answers',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
         <p>or <a class="delete-link" href="/offender">cancel plan</a></p>

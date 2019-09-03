@@ -18,12 +18,12 @@
       <form class="form" action="steps" method="post">
 
         <span class="govuk-caption-l">Create plan</span>
-        <h1 class="govuk-heading-l">Add first step</h1>
+        <h1 class="govuk-heading-l">Add step details</h1>
 
         {% if data['step-intervention'] == 'Yes' %}
 
           <div class="govuk-form-group">
-            <label for="intervention-type" class="govuk-label govuk-label--m">What intervention is {{ offender.firstname }} going to take?</label>
+            <label for="intervention-type" class="govuk-label govuk-label--m">What intervention are they going to take?</label>
             <div class="govuk-grid-row">
               <div id="intervention-type-container" class="govuk-grid-column-two-thirds"></div>
             </div>
@@ -37,7 +37,7 @@
             rows: '3',
             value: data['step-description'] if data['step-description'] else '',
             label: {
-              text: 'What step is '+offender.firstname+' going to take?',
+              text: 'What step are they going to take?',
               classes: "govuk-label--m"
             },
             hint: {
@@ -73,7 +73,7 @@
             rows: "3",
             value: data['strength'] if data['strength'] else '',
             label: {
-              text: 'Strength'
+              text: 'Describe it'
             }
           }) }}
         {% endset -%}
@@ -84,7 +84,7 @@
           name: 'step-strength',
           fieldset: {
             legend: {
-              text: 'Does '+offender.firstname+' have a strength that will help them complete this step?',
+              text: 'Do you want to note something about them that will help them finish the step?',
               classes: 'govuk-fieldset__legend--m'
             }
           },

@@ -18,17 +18,18 @@
       <form class="form" action="needs" method="post">
 
         <span class="govuk-caption-l">Create plan</span>
+
         {{ govukTextarea ({
           id: 'goal',
           name: 'goal',
           value: data['goal'] if data['goal'] else '',
           label: {
-            html: 'What is the goal for the plan?',
+            html: 'Write a goal',
             isPageHeading: true,
             classes: "govuk-label--l"
           },
           hint: {
-            text: "Describe the overall objective for the plan. Individual steps and interventions can be added later."
+            html: "Add a goal to the plan. You can add more than one, but make sure they&rsquo;re realistic and achievable."
           }
         }) }}
 

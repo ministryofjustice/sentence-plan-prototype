@@ -4,6 +4,13 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back',
+    href: 'diversity'
+  }) }}
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -16,12 +23,12 @@
           name: 'offender-summary',
           value: data['offender-summary'] if data['offender-summary'] else '',
           label: {
-            html: offender.firstname+' wants you to know',
+            html: 'They need us to know',
             isPageHeading: true,
             classes: "govuk-label--l"
           },
           hint: {
-            text: "Note anything that they want you to know. Use their words."
+            text: "Add any other things they need us to know about them. Use their words."
           }
         }) }}
 
