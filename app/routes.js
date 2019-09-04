@@ -30,6 +30,25 @@ router.get('/offender*', (req, res, next) => {
   next()
 })
 
+router.get('/startsteps', (req, res) => {
+  let option = req.session.data['prototype-options']
+
+  if (option == 'Child protection plan') {
+    req.session.data['step-description'] = 'Child protection plan'
+    req.session.data['step-done'] = 'Individual'
+    
+    res.redirect('/offender/create-plan/steps')
+  } else if (option == 'Unpaid work') {
+    req.session.data['step-description'] = 'Unpaid work'
+    req.session.data['step-done'] = ['Individual','Other']
+    req.session.data['step-done-other'] = '3rd party supplier'
+    
+    res.redirect('/offender/create-plan/steps')
+  } else {
+    res.redirect('/offender/create-plan/needs')
+  }
+})
+
 router.get('/offender/plan-saved', (req, res) => {
   res.render('offender/index', { 'planSaved' : 'The plan has been saved' });
 })

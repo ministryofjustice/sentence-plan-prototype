@@ -38,14 +38,45 @@
             </h3>
             <p>Previous prototypes were created as slidedecks, this takes that work and updates to ensure standards and patterns from GOV.UK and MOJ design systems are being followed.</p>
 
-            {{ govukButton ({
-              text: 'View prototype',
-              href: 'oasys',
-              isStartButton: true,
-              classes: 'govuk-!-margin-bottom-4'
-            }) }}
+            <form action="/oasys" method="post" novalidate>
 
-            <p><a href="/offender/admin-plan">Create a mock plan</a></p>
+              {{ govukRadios ({
+                classes: "govuk-radios--small",
+                idPrefix: 'prototype-options',
+                name: 'prototype-options',
+                fieldset: {
+                  legend: {
+                    text: 'Prototype options',
+                    classes: 'govuk-fieldset__legend--s'
+                  }
+                },
+                items: [
+                  {
+                    text: 'Standard',
+                    value: 'Standard',
+                    checked: true
+                  },
+                  {
+                    text: 'Child protection plan',
+                    value: 'Child protection plan'
+                  },
+                  {
+                    text: 'Unpaid work',
+                    value: 'Unpaid work'
+                  }
+                ]
+              }) }}
+
+              {{ govukButton ({
+                text: 'View prototype',
+                isStartButton: true,
+                classes: 'govuk-!-margin-bottom-4'
+              }) }}
+
+            </form>
+
+
+            <p class="govuk-!-margin-bottom-0"><a href="/offender/admin-plan">Create a mock plan</a></p>
 
   				</div>
   				{# End of prototype write up #}

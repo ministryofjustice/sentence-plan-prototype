@@ -13,6 +13,27 @@
 
 {% block content %}
   <div class="govuk-grid-row">
+    {% if data['prototype-options'] == 'Child protection plan' %}
+        <div class="govuk-grid-column-full">
+          {{ mojBanner({
+            type: 'information',
+            text: 'A child protection plan step has been added automatically based on information from OASys.',
+            iconFallbackText: 'Information'
+          }) }} 
+        </div>
+      {% elif data['prototype-options'] == 'Unpaid work' %}
+        <div class="govuk-grid-column-full">
+          {{ mojBanner({
+            type: 'information',
+            text: 'An unpaid work step has been added automatically based on information from OASys.',
+            iconFallbackText: 'Information'
+          }) }} 
+        </div>
+      {% else %}
+      Huh?
+      {% endif %}
+
+
     <div class="govuk-grid-column-two-thirds">
 
       <span class="govuk-caption-l">Create plan</span>

@@ -18,8 +18,7 @@
       <form class="form" action="step-details-2" method="post">
 
         <span class="govuk-caption-l">Create plan</span>
-        <h1 class="govuk-heading-l">Add a step</h1>
-
+        <span class="govuk-heading-l">Add a step</span>
         
 
         {{ govukRadios ({
@@ -29,6 +28,7 @@
           fieldset: {
             legend: {
               text: 'Will the step involve an intervention?',
+              isPageHeading: true,
               classes: 'govuk-fieldset__legend--m'
             }
           },
@@ -52,7 +52,7 @@
           html: 'Continue',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a class="delete-link" href="/steps">cancel new step</a></p>
+        <p>or <a class="delete-link" href="steps">cancel new step</a></p>
 
       </form>
 

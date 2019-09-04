@@ -120,12 +120,12 @@
       {% if data['step-done-2'].length > 1 %}
       <ul class="govuk-list govuk-list--bullet">
         {% for person in data['step-done-2'] %}
-          <li>{{ person }}</li>
+          <li>{{ person }}{{ ': '+data['step-done-other-2'] if person == 'Other' else '' }}</li>
         {% endfor %}
       </ul>
       {% else %}
         {% for person in data['step-done-2'] %}
-          {{ person }}
+          {{ person }}{{ ': '+data['step-done-other-2'] if person == 'Other' else '' }}
         {% else %}
           Nobody selected
         {% endfor %}
