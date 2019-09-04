@@ -33,8 +33,8 @@ router.get('/offender*', (req, res, next) => {
 router.get('/startsteps', (req, res) => {
   let option = req.session.data['prototype-options']
 
-  if (option == 'Child protection plan') {
-    req.session.data['step-description'] = 'Child protection plan'
+  if (option == 'Safeguarding') {
+    req.session.data['step-description'] = 'Safeguarding'
     req.session.data['step-intervention'] = 'No'
     req.session.data['step-done'] = ['Individual']
     req.session.data['strength'] = 'No'
