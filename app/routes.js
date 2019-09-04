@@ -35,14 +35,24 @@ router.get('/startsteps', (req, res) => {
 
   if (option == 'Child protection plan') {
     req.session.data['step-description'] = 'Child protection plan'
-    req.session.data['step-done'] = 'Individual'
+    req.session.data['step-intervention'] = 'No'
+    req.session.data['step-done'] = ['Individual']
+    req.session.data['strength'] = 'No'
+    req.session.data['step-date-year'] = '2020'
+    req.session.data['step-date-month'] = '1'
+    req.session.data['step-date-day'] = '31'
     
     res.redirect('/offender/create-plan/steps')
   } else if (option == 'Unpaid work') {
     req.session.data['step-description'] = 'Unpaid work'
+    req.session.data['step-intervention'] = 'No'
     req.session.data['step-done'] = ['Individual','Other']
     req.session.data['step-done-other'] = '3rd party supplier'
-    
+    req.session.data['strength'] = 'No'
+    req.session.data['step-date-year'] = '2020'
+    req.session.data['step-date-month'] = '1'
+    req.session.data['step-date-day'] = '31'
+
     res.redirect('/offender/create-plan/steps')
   } else {
     res.redirect('/offender/create-plan/needs')
