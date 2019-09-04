@@ -90,9 +90,9 @@
 
       {% if data['reordered'] == 'true' %}
         <h2 class="govuk-heading-m">Step 1</h2>
-        {% include "includes/step1-summary.html" %}
-        <h2 class="govuk-heading-m">Step 2</h2>
         {% include "includes/step2-summary.html" %}
+        <h2 class="govuk-heading-m">Step 2</h2>
+        {% include "includes/step1-summary.html" %}
       {% else %} 
         <h2 class="govuk-heading-m">Step 1</h2>
         {% include "includes/step1-summary.html" %}

@@ -209,48 +209,21 @@
         </div>
 
 
-{% set dueDate1 = data['step-date-year'] + "-" + data['step-date-month'] + "-" + data['step-date-day'] %}
-{% set dueDate2 = data['step-date-2-year'] + "-" + data['step-date-2-month'] + "-" + data['step-date-2-day'] %}
+
+
 
         <ul class="govuk-list govuk-!-margin-bottom-3">
-          <li>
-            <a href="/offender/step/1" class="task">
-              <span class="task__heading">
-                {{ data['intervention-type'] if data['step-intervention'] == 'Yes' else data['step-description']  }}
-              </span>
+          {% if data['reordered'] == 'true' %}
+            {% include "includes/step2-card.html" %}
+            {% include "includes/step1-card.html" %}
+          {% else %} 
+            {% include "includes/step1-card.html" %}
 
-              {{ data['status'] }} &middot; Due by {{ dueDate | date("D MMMM YYYY") }}
-              <ul class="govuk-list list-tags">
-                <li class="govuk-!-font-weight-bold">Needs:</li>
-                {% for need in data['step-needs'] %}
-                  <li class="tag">{{ need }}</li>
-                {% endfor %}
-              </ul>
-            </a>
-          </li>
-
-          {% if data['step-2-added'] == 'true' %}
-          <li>
-            <a href="/offender/step/2" class="task">
-              <span class="task__heading">
-                {{ data['intervention-type-2'] if data['step-intervention-2'] == 'Yes' else data['step-description-2']  }}
-              </span>
-
-
-              {{ data['status-2'] }} &middot; Due by {{ dueDate2 | date("D MMMM YYYY") }}
-              <ul class="govuk-list list-tags">
-                <li class="govuk-!-font-weight-bold">Needs:</li>
-                {% for need in data['step-needs-2'] %}
-                  <li class="tag">{{ need }}</li>
-                {% endfor %}
-              </ul>
-            </a>
-          </li>
+            {% if data['step-2-added'] == 'true' %}
+              {% include "includes/step2-card.html" %}
+            {% endif %}
           {% endif %}
-
- 
-
-
+          
           <li class="js-hidden">
             <a href="#0" class="task task--complete">
               <span class="task__heading">
@@ -264,7 +237,14 @@
             </a>
           </li>
         </ul>
-        <p><a class="govuk-link govuk-link--no-visited-state" href="#0">Add a step</a></p>
+
+        <p>
+          {% if data['step-2-added'] %}
+            <a class="govuk-link govuk-link--no-visited-state" href="#0">Add another</a> or <a class="govuk-link govuk-link--no-visited-state" href="/offender/steps-reorder">reorder</a>
+          {% else %}
+            <a class="govuk-link govuk-link--no-visited-state" href="#0">Add another</a>
+          {% endif %}
+        </p>
 
 
 
