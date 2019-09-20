@@ -5,42 +5,13 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
+<div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-
-      <h1 class="govuk-heading-l">Draft plan</h1>
+      <h1 class="govuk-heading-l">Check the goal before saving</h1>
 
       <h2 class="govuk-heading-m">Summary</h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Diversity
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['diversity'] | nl2br | safe }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="summary">
-              Change
-              <span class="govuk-visually-hidden"> their summary</span>
-            </a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Their summary
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['offender-summary'] | nl2br | safe }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="summary">
-              Change
-              <span class="govuk-visually-hidden"> their summary</span>
-            </a>
-          </dd>
-        </div>
-        {# <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Goal
           </dt>
@@ -50,19 +21,39 @@
           <dd class="govuk-summary-list__actions">
             <a href="goal">
               Change
-              <span class="govuk-visually-hidden"> summary</span>
+              <span class="govuk-visually-hidden"> goal</span>
             </a>
           </dd>
-        </div> #}
-        {# <div class="govuk-summary-list__row">
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Related needs
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              {% for need in data['goal-needs'] %}
+                <li>
+                  {{ need }}
+                </li>
+              {% endfor %}
+            </ul>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="goal">
+              Change
+              <span class="govuk-visually-hidden"> needs</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Motivations
           </dt>
           <dd class="govuk-summary-list__value">
             <ul class="govuk-list govuk-list--bullet">
-              {% for need in offender.needs %}
+              {% for need in data['goal-needs'] %}
                 <li>
-                  {{ need.type }}: 
+                  {{ need }}: 
                   {{ data["motivation-"+loop.index] }}
                 </li>
               {% endfor %}
@@ -74,36 +65,13 @@
               <span class="govuk-visually-hidden"> motivations</span>
             </a>
           </dd>
-        </div> #}
+        </div>
       </dl>
 
 
 
 
-      <h2 class="govuk-heading-m">Goals</h2>
-      {% if data['goal-added'] %}
-      <ul class="govuk-list govuk-!-margin-bottom-9">
-        {% include "includes/goal1-card.html" %}
-      </ul>
-
-      {{ govukButton ({
-        text: 'Add another goal',
-        href: 'add-goal/goal',
-        classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
-      }) }}
-      {% else %}
-      <p>No goals added yet.</p>
-      {{ govukButton ({
-        text: 'Add a goal',
-        href: 'add-goal/goal',
-        classes: 'govuk-button--secondary'
-      }) }}
-      {% endif %}
-
-
-
-
-      {# {% if data['reordered'] == 'true' %}
+      {% if data['reordered'] == 'true' %}
         <h2 class="govuk-heading-m">Step 1</h2>
         {% include "includes/step2-summary.html" %}
         <h2 class="govuk-heading-m">Step 2</h2>
@@ -115,21 +83,30 @@
         <h2 class="govuk-heading-m">Step 2</h2>
         {% include "includes/step2-summary.html" %}
         {% endif %}
-      {% endif %} #}
+      {% endif %}
 
+      {{ govukButton ({
+        text: 'Add another step',
+        href: 'add-step2',
+        classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
+      }) }}
+      {% if data['step-2-added'] == 'true' %}
+      {{ govukButton ({
+        text: 'Reorder steps',
+        href: 'reorder-steps',
+        classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
+      }) }}
+      {% endif %}
 
+      <form action="../check-your-answers" method="post" novalidate>
 
-      <form action="/offender/plan-saved" method="post" novalidate>
-
-        <input type="hidden" name="answers-checked" value="true">
-        <input type="hidden" name="status" value="In progress">
-        <input type="hidden" name="status-2" value="In progress">
+        <input type="hidden" name="goal-added" value="true">
 
         {{ govukButton ({
-          html: 'Save and continue',
+          html: 'Save goal',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a href="cancel">cancel plan</a></p>
+        <p>or <a href="#0">cancel goal</a></p>
 
       </form>
 

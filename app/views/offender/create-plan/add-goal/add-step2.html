@@ -7,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink ({
     text: 'Back',
-    href: 'intervention-2'
+    href: 'motivations'
   }) }}
 {% endblock %}
 
@@ -15,37 +15,66 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="steps" method="post">
+      <form class="form" action="check-your-answers" method="post">
 
-        <span class="govuk-caption-l">Create plan</span>
-        <h1 class="govuk-heading-l">Add step details</h1>
+        <h1 class="govuk-heading-l">Add a step</h1>
 
-        {% if data['step-intervention-2'] == 'Yes' %}
 
-          <div class="govuk-form-group">
-            <label for="intervention-type-2" class="govuk-label govuk-label--m">What intervention are they going to take?</label>
-            <div class="govuk-grid-row">
-              <div id="intervention-type-2-container" class="govuk-grid-column-two-thirds"></div>
-            </div>
+        {% set interventionYesHtml %}
+        <div class="govuk-form-group">
+          <label for="intervention-type-2" class="govuk-label govuk-label--m">What intervention are they going to take?</label>
+          <div class="govuk-grid-row">
+            <div id="intervention-type-2-container" class="govuk-grid-column-two-thirds"></div>
           </div>
+        </div>
+        {% endset -%}
 
-        {% else %}
+        {% set interventionNoHtml %}
+        {{ govukTextarea ({
+          id: 'step-description-2',
+          name: 'step-description-2',
+          rows: '3',
+          value: data['step-description-2'] if data['step-description-2'] else '',
+          label: {
+            text: 'What step are they going to take?',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: ""
+          }
+        }) }}
+        {% endset -%}
 
-          {{ govukTextarea ({
-            id: 'step-description-2',
-            name: 'step-description-2',
-            rows: '3',
-            value: data['step-description-2'] if data['step-description-2'] else '',
-            label: {
-              text: 'What step are they going to take?',
-              classes: "govuk-label--m"
-            },
-            hint: {
-              text: "Describe the actions they will take."
+        {{ govukRadios ({
+          classes: "govuk-radios--inline govuk-radios--/small",
+          idPrefix: 'step-intervention-2',
+          name: 'step-intervention-2',
+          fieldset: {
+            legend: {
+              text: 'Will the step be an accredited intervention?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--m'
             }
-          }) }}
-
-        {% endif %}
+          },
+          items: [
+            {
+              text: 'Yes',
+              value: 'Yes',
+              conditional: {
+                html: interventionYesHtml
+              },
+              checked: checked('step-intervention-2', 'Yes')
+            },
+            {
+              text: 'No',
+              value: 'No',
+              conditional: {
+                html: interventionNoHtml
+              },
+              checked: checked('step-intervention-2', 'No')
+            }
+          ]
+        }) }}
 
 
 
@@ -73,7 +102,7 @@
             rows: "3",
             value: data['strength-2'] if data['strength-2'] else '',
             label: {
-              text: 'Describe it'
+              text: 'Positive factors'
             }
           }) }}
         {% endset -%}
@@ -84,7 +113,7 @@
           name: 'step-strength-2',
           fieldset: {
             legend: {
-              text: 'Do you want to note something about them that will help them finish the step?',
+              text: 'Do you want to enter any positive factors that will help them finish the step?',
               classes: 'govuk-fieldset__legend--m'
             }
           },
@@ -111,9 +140,9 @@
 
         {% set doneHMTL %}
           {{ govukInput ({
-            id: 'step-done-2-other-2',
-            name: 'step-done-2-other-2',
-            value: data['step-done-2-other-2'] if data['step-done-other-2'] else '',
+            id: 'step-done-other-2',
+            name: 'step-done-other-2',
+            value: data['step-done-other-2'] if data['step-done-other-2'] else '',
             classes: 'govuk-input--width-20',
             label: {
               text: 'Other',
@@ -124,8 +153,8 @@
 
         {{ govukCheckboxes ({
           classes: "govuk-checkboxes--small",
-          idPrefix: 'step-done-2',
-          name: 'step-done-2',
+          idPrefix: 'step-done',
+          name: 'step-done',
           fieldset: {
             legend: {
               text: 'Who will make sure the step is done?',
@@ -136,17 +165,17 @@
             {
               text: 'Individual',
               value: 'Individual',
-              checked: checked('step-done-2', 'individual')
+              checked: checked('step-done', 'individual')
             },
             {
               text: 'Responsible officer',
               value: 'Responsible officer',
-              checked: checked('step-done-2', 'responsible-officer')
+              checked: checked('step-done', 'responsible-officer')
             },
             {
               text: 'Other',
               value: 'Other',
-              checked: checked('step-done-2', 'other'),
+              checked: checked('step-done', 'other'),
               conditional: {
                 html: doneHMTL
               }
@@ -157,12 +186,13 @@
 
 
         <input type="hidden" name="step-2-added" value="true">
+        <input type="hidden" name="status-2" value="In progress">
 
         {{ govukButton ({
-          html: 'Continue',
+          html: 'Save and continue',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a class="delete-link" href="steps">cancel new step</a></p>
+        <p>or <a href="cancel">cancel goal</a></p>
 
       </form>
 

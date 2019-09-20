@@ -4,28 +4,41 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
-{% block beforeContent %}
+{# {% block beforeContent %}
   {{ govukBackLink ({
     text: 'Back',
     href: 'diversity'
   }) }}
-{% endblock %}
+{% endblock %} #}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="goal" method="post">
+      <form class="form" action="check-your-answers" method="post">
 
-        <span class="govuk-caption-l">Create plan</span>
+        <h1 class="govuk-heading-l">Offender summary</h1>
+
+        {{ govukTextarea ({
+          id: 'diversity',
+          name: 'diversity',
+          value: data['diversity'] if data['diversity'] else '',
+          label: {
+            html: 'Diversity needs',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Record their diversity needs. For example: ethnicity, race, sexual orientation, gender, age or religion."
+          }
+        }) }}
+
         {{ govukTextarea ({
           id: 'offender-summary',
           name: 'offender-summary',
           value: data['offender-summary'] if data['offender-summary'] else '',
           label: {
             html: 'They need us to know',
-            isPageHeading: true,
-            classes: "govuk-label--l"
+            classes: "govuk-label--m"
           },
           hint: {
             text: "Add any other things they need us to know about them. Use their words."
@@ -33,10 +46,10 @@
         }) }}
 
         {{ govukButton ({
-          html: 'Continue',
+          html: 'Save and continue',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a class="delete-link" href="/offender">cancel plan</a></p>
+        <p>or <a href="cancel">cancel plan</a></p>
 
       </form>
 

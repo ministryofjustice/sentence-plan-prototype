@@ -2,81 +2,24 @@
 
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
-      Needs
-    </dt>
-    <dd class="govuk-summary-list__value">
-      {% if data['step-needs-2'].length > 1 %}
-      <ul class="govuk-list govuk-list--bullet">
-        {% for need in data['step-needs'] %}
-          <li>{{ need }}</li>
-        {% endfor %}
-      </ul>
-      {% else %}
-        {% for need in data['step-needs-2'] %}
-          {{ need }}
-        {% else %}
-          No needs selected
-        {% endfor %}
-      {% endif %}
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a href="needs-2">
-        Change
-        <span class="govuk-visually-hidden"> needs</span>
-      </a>
-    </dd>
-  </div>
-
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Is intervention
-    </dt>
-    <dd class="govuk-summary-list__value">
-      {{ data['step-intervention-2'] }}
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a href="intervention-2">
-        Change
-        <span class="govuk-visually-hidden"> intervention</span>
-      </a>
-    </dd>
-  </div>
-
-
-
-
-
-  {% if data['step-intervention-2'] == 'Yes' %}
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Intervention
-    </dt>
-    <dd class="govuk-summary-list__value">
-      {{ data['intervention-type-2'] }}
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a href="step-details-2">
-        Change
-        <span class="govuk-visually-hidden"> intervention</span>
-      </a>
-    </dd>
-  </div>
-  {% else %}
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
       Description
     </dt>
     <dd class="govuk-summary-list__value">
-      {{ data['step-description-2'] }}
+      {% if data['step-intervention-2'] == 'Yes' %}
+        Intervention: {{ data['intervention-type-2'] }}
+      {% else %}
+        {{ data['step-description-2'] }}
+      {% endif %}
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a href="step-details-2">
+      <a href="add-step2">
         Change
         <span class="govuk-visually-hidden"> description</span>
       </a>
     </dd>
   </div>
-  {% endif %}
+  
+
 
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
@@ -88,7 +31,7 @@
       {{ dueDate2 | date("D MMMM YYYY") }}
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a href="step-details-2">
+      <a href="add-step2">
         Change
         <span class="govuk-visually-hidden"> date</span>
       </a>
@@ -98,13 +41,13 @@
   
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
-      Strength
+      Positive factors
     </dt>
     <dd class="govuk-summary-list__value">
       {{ data['strength-2'] if data['strength-2'] else 'No' }}
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a href="step-details-2">
+      <a href="add-step2">
         Change
         <span class="govuk-visually-hidden"> strength</span>
       </a>
@@ -132,7 +75,7 @@
       {% endif %}
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a href="step-details-2">
+      <a href="add-step2">
         Change
         <span class="govuk-visually-hidden"> responsible persons</span>
       </a>

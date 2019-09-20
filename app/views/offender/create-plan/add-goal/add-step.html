@@ -7,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink ({
     text: 'Back',
-    href: 'intervention'
+    href: 'motivations'
   }) }}
 {% endblock %}
 
@@ -15,37 +15,66 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="steps" method="post">
+      <form class="form" action="check-your-answers" method="post">
 
-        <span class="govuk-caption-l">Create plan</span>
-        <h1 class="govuk-heading-l">Add step details</h1>
+        <h1 class="govuk-heading-l">Add a step</h1>
 
-        {% if data['step-intervention'] == 'Yes' %}
 
-          <div class="govuk-form-group">
-            <label for="intervention-type" class="govuk-label govuk-label--m">What intervention are they going to take?</label>
-            <div class="govuk-grid-row">
-              <div id="intervention-type-container" class="govuk-grid-column-two-thirds"></div>
-            </div>
+        {% set interventionYesHtml %}
+        <div class="govuk-form-group">
+          <label for="intervention-type" class="govuk-label govuk-label--m">What intervention are they going to take?</label>
+          <div class="govuk-grid-row">
+            <div id="intervention-type-container" class="govuk-grid-column-two-thirds"></div>
           </div>
+        </div>
+        {% endset -%}
 
-        {% else %}
+        {% set interventionNoHtml %}
+        {{ govukTextarea ({
+          id: 'step-description',
+          name: 'step-description',
+          rows: '3',
+          value: data['step-description'] if data['step-description'] else '',
+          label: {
+            text: 'What step are they going to take?',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: ""
+          }
+        }) }}
+        {% endset -%}
 
-          {{ govukTextarea ({
-            id: 'step-description',
-            name: 'step-description',
-            rows: '3',
-            value: data['step-description'] if data['step-description'] else '',
-            label: {
-              text: 'What step are they going to take?',
-              classes: "govuk-label--m"
-            },
-            hint: {
-              text: "Describe the actions they will take."
+        {{ govukRadios ({
+          classes: "govuk-radios--inline govuk-radios--/small",
+          idPrefix: 'step-intervention',
+          name: 'step-intervention',
+          fieldset: {
+            legend: {
+              text: 'Will the step be an accredited intervention?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--m'
             }
-          }) }}
-
-        {% endif %}
+          },
+          items: [
+            {
+              text: 'Yes',
+              value: 'Yes',
+              conditional: {
+                html: interventionYesHtml
+              },
+              checked: checked('step-intervention', 'Yes')
+            },
+            {
+              text: 'No',
+              value: 'No',
+              conditional: {
+                html: interventionNoHtml
+              },
+              checked: checked('step-intervention', 'No')
+            }
+          ]
+        }) }}
 
 
 
@@ -73,7 +102,7 @@
             rows: "3",
             value: data['strength'] if data['strength'] else '',
             label: {
-              text: 'Describe it'
+              text: 'Positive factors'
             }
           }) }}
         {% endset -%}
@@ -84,7 +113,7 @@
           name: 'step-strength',
           fieldset: {
             legend: {
-              text: 'Do you want to note something about them that will help them finish the step?',
+              text: 'Do you want to enter any positive factors that will help them finish the step?',
               classes: 'govuk-fieldset__legend--m'
             }
           },
@@ -156,12 +185,13 @@
 
 
 
-
+        <input type="hidden" name="status" value="In progress">
+        
         {{ govukButton ({
-          html: 'Continue',
+          html: 'Save and continue',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a class="delete-link" href="/offender">cancel plan</a></p>
+        <p>or <a href="cancel">cancel goal</a></p>
 
       </form>
 

@@ -1,0 +1,17 @@
+{# {% set dueDate1 = data['step-date-year'] + "-" + data['step-date-month'] + "-" + data['step-date-day'] %} #}
+
+<li>
+  <a href="add-goal/check-your-answers" class="task">
+    <span class="task__heading">
+      {{ data['goal'] | nl2br | safe }}
+    </span>
+
+    {# {{ data['status'] }} &middot; Due by {{ dueDate | date("D MMMM YYYY") }} #}
+    <ul class="govuk-list list-tags">
+      <li class="govuk-!-font-weight-bold">Needs:</li>
+      {% for need in data['goal-needs'] %}
+        <li class="tag">{{ need }}</li>
+      {% endfor %}
+    </ul>
+  </a>
+</li>
