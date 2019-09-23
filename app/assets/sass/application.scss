@@ -61,9 +61,9 @@ $govuk-assets-path: '/govuk/assets/';
 }
 
 // Change vertical alignment so it works with header captions
-.moj-page-header-actions__actions {
-  vertical-align: bottom;
-}
+// .moj-page-header-actions__actions {
+//   vertical-align: top;
+// }
 
 
 
@@ -79,8 +79,8 @@ $govuk-assets-path: '/govuk/assets/';
   &::after {
     content: "";
     display: block;
-    width: calc(2 * 5px);
-    height: calc(2 * 5px);
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background-color: #1d70b8;
     border: 8px solid #1d70b8;
@@ -109,4 +109,102 @@ $govuk-assets-path: '/govuk/assets/';
     padding: 0 5px;
     height: 37px;
   }
+}
+
+
+
+
+.timeline {
+  padding: 10px;
+  margin: 0 auto;
+
+  ul {
+    list-style-type: none;
+    position: relative;
+    padding: 0 0 0 10px;
+    margin: 0 0 20px 0;
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: -4px;
+      bottom: 0;
+      border-left: 4px solid $govuk-brand-colour;
+      height: 100%;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      bottom: 0;
+      border-left: 16px solid $govuk-brand-colour;
+      height: 4px;
+    }
+
+    li {
+      margin: 0 0 20px 15px;
+      position: relative;
+      display: block;
+      border-bottom: 1px solid $govuk-border-colour;
+
+      &:first-child:before {
+          content: "";
+          display: block;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: $govuk-brand-colour;
+          border: 8px solid $govuk-brand-colour;
+          position: absolute;
+          z-index: 2;
+          left: -40px;
+          top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+
+      .timeline-reference {
+        @extend .govuk-heading-s;
+        display: table;
+        position: relative;
+        &:before {
+          content: "";
+          position: absolute;
+          left: -20px;
+          width: 20px;
+          top: 9px;
+          z-index: -1;
+        }
+      }
+
+      &:before {
+        content: "";
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: white;
+        border: 4px solid $govuk-brand-colour;
+        position: absolute;
+        z-index: 2;
+        left: -36px;
+        top: 4px;
+      }
+    }
+  }
+}
+
+
+.timeline__title {
+  @include govuk-font($size: 19, $weight: bold);
+  margin: 0;
+}
+
+.timeline__meta {
+  @include govuk-font($size: 16);
+  margin-top: govuk-spacing(1);
+  margin-bottom: 20px;
 }

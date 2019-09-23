@@ -13,18 +13,24 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l govuk-!-margin-bottom-3">Create a mock plan</h1>
-      <p class="govuk-body-l govuk-!-margin-bottom-9">This lets you add in a fake plan quickly, for example if you want to show the prototype to a stakeholder.</p>
+      <p class="govuk-body-l govuk-!-margin-bottom-9">This lets you placeholder plan content for testing.</p>
 
       <form class="form" action="/offender" method="post">
 
         {{ govukTextarea ({
+          id: 'diversity',
+          name: 'diversity',
+          value: 'Diversity content would go here.',
+          label: {
+            html: 'Diversity needs',
+            classes: "govuk-label--m"
+          }
+        }) }}
+
+        {{ govukTextarea ({
           id: 'offender-summary',
           name: 'offender-summary',
-          value: 'I had a very difficult life.  My mum was a drug user and it was bad growing up.  You probably won’t believe me but she used me as a drug runner when I was a child.  That has really messed up how I feel about other people as well as how I think I will be treated by them, I still can’t believe she did that to me.  I still don’t see my mum and I wonder if this has caused my own relationships to break down.  I find it really hard trust people and I haven’t got on with the probation officer I had before you.  I don’t think he treated me very well, he didn’t listen to what I was trying to tell him most of the time and that still pisses me off.  I have tried to top myself a few times because of all this going on.  I think that I take drugs and drink to block all that out really. 
-          
-          I have autism and that means that I get angry when I don’t know what is happening or stuff gets thrown at me with short notice.  I really don’t like being made to wait in reception.  Sometimes I just can’t leave the house in the morning and I want to be honest about that because I have been recalled for not coming into appointments.  Also, my reading and writing isn’t that clever either.
-          
-          I like work want to be busy have gained qualifications in custody (numeracy, literacy, painting & decorating), and I want to be there for my kids, they mean everything to me.  I am OK living at the hostel as I can’t really think about where I want to live right now.',
+          value: 'Offender summary would go here.',
           label: {
             html: 'Offender wants you to know',
             classes: "govuk-label--s"
@@ -33,16 +39,6 @@
 
 
 
-        {{ govukTextarea ({
-          id: 'goal',
-          name: 'goal',
-          value: 'This is the main goal for the plan.',
-          label: {
-            html: 'Goal for the plan',
-            classes: "govuk-label--s"
-          }
-        }) }}
-
 
 
 
@@ -50,8 +46,49 @@
 
 
         <h2 class="govuk-heading-m">
-          Step 1
+          Goal 1
         </h2>
+
+        {{ govukTextarea ({
+          id: 'goal1-description',
+          name: 'goal1-description',
+          value: 'Description of the goal.',
+          label: {
+            html: 'Goal description',
+            classes: "govuk-label--m"
+          }
+        }) }}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h1 class="govuk-fieldset__heading">
+                Needs related to the goal
+              </h1>
+            </legend>
+
+            <div class="govuk-checkboxes govuk-checkboxes--small">
+              {% for need in offender.needs %}
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="goal1-needs{{ loop.index }}" name="goal1-needs" type="checkbox" value="{{ need.type }}{% if need.risk %} &ndash; <span class='risk'>Risk of serious harm</span>{% endif %}" {{ checked( "goal1-needs", need.type ) }}>
+                  <label class="govuk-label govuk-checkboxes__label" for="goal1-needs{{ loop.index }}">
+                    {{ need.type }}
+                    {% if need.risk %}
+                      &ndash; <span class="risk">Risk of serious harm</span>
+                    {% endif %}
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+
+          </fieldset>
+        </div>
+
+
+
+
+
+
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">

@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back to plan',
+    href: '/offender'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      
+      {% if stepUpdated %}
+        {{ mojBanner({
+          type: 'success',
+          text: stepUpdated,
+          iconFallbackText: 'Success'
+        }) }} 
+      {% endif %}
+
+
+
+      <div class="moj-page-header-actions">
+        <div class="moj-page-header-actions__title">
+          <h1 class="govuk-heading-l">
+            <span class="govuk-caption-l">Step details</span>
+            {% if data['goal1-step1-intervention'] == 'Yes' %}
+              Intervention: {{ data['goal1-step1-intervention-type'] }}
+            {% else %}
+              {{ data['goal1-step1-description'] }}
+            {% endif %}
+          </h1>
+          {% if data['goal1-step1-status'] %}
+            {{ govukTag({
+              text: data['goal1-step1-status']
+            }) }}
+          {% endif %}
+        </div>
+
+        <div class="moj-page-header-actions__actions">
+          <div class="moj-button-menu">
+            <div class="moj-button-menu__wrapper">
+
+              {{ govukButton ({
+                text: 'Update progress',
+                href: 'update',
+                classes: 'moj-button-menu__item moj-page-header-actions__action'
+              }) }}
+
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+
+
+
+
+    <div class="govuk-grid-column-two-thirds">
+      {% include "includes/goal1-step1-summary.html" %}
+ 
+      <h2 class="govuk-heading-m">
+        History
+      </h2>
+      <div class="timeline">
+      {# {% if data['status-updated'] %}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <h2 class="moj-timeline__title">{{ data['status'] }}</h2>
+            <p class="moj-timeline__byline">by Sarah Smith</p>
+          </div>
+
+          <p class="moj-timeline__date">
+            <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
+          </p>
+
+          <div class="moj-timeline__description">
+            <p>{{ data['status-comment'] }}</p>
+          </div>
+        </div>
+        {% endif %} #}
+        <ul>
+          <li>
+            <h2 class="timeline__title">Step created</h2>
+            <p class="timeline__meta">
+              <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("subtract", 4, "minutes") | date("h:mm a") }}</time>
+              by Sarah Smith
+            </p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
