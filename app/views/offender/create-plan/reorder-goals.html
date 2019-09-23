@@ -4,27 +4,19 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
-{% block beforeContent %}
-  {{ govukBackLink ({
-    text: 'Back',
-    href: 'steps'
-  }) }}
-{% endblock %}
-
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Create plan</span>
-      <h1 class="govuk-heading-l">Reorder steps</h1>
+      <h1 class="govuk-heading-l">Reorder goals</h1>
 
       <dl class="govuk-summary-list">
 
-      {% if data['reordered'] == 'true' %}
+      {% if data['goals-reordered'] == 'true' %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
-            {{ data['intervention-type-2'] if data['step-intervention-2'] == 'Yes' else data['step-description-2']  }}
+            {{ data['goal2-description'] | nl2br | safe }}
           </dt>
           
           <dd class="govuk-summary-list__actions">
@@ -34,7 +26,7 @@
               </li>
               
               <li class="govuk-summary-list__actions-list-item">
-                <a class="govuk-link  govuk-link--no-visited-state" href="steps-reorder?reordered=false">Move down</a>
+                <a class="govuk-link  govuk-link--no-visited-state" href="reorder-goals?goals-reordered=false">Move down</a>
               </li>
             </ul>
           </dd>
@@ -43,13 +35,13 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
-            {{ data['intervention-type'] if data['step-intervention'] == 'Yes' else data['step-description']  }}
+            {{ data['goal1-description'] | nl2br | safe }}
           </dt>
           
           <dd class="govuk-summary-list__actions">
             <ul class="govuk-summary-list__actions-list">
               <li class="govuk-summary-list__actions-list-item">
-                <a class="govuk-link govuk-link--no-visited-state" href="steps-reorder?reordered=false">Move up</a>
+                <a class="govuk-link govuk-link--no-visited-state" href="reorder-goals?goals-reordered=false">Move up</a>
               </li>
               
               <li class="govuk-summary-list__actions-list-item">
@@ -63,7 +55,7 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
-            {{ data['intervention-type'] if data['step-intervention'] == 'Yes' else data['step-description']  }}
+            {{ data['goal1-description'] | nl2br | safe }}
           </dt>
           
           <dd class="govuk-summary-list__actions">
@@ -73,7 +65,7 @@
               </li>
               
               <li class="govuk-summary-list__actions-list-item">
-                <a class="govuk-link  govuk-link--no-visited-state" href="steps-reorder?reordered=true">Move down</a>
+                <a class="govuk-link  govuk-link--no-visited-state" href="reorder-goals?goals-reordered=true">Move down</a>
               </li>
             </ul>
           </dd>
@@ -82,13 +74,13 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
-            {{ data['intervention-type-2'] if data['step-intervention-2'] == 'Yes' else data['step-description-2']  }}
+            {{ data['goal2-description'] | nl2br | safe }}
           </dt>
           
           <dd class="govuk-summary-list__actions">
             <ul class="govuk-summary-list__actions-list">
               <li class="govuk-summary-list__actions-list-item">
-                <a class="govuk-link govuk-link--no-visited-state" href="steps-reorder?reordered=true">Move up</a>
+                <a class="govuk-link govuk-link--no-visited-state" href="reorder-goals?goals-reordered=true">Move up</a>
               </li>
               
               <li class="govuk-summary-list__actions-list-item">
@@ -104,9 +96,10 @@
       
       {{ govukButton ({
         text: 'Save order',
-        href: 'steps',
+        href: 'check-your-answers',
           classes: 'govuk-!-margin-bottom-3'
-        }) }}
+      }) }}
+      <p>or <a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">cancel</a></p>
 
 
     </div>

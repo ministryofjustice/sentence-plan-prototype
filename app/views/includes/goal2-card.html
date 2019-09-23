@@ -1,7 +1,11 @@
 {# {% set dueDate1 = data['step-date-year'] + "-" + data['step-date-month'] + "-" + data['step-date-day'] %} #}
 
 <li>
-  <a href="add-goal/check-your-answers" class="task">
+  {% if data['plan-status'] == 'saved' %}
+    <a href="/offender/goals/2" class="task">
+  {% else %}
+    <a href="add-goal2/check-your-answers" class="task">
+  {% endif %}
     <span class="task__heading">
       {{ data['goal2-description'] | nl2br | safe }}
     </span>
@@ -10,7 +14,7 @@
     <ul class="govuk-list list-tags">
       <li class="govuk-!-font-weight-bold">Needs:</li>
       {% for need in data['goal2-needs'] %}
-        <li class="tag">{{ need }}</li>
+        <li class="tag">{{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }}</li>
       {% endfor %}
     </ul>
   </a>

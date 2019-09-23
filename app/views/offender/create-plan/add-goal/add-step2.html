@@ -95,7 +95,7 @@
 
 
 
-        {% set strengthHMTL %}
+        {# {% set strengthHMTL %}
           {{ govukTextarea ({
             id: 'goal1-step2-strength',
             name: 'goal1-step2-strength',
@@ -132,7 +132,7 @@
               checked: checked('goal1-strength-check', 'yes')
             }
           ]
-        }) }}
+        }) }} #}
 
 
 
@@ -185,7 +185,6 @@
 
 
         <input type="hidden" name="goal1-step2-added" value="true">
-        <input type="hidden" name="goal1-step2-status" value="In progress">
         
         {{ govukButton ({
           html: 'Save and continue',

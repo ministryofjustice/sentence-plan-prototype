@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/offender/plan-saved" method="post">
+
+        <h1 class="govuk-heading-l">
+          Add comments and save the plan
+        </h1>
+
+        {{ govukTextarea ({
+          id: 'practitioner-comment',
+          name: 'practitioner-comment',
+          value: data['practitioner-comment'] if data['practitioner-comment'] else '',
+          label: {
+            html: 'Your words'
+          },
+          hint: {
+            text: ''
+          }
+        }) }}
+
+        {{ govukTextarea ({
+          id: 'offender-comment',
+          name: 'offender-comment',
+          value: data['offender-comment'] if data['offender-comment'] else '',
+          label: {
+            html: 'Their words'
+          },
+          hint: {
+            text: ''
+          }
+        }) }}
+
+
+        <input type="hidden" name="plan-status" value="saved">
+
+        {{ govukButton ({
+          html: 'Save the plan',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="cancel">cancel plan</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

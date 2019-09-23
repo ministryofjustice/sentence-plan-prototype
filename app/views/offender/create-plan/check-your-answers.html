@@ -6,7 +6,7 @@
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
+    <div class="govuk-grid-column-full">
 
       <h1 class="govuk-heading-l">Draft plan</h1>
 
@@ -40,75 +40,55 @@
             </a>
           </dd>
         </div>
-        {# <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Goal
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['goal'] | nl2br | safe }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="goal">
-              Change
-              <span class="govuk-visually-hidden"> summary</span>
-            </a>
-          </dd>
-        </div> #}
-        {# <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Motivations
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <ul class="govuk-list govuk-list--bullet">
-              {% for need in offender.needs %}
-                <li>
-                  {{ need.type }}: 
-                  {{ data["motivation-"+loop.index] }}
-                </li>
-              {% endfor %}
-            </ul>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="motivations">
-              Change
-              <span class="govuk-visually-hidden"> motivations</span>
-            </a>
-          </dd>
-        </div> #}
       </dl>
 
 
 
 
       <h2 class="govuk-heading-m">Goals</h2>
-      {% if data['goal2-added'] %}
-        <ul class="govuk-list govuk-!-margin-bottom-9">
-          {% include "includes/goal1-card.html" %}
-          {% include "includes/goal2-card.html" %}
-        </ul>
 
-        {{ govukButton ({
-          text: 'Add another goal',
-          href: '#0',
-          classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
-        }) }}
-      {% elif data['goal1-added'] %}
-        <ul class="govuk-list govuk-!-margin-bottom-9">
-          {% include "includes/goal1-card.html" %}
-        </ul>
-
-        {{ govukButton ({
-          text: 'Add another goal',
-          href: 'add-goal2/goal',
-          classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
-        }) }}
-      {% else %}
+      {% if not data['goal1-added'] %}
         <p>No goals added yet.</p>
         {{ govukButton ({
           text: 'Add a goal',
           href: 'add-goal/goal',
-          classes: 'govuk-button--secondary'
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
         }) }}
+      {% else %}
+
+
+        <ul class="govuk-list govuk-!-margin-bottom-9">
+          {% if data['goals-reordered'] == 'true' %}
+            {% include "includes/goal2-card.html" %}
+            {% include "includes/goal1-card.html" %}
+          {% else %} 
+            {% include "includes/goal1-card.html" %}
+            
+            {% if data['goal2-added'] == 'true' %}
+              {% include "includes/goal2-card.html" %}
+            {% endif %}
+          {% endif %}
+        </ul>
+
+        
+        {% if data['goal2-added'] %}
+          {{ govukButton ({
+            text: 'Add another goal',
+            href: '#0',
+            classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
+          }) }}
+          {{ govukButton ({
+            text: 'Reorder goals',
+            href: 'reorder-goals',
+            classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
+          }) }}
+        {% else %}
+          {{ govukButton ({
+            text: 'Add another goal',
+            href: 'add-goal2/goal',
+            classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
+          }) }}
+        {% endif %}
       {% endif %}
 
 
@@ -128,21 +108,12 @@
         {% endif %}
       {% endif %} #}
 
-
-
-      <form action="/offender/plan-saved" method="post" novalidate>
-
-        <input type="hidden" name="answers-checked" value="true">
-        <input type="hidden" name="status" value="In progress">
-        <input type="hidden" name="status-2" value="In progress">
-
-        {{ govukButton ({
-          html: 'Save and continue',
-          classes: 'govuk-!-margin-bottom-3'
-        }) }}
-        <p>or <a href="cancel">cancel plan</a></p>
-
-      </form>
+      <p>
+      {{ govukButton ({
+        text: 'Save and continue',
+        href: 'comment'
+      }) }}
+      </p>
 
     </div>
   </div>

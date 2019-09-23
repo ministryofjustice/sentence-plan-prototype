@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/offender/step/step-updated" method="post">
+      
+        <h1 class="govuk-heading-l">
+          <span class="govuk-caption-l">Update step</span>
+          {{ data['step-description'] }}
+        </h1>
+
+        {{ govukRadios ({
+          idPrefix: 'status',
+          name: 'status',
+          fieldset: {
+            legend: {
+              text: 'Current status',
+              isPageHeading: false,
+              classes: 'govuk-fieldset__legend--s'
+            }
+          },
+          hint: {
+            text: ''
+          },
+          items: [
+            {
+              text: 'In progress',
+              value: 'In progress',
+              checked: checked('status', 'In progress')
+            },
+            {
+              text: 'Paused',
+              value: 'Paused',
+              checked: checked('status', 'Paused')
+            },
+            {
+              text: 'Completed',
+              value: 'Completed',
+              checked: checked('status', 'Completed')
+            },
+            {
+              text: 'Partly completed',
+              value: 'Partly completed',
+              checked: checked('status', 'Partly completed')
+            },
+            {
+              text: 'Abandoned',
+              value: 'Abandoned',
+              checked: checked('status', 'Abandoned')
+            }
+          ]
+        }) }}
+
+        {{ govukTextarea ({
+            id: 'status-comment',
+            name: 'status-comment',
+            value: data['status-comment'] if data['status-comment'] else '',
+            label: {
+              html: 'Comment',
+              isPageHeading: false,
+              classes: "govuk-label--s"
+            },
+            hint: {
+              text: ""
+            }
+          }) }}
+
+          <input type="hidden" name="status-updated" value="true">
+
+          {{ govukButton ({
+            html: 'Save update',
+          classes: 'govuk-!-margin-bottom-3'
+          }) }}
+          <p>or <a class="delete-link" href="1">cancel update</a></p>
+
+
+        </form>
+
+    </div>
+  </div>
+{% endblock %}

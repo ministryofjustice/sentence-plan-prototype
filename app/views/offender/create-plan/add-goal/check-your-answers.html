@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="govuk-grid-row">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <h1 class="govuk-heading-l">Check the goal before saving</h1>
 
@@ -25,7 +25,7 @@
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
+        {# <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Related needs
           </dt>
@@ -33,7 +33,7 @@
             <ul class="govuk-list govuk-list--bullet">
               {% for need in data['goal1-needs'] %}
                 <li>
-                  {{ need }}
+                  {{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }}
                 </li>
               {% endfor %}
             </ul>
@@ -44,16 +44,16 @@
               <span class="govuk-visually-hidden"> needs</span>
             </a>
           </dd>
-        </div>
+        </div> #}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Motivations
+            Needs and motivations
           </dt>
           <dd class="govuk-summary-list__value">
             <ul class="govuk-list govuk-list--bullet">
               {% for need in data['goal1-needs'] %}
                 <li>
-                  {{ need }}: 
+                  {{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }}: 
                   {{ data["goal1-motivation"+loop.index] }}
                 </li>
               {% endfor %}
