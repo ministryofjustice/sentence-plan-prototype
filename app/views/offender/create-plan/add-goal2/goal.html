@@ -20,9 +20,9 @@
         <h1 class="govuk-heading-l">Add a goal</h1>
 
         {{ govukTextarea ({
-          id: 'goal1-description',
-          name: 'goal1-description',
-          value: data['goal1-description'] if data['goal1-description'] else '',
+          id: 'goal2-description',
+          name: 'goal2-description',
+          value: data['goal2-description'] if data['goal2-description'] else '',
           label: {
             html: 'Goal description',
             classes: "govuk-label--m"
@@ -48,8 +48,8 @@
             <div class="govuk-checkboxes govuk-checkboxes--small">
               {% for need in offender.needs %}
                 <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="goal1-needs{{ loop.index }}" name="goal1-needs" type="checkbox" value="{{ need.type }}{% if need.risk %} &ndash; <span class='risk'>Risk of serious harm</span>{% endif %}" {{ checked( "goal1-needs", need.type ) }}>
-                  <label class="govuk-label govuk-checkboxes__label" for="goal1-needs{{ loop.index }}">
+                  <input class="govuk-checkboxes__input" id="goal2-needs{{ loop.index }}" name="goal2-needs" type="checkbox" value="{{ need.type }}{% if need.risk %} &ndash; <span class='risk'>Risk of serious harm</span>{% endif %}" {{ checked( "goal2-needs", need.type ) }}>
+                  <label class="govuk-label govuk-checkboxes__label" for="goal2-needs{{ loop.index }}">
                     {{ need.type }}
                     {% if need.risk %}
                       &ndash; <span class="risk">Risk of serious harm</span>

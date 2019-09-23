@@ -5,10 +5,10 @@
       Description
     </dt>
     <dd class="govuk-summary-list__value">
-      {% if data['step-intervention'] == 'Yes' %}
-        Intervention: {{ data['intervention-type'] }}
+      {% if data['goal2-step2-intervention-type'] == 'Yes' %}
+        Intervention: {{ data['goal2-step2-intervention'] }}
       {% else %}
-        {{ data['step-description'] }}
+        {{ data['goal2-step2-description'] }}
       {% endif %}
     </dd>
     <dd class="govuk-summary-list__actions">
@@ -26,9 +26,9 @@
       Due date
     </dt>
     <dd class="govuk-summary-list__value">
-      {% set dueDate1 = data['step-date-year'] + "-" + data['step-date-month'] + "-" + data['step-date-day'] %}
+      {% set goal2step2DueDate = data['goal2-step2-date-year'] + "-" + data['goal2-step2-date-month'] + "-" + data['goal2-step2-date-day'] %}
 
-      {{ dueDate1 | date("D MMMM YYYY") }}
+      {{ goal2step2DueDate | date("D MMMM YYYY") }}
     </dd>
     <dd class="govuk-summary-list__actions">
       <a href="add-step">
@@ -44,7 +44,7 @@
       Positive factors
     </dt>
     <dd class="govuk-summary-list__value">
-      {{ data['strength'] if data['strength'] else 'No' }}
+      {{ data['goal2-step2-strength'] if data['goal2-step2-strength'] else 'No' }}
     </dd>
     <dd class="govuk-summary-list__actions">
       <a href="add-step">
@@ -60,15 +60,15 @@
       Responsible
     </dt>
     <dd class="govuk-summary-list__value">
-      {% if data['step-done'].length > 1 %}
+      {% if data['goal2-step2-responsible'].length > 1 %}
       <ul class="govuk-list govuk-list--bullet">
-        {% for person in data['step-done'] %}
-          <li>{{ person }}{{ ': '+data['step-done-other'] if person == 'Other' else '' }}</li>
+        {% for person in data['goal2-step2-responsible'] %}
+          <li>{{ person }}{{ ': '+data['goal2-step2-responsible-other'] if person == 'Other' else '' }}</li>
         {% endfor %}
       </ul>
       {% else %}
-        {% for person in data['step-done'] %}
-          {{ person }}{{ ': '+data['step-done-other'] if person == 'Other' else '' }}
+        {% for person in data['goal2-step2-responsible'] %}
+          {{ person }}{{ ': '+data['goal2-step2-responsible-other'] if person == 'Other' else '' }}
         {% else %}
           Nobody selected
         {% endfor %}

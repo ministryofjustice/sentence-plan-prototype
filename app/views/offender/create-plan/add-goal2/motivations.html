@@ -18,13 +18,13 @@
 
         <h1 class="govuk-heading-l">Motivation to address their needs</h1>
 
-        {% for need in data['goal1-needs'] %}
+        {% for need in data['goal2-needs'] %}
           <div class="govuk-form-group">
             <label class="govuk-label govuk-label--s">
               {{ need | safe }}
             </label>
 
-            <select class="govuk-select" name="goal1-motivation{{ loop.index }}">
+            <select class="govuk-select" name="goal2-motivation{{ loop.index }}">
               <option value="Not aware of it">Not aware of it</option>
               <option value="Thinking about it">Thinking about it</option>
               <option value="Getting ready">Getting ready</option>

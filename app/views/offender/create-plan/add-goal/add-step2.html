@@ -7,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink ({
     text: 'Back',
-    href: 'motivations'
+    href: 'check-your-answers'
   }) }}
 {% endblock %}
 
@@ -22,19 +22,19 @@
 
         {% set interventionYesHtml %}
         <div class="govuk-form-group">
-          <label for="intervention-type-2" class="govuk-label govuk-label--m">What intervention are they going to take?</label>
+          <label for="goal1-step2-intervention-type" class="govuk-label govuk-label--m">What intervention are they going to take?</label>
           <div class="govuk-grid-row">
-            <div id="intervention-type-2-container" class="govuk-grid-column-two-thirds"></div>
+            <div id="goal1-step2-intervention-type-container" class="govuk-grid-column-two-thirds"></div>
           </div>
         </div>
         {% endset -%}
 
         {% set interventionNoHtml %}
         {{ govukTextarea ({
-          id: 'step-description-2',
-          name: 'step-description-2',
+          id: 'goal1-step2-description',
+          name: 'goal1-step2-description',
           rows: '3',
-          value: data['step-description-2'] if data['step-description-2'] else '',
+          value: data['goal1-step2-description'] if data['goal1-step2-description'] else '',
           label: {
             text: 'What step are they going to take?',
             classes: "govuk-label--m"
@@ -47,8 +47,8 @@
 
         {{ govukRadios ({
           classes: "govuk-radios--inline govuk-radios--/small",
-          idPrefix: 'step-intervention-2',
-          name: 'step-intervention-2',
+          idPrefix: 'goal1-step2-intervention',
+          name: 'goal1-step2-intervention',
           fieldset: {
             legend: {
               text: 'Will the step be an accredited intervention?',
@@ -63,7 +63,7 @@
               conditional: {
                 html: interventionYesHtml
               },
-              checked: checked('step-intervention-2', 'Yes')
+              checked: checked('goal1-step2-intervention', 'Yes')
             },
             {
               text: 'No',
@@ -71,7 +71,7 @@
               conditional: {
                 html: interventionNoHtml
               },
-              checked: checked('step-intervention-2', 'No')
+              checked: checked('goal1-step2-intervention', 'No')
             }
           ]
         }) }}
@@ -80,8 +80,8 @@
 
 
         {{ govukDateInput({
-          id: "step-date-2",
-          namePrefix: "step-date-2",
+          id: "goal1-step2-date",
+          namePrefix: "goal1-step2-date",
           fieldset: {
             legend: {
               text: "What is the target date for the step to be finished?",
@@ -97,10 +97,10 @@
 
         {% set strengthHMTL %}
           {{ govukTextarea ({
-            id: 'strength-2',
-            name: 'strength-2',
+            id: 'goal1-step2-strength',
+            name: 'goal1-step2-strength',
             rows: "3",
-            value: data['strength-2'] if data['strength-2'] else '',
+            value: data['goal1-step2-strength'] if data['goal1-step2-strength'] else '',
             label: {
               text: 'Positive factors'
             }
@@ -109,8 +109,8 @@
 
         {{ govukRadios ({
           classes: "govuk-radios--small",
-          idPrefix: 'step-strength-2',
-          name: 'step-strength-2',
+          idPrefix: 'goal1-strength-check',
+          name: 'goal1-strength-check',
           fieldset: {
             legend: {
               text: 'Do you want to enter any positive factors that will help them finish the step?',
@@ -121,7 +121,7 @@
             {
               text: 'Yes',
               value: 'yes',
-              checked: checked('step-strength-2', 'yes'),
+              checked: checked('goal1-strength-check', 'yes'),
               conditional: {
                 html: strengthHMTL
               }
@@ -129,7 +129,7 @@
             {
               text: 'No',
               value: 'no',
-              checked: checked('step-strength-2', 'yes')
+              checked: checked('goal1-strength-check', 'yes')
             }
           ]
         }) }}
@@ -140,9 +140,9 @@
 
         {% set doneHMTL %}
           {{ govukInput ({
-            id: 'step-done-other-2',
-            name: 'step-done-other-2',
-            value: data['step-done-other-2'] if data['step-done-other-2'] else '',
+            id: 'goal1-step2-responsible-other',
+            name: 'goal1-step2-responsible-other',
+            value: data['goal1-step2-responsible-other'] if data['goal1-step2-responsible-other'] else '',
             classes: 'govuk-input--width-20',
             label: {
               text: 'Other',
@@ -153,8 +153,8 @@
 
         {{ govukCheckboxes ({
           classes: "govuk-checkboxes--small",
-          idPrefix: 'step-done',
-          name: 'step-done',
+          idPrefix: 'goal1-step2-responsible',
+          name: 'goal1-step2-responsible',
           fieldset: {
             legend: {
               text: 'Who will make sure the step is done?',
@@ -165,17 +165,17 @@
             {
               text: 'Individual',
               value: 'Individual',
-              checked: checked('step-done', 'individual')
+              checked: checked('goal1-step2-responsible', 'individual')
             },
             {
               text: 'Responsible officer',
               value: 'Responsible officer',
-              checked: checked('step-done', 'responsible-officer')
+              checked: checked('goal1-step2-responsible', 'responsible-officer')
             },
             {
               text: 'Other',
               value: 'Other',
-              checked: checked('step-done', 'other'),
+              checked: checked('goal1-step2-responsible', 'other'),
               conditional: {
                 html: doneHMTL
               }
@@ -184,10 +184,9 @@
         }) }}
 
 
-
-        <input type="hidden" name="step-2-added" value="true">
-        <input type="hidden" name="status-2" value="In progress">
-
+        <input type="hidden" name="goal1-step2-added" value="true">
+        <input type="hidden" name="goal1-step2-status" value="In progress">
+        
         {{ govukButton ({
           html: 'Save and continue',
           classes: 'govuk-!-margin-bottom-3'

@@ -51,19 +51,37 @@ const topics = [
 ]
 
 
-if ($('#intervention-type-container').length > 0) {
+if ($('#goal1-step1-intervention-type-container').length > 0) {
   accessibleAutocomplete ({
-    element: document.querySelector('#intervention-type-container'),
-    id: 'intervention-type', // To match it to the existing <label>.
-    name: 'intervention-type',
+    element: document.querySelector('#goal1-step1-intervention-type-container'),
+    id: 'goal1-step1-intervention-type', // To match it to the existing <label>.
+    name: 'goal1-step1-intervention-type',
     source: topics,
     showAllValues: true
   })
-} else if ($('#intervention-type-2-container').length > 0) {
+} else if ($('#goal1-step2-intervention-type-container').length > 0) {
   accessibleAutocomplete ({
-    element: document.querySelector('#intervention-type-2-container'),
-    id: 'intervention-type-2', // To match it to the existing <label>.
-    name: 'intervention-type-2',
+    element: document.querySelector('#goal1-step2-intervention-type-container'),
+    id: 'goal1-step2-intervention-type', // To match it to the existing <label>.
+    name: 'goal1-step2-intervention-type',
+    source: topics,
+    showAllValues: true
+  })
+}
+
+if ($('#goal2-step1-intervention-type-container').length > 0) {
+  accessibleAutocomplete ({
+    element: document.querySelector('#goal2-step1-intervention-type-container'),
+    id: 'goal2-step1-intervention-type', // To match it to the existing <label>.
+    name: 'goal2-step1-intervention-type',
+    source: topics,
+    showAllValues: true
+  })
+} else if ($('#goal2-step2-intervention-type-container').length > 0) {
+  accessibleAutocomplete ({
+    element: document.querySelector('#goal2-step2-intervention-type-container'),
+    id: 'goal2-step2-intervention-type', // To match it to the existing <label>.
+    name: 'goal2-step2-intervention-type',
     source: topics,
     showAllValues: true
   })

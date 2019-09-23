@@ -16,7 +16,7 @@
             Goal
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['goal1-description'] | nl2br | safe }}
+            {{ data['goal2-description'] | nl2br | safe }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a href="goal">
@@ -31,7 +31,7 @@
           </dt>
           <dd class="govuk-summary-list__value">
             <ul class="govuk-list govuk-list--bullet">
-              {% for need in data['goal1-needs'] %}
+              {% for need in data['goal2-needs'] %}
                 <li>
                   {{ need }}
                 </li>
@@ -51,10 +51,10 @@
           </dt>
           <dd class="govuk-summary-list__value">
             <ul class="govuk-list govuk-list--bullet">
-              {% for need in data['goal1-needs'] %}
+              {% for need in data['goal2-needs'] %}
                 <li>
                   {{ need }}: 
-                  {{ data["goal1-motivation"+loop.index] }}
+                  {{ data["goal2-motivation"+loop.index] }}
                 </li>
               {% endfor %}
             </ul>
@@ -71,22 +71,21 @@
 
 
 
-      {% if data['goal1-reordered'] == 'true' %}
+      {% if data['goal2-reordered'] == 'true' %}
         <h2 class="govuk-heading-m">Step 1</h2>
-        {% include "includes/goal1-step2-summary.html" %}
+        {% include "includes/goal2-step2-summary.html" %}
         <h2 class="govuk-heading-m">Step 2</h2>
-        {% include "includes/goal1-step1-summary.html" %}
+        {% include "includes/goal2-step1-summary.html" %}
       {% else %} 
         <h2 class="govuk-heading-m">Step 1</h2>
-        {% include "includes/goal1-step1-summary.html" %}
-        {% if data['goal1-step2-added'] == 'true' %}
+        {% include "includes/goal2-step1-summary.html" %}
+        {% if data['goal2-step2-added'] == 'true' %}
         <h2 class="govuk-heading-m">Step 2</h2>
-        {% include "includes/goal1-step2-summary.html" %}
+        {% include "includes/goal2-step2-summary.html" %}
         {% endif %}
       {% endif %}
 
-      
-      {% if data['goal1-step2-added'] %}
+      {% if data['goal2-step2-added'] %}
         {{ govukButton ({
           text: 'Add another step',
           href: '#0',
@@ -107,7 +106,7 @@
 
       <form action="../check-your-answers" method="post" novalidate>
 
-        <input type="hidden" name="goal1-added" value="true">
+        <input type="hidden" name="goal2-added" value="true">
 
         {{ govukButton ({
           html: 'Save goal',

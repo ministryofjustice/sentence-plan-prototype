@@ -81,23 +81,34 @@
 
 
       <h2 class="govuk-heading-m">Goals</h2>
-      {% if data['goal-added'] %}
-      <ul class="govuk-list govuk-!-margin-bottom-9">
-        {% include "includes/goal1-card.html" %}
-      </ul>
+      {% if data['goal2-added'] %}
+        <ul class="govuk-list govuk-!-margin-bottom-9">
+          {% include "includes/goal1-card.html" %}
+          {% include "includes/goal2-card.html" %}
+        </ul>
 
-      {{ govukButton ({
-        text: 'Add another goal',
-        href: 'add-goal/goal',
-        classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
-      }) }}
+        {{ govukButton ({
+          text: 'Add another goal',
+          href: '#0',
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
+        }) }}
+      {% elif data['goal1-added'] %}
+        <ul class="govuk-list govuk-!-margin-bottom-9">
+          {% include "includes/goal1-card.html" %}
+        </ul>
+
+        {{ govukButton ({
+          text: 'Add another goal',
+          href: 'add-goal2/goal',
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
+        }) }}
       {% else %}
-      <p>No goals added yet.</p>
-      {{ govukButton ({
-        text: 'Add a goal',
-        href: 'add-goal/goal',
-        classes: 'govuk-button--secondary'
-      }) }}
+        <p>No goals added yet.</p>
+        {{ govukButton ({
+          text: 'Add a goal',
+          href: 'add-goal/goal',
+          classes: 'govuk-button--secondary'
+        }) }}
       {% endif %}
 
 

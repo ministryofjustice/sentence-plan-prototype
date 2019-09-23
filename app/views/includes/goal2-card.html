@@ -3,13 +3,13 @@
 <li>
   <a href="add-goal/check-your-answers" class="task">
     <span class="task__heading">
-      {{ data['goal1-description'] | nl2br | safe }}
+      {{ data['goal2-description'] | nl2br | safe }}
     </span>
 
     {# {{ data['status'] }} &middot; Due by {{ dueDate | date("D MMMM YYYY") }} #}
     <ul class="govuk-list list-tags">
       <li class="govuk-!-font-weight-bold">Needs:</li>
-      {% for need in data['goal1-needs'] %}
+      {% for need in data['goal2-needs'] %}
         <li class="tag">{{ need }}</li>
       {% endfor %}
     </ul>
