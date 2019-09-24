@@ -78,7 +78,7 @@
     <div class="govuk-grid-column-two-thirds"> #}
 
 
-        <h3 class="govuk-heading-m">
+        <h3 class="govuk-heading-m govuk-visually-hidden">
           Summary
         </h3>
 
@@ -172,10 +172,12 @@
             <h3 class="app-task-list__section govuk-!-font-size-19">
               {{ data['goal1-description'] | nl2br | safe }}
             </h3>
+            <p class="govuk-body-s"><strong>Needs and motivations</strong>: {% for need in data['goal1-needs'] %}{{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }} ({{ data["goal1-motivation"+loop.index] }}){% endfor %}</p>
+
             <ul class="app-task-list__items">
               <li class="app-task-list__item">
                 <span class="app-task-list__task-name">
-                  <a href="/offender/steps/goal1-step1">
+                  <a href="/offender/steps/step?step=goal1-step1">
                     {% if data['goal1-step1-intervention'] == 'Yes' %}
                       Intervention: {{ data['goal1-step1-intervention-type'] }}
                     {% else %}
@@ -191,7 +193,7 @@
               {% if data['goal1-step2-added'] == 'true' %}
               <li class="app-task-list__item">
                 <span class="app-task-list__task-name">
-                  <a href="#">
+                  <a href="/offender/steps/step?step=goal1-step2">
                     {% if data['goal1-step2-intervention'] == 'Yes' %}
                       Intervention: {{ data['goal1-step2-intervention-type'] }}
                     {% else %}
@@ -212,11 +214,17 @@
             <h3 class="app-task-list__section govuk-!-font-size-19">
               {{ data['goal2-description'] | nl2br | safe }}
             </h3>
+            <p class="govuk-body-s"><strong>Needs and motivations</strong>: {% for need in data['goal2-needs'] %}{{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }} ({{ data["goal2-motivation"+loop.index] }}){% endfor %}</p>
+
             <ul class="app-task-list__items">
               <li class="app-task-list__item">
                 <span class="app-task-list__task-name">
-                  <a href="#">
-                     Intervention: Kaizen
+                  <a href="/offender/steps/step?step=goal2-step1">
+                    {% if data['goal2-step1-intervention'] == 'Yes' %}
+                      Intervention: {{ data['goal2-step1-intervention-type'] }}
+                    {% else %}
+                      {{ data['goal2-step1-description'] }}
+                    {% endif %}
                   </a>
                 </span>
                 {% if data['goal2-step1-status'] %}
@@ -227,8 +235,12 @@
               {% if data['goal2-step2-added'] == 'true' %}
               <li class="app-task-list__item">
                 <span class="app-task-list__task-name">
-                  <a href="#">
-                     Intervention: Motivation & Engagement (M&E) Standalone
+                  <a href="/offender/steps/step?step=goal2-step2">
+                    {% if data['goal2-step2-intervention'] == 'Yes' %}
+                      Intervention: {{ data['goal2-step2-intervention-type'] }}
+                    {% else %}
+                      {{ data['goal2-step2-description'] }}
+                    {% endif %}
                   </a>
                 </span>
                 {% if data['goal2-step2-status'] %}

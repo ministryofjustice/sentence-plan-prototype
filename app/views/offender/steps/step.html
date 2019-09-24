@@ -4,6 +4,9 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
+{% set step = data['step'] %}
+{# moj-tag--grey #}
+
 {% block beforeContent %}
   {{ govukBackLink ({
     text: 'Back to plan',
@@ -29,15 +32,16 @@
         <div class="moj-page-header-actions__title">
           <h1 class="govuk-heading-l">
             <span class="govuk-caption-l">Step details</span>
-            {% if data['goal1-step1-intervention'] == 'Yes' %}
-              Intervention: {{ data['goal1-step1-intervention-type'] }}
+            {% if data[step+'-intervention'] == 'Yes' %}
+              Intervention: {{ data[step+'-intervention-type'] }}
             {% else %}
-              {{ data['goal1-step1-description'] }}
+              {{ data[step+'-description'] }}
             {% endif %}
           </h1>
-          {% if data['goal1-step1-status'] %}
+          {% if data[step+'-status'] %}
             {{ govukTag({
-              text: data['goal1-step1-status']
+              text: data[step+'-status'],
+              classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-2'
             }) }}
           {% endif %}
         </div>
@@ -48,7 +52,7 @@
 
               {{ govukButton ({
                 text: 'Update progress',
-                href: 'update',
+                href: 'step-update?step='+step,
                 classes: 'moj-button-menu__item moj-page-header-actions__action'
               }) }}
 
@@ -69,23 +73,19 @@
         History
       </h2>
       <div class="timeline">
-      {# {% if data['status-updated'] %}
-        <div class="moj-timeline__item">
-          <div class="moj-timeline__header">
-            <h2 class="moj-timeline__title">{{ data['status'] }}</h2>
-            <p class="moj-timeline__byline">by Sarah Smith</p>
-          </div>
-
-          <p class="moj-timeline__date">
-            <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
-          </p>
-
-          <div class="moj-timeline__description">
-            <p>{{ data['status-comment'] }}</p>
-          </div>
-        </div>
-        {% endif %} #}
         <ul>
+        {% if data[step+'-updated'] %}
+          <li>
+            <h2 class="timeline__title">Status changed to {{ data [step+'-status'] | lower }}</h2>
+            <p class="timeline__meta">
+              <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
+              by Sarah Smith
+            </p>
+
+            {% if data[step+'-status-comment'] %}<p>{{ data[step+'-status-comment'] }}</p>{% endif %}
+
+          </li>
+        {% endif %}
           <li>
             <h2 class="timeline__title">Step created</h2>
             <p class="timeline__meta">
