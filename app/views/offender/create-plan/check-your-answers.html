@@ -48,7 +48,7 @@
       <h2 class="govuk-heading-m">Goals</h2>
 
       {% if not data['goal1-added'] %}
-        <p>No goals added yet.</p>
+        <p class="govuk-!-margin-bottom-9">No goals added yet.</p>
         {{ govukButton ({
           text: 'Add a goal',
           href: 'add-goal/goal',
@@ -75,18 +75,18 @@
           {{ govukButton ({
             text: 'Add another goal',
             href: '#0',
-            classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
+            classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
           }) }}
           {{ govukButton ({
             text: 'Reorder goals',
             href: 'reorder-goals',
-            classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
+            classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
           }) }}
         {% else %}
           {{ govukButton ({
             text: 'Add another goal',
             href: 'add-goal2/goal',
-            classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
+            classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
           }) }}
         {% endif %}
       {% endif %}
@@ -108,12 +108,14 @@
         {% endif %}
       {% endif %} #}
 
-      <p>
+      <p class="govuk-!-margin-bottom-3">
       {{ govukButton ({
         text: 'Save and continue',
-        href: 'comment'
+        href: 'comment',
+        classes: 'govuk-!-margin-bottom-0'
       }) }}
       </p>
+      <p>or <a href="cancel-plan">cancel</a></p>
 
     </div>
   </div>
