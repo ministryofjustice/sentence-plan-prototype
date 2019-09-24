@@ -58,14 +58,14 @@
             <div class="moj-button-menu__wrapper">
 
               {{ govukButton ({
-                text: 'Close plan',
-                href: '/offender/close',
+                text: 'Print',
+                href: '/offender/print/',
                 classes: 'govuk-button--secondary moj-button-menu__item moj-page-header-actions__action'
               }) }}
 
               {{ govukButton ({
-                text: 'Print',
-                href: '/offender/print/',
+                text: 'Close plan',
+                href: '/offender/close',
                 classes: 'govuk-button--secondary moj-button-menu__item moj-page-header-actions__action'
               }) }}
 
@@ -260,12 +260,8 @@
             <ul class="app-task-list__items">
               <li class="app-task-list__item">
                 <span class="app-task-list__task-name">
-                  <a class="govuk-link--no-visited-state" href="#">
-                    {% if data['goal2-step1-intervention'] == 'Yes' %}
-                      Intervention: {{ data['goal2-step1-intervention-type'] }}
-                    {% else %}
-                      {{ data['goal2-step1-description'] }}
-                    {% endif %}
+                  <a class="govuk-link--no-visited-state" href="#0">
+                    Intervention: Thinking Skills Programme (TSP)
                   </a>
                 </span>
                 <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
@@ -274,12 +270,8 @@
               {% if data['goal2-step2-added'] == 'true' %}
               <li class="app-task-list__item">
                 <span class="app-task-list__task-name">
-                  <a class="govuk-link--no-visited-state" href="#">
-                    {% if data['goal2-step2-intervention'] == 'Yes' %}
-                      Intervention: {{ data['goal2-step2-intervention-type'] }}
-                    {% else %}
-                      {{ data['goal2-step2-description'] }}
-                    {% endif %}
+                  <a class="govuk-link--no-visited-state" href="#0">
+                    Intervention: A – Z
                   </a>
                 </span>
                 <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
