@@ -74,13 +74,13 @@
       {% if data['goal2-reordered'] == 'true' %}
         <h2 class="govuk-heading-m">Step 1</h2>
         {% include "includes/goal2-step2-summary.html" %}
-        <h2 class="govuk-heading-m">Step 2</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">Step 2</h2>
         {% include "includes/goal2-step1-summary.html" %}
       {% else %} 
         <h2 class="govuk-heading-m">Step 1</h2>
         {% include "includes/goal2-step1-summary.html" %}
         {% if data['goal2-step2-added'] == 'true' %}
-        <h2 class="govuk-heading-m">Step 2</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">Step 2</h2>
         {% include "includes/goal2-step2-summary.html" %}
         {% endif %}
       {% endif %}
@@ -89,18 +89,18 @@
         {{ govukButton ({
           text: 'Add another step',
           href: '#0',
-          classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
         }) }}
         {{ govukButton ({
           text: 'Reorder steps',
           href: 'reorder-steps',
-          classes: 'govuk-button--secondary govuk-!-margin-bottom-4'
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
         }) }}
       {% else %}
         {{ govukButton ({
           text: 'Add another step',
           href: 'add-step2',
-          classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
         }) }}
       {% endif %}
 
