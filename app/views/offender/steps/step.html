@@ -67,7 +67,13 @@
 
 
     <div class="govuk-grid-column-two-thirds">
-      {% include "includes/goal1-step1-summary.html" %}
+
+      <h3 class="govuk-heading-m govuk-visually-hidden">
+        Summary
+      </h3>
+      {% include "includes/"+step+"-summary.html" %}
+ 
+
  
       <h2 class="govuk-heading-m">
         History

@@ -1,25 +1,26 @@
 <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Description
-    </dt>
-    <dd class="govuk-summary-list__value">
-      {% if data['goal2-step2-intervention'] == 'Yes' %}
-        Intervention: {{ data['goal2-step2-intervention-type'] }}
-      {% else %}
-        {{ data['goal2-step2-description'] }}
+  {% if data['plan-status'] == 'draft' %}
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Description
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {% if data['goal2-step2-intervention'] == 'Yes' %}
+          Intervention: {{ data['goal2-step2-intervention-type'] }}
+        {% else %}
+          {{ data['goal2-step2-description'] }}
+        {% endif %}
+      </dd>
+      {% if data['plan-status'] == 'draft' %}
+      <dd class="govuk-summary-list__actions">
+        <a href="add-step">
+          Change
+          <span class="govuk-visually-hidden"> description</span>
+        </a>
+      </dd>
       {% endif %}
-    </dd>
-    {% if data['plan-status'] == 'draft' %}
-    <dd class="govuk-summary-list__actions">
-      <a href="add-step">
-        Change
-        <span class="govuk-visually-hidden"> description</span>
-      </a>
-    </dd>
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
   
 
 
