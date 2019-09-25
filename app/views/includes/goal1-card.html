@@ -1,21 +1,26 @@
 {# {% set dueDate1 = data['step-date-year'] + "-" + data['step-date-month'] + "-" + data['step-date-day'] %} #}
 
 <li>
-{% if data['plan-status'] == 'saved' %}
-  <a href="/offender/goals/1" class="task">
-{% else %}
-  <a href="add-goal/check-your-answers" class="task">
-{% endif %}
+  {% if data['plan-status'] == 'saved' %}
+    <a href="/offender/goal?goal=goal1" class="task">
+  {% else %}
+    <a href="add-goal/check-your-answers" class="task">
+  {% endif %}
     <span class="task__heading">
       {{ data['goal1-description'] | nl2br | safe }}
     </span>
 
     {# {{ data['status'] }} &middot; Due by {{ dueDate | date("D MMMM YYYY") }} #}
-    <ul class="govuk-list list-tags">
+    {# <ul class="govuk-list list-tags">
       <li class="govuk-!-font-weight-bold">Needs:</li>
       {% for need in data['goal1-needs'] %}
         <li class="tag">{{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }}</li>
       {% endfor %}
-    </ul>
+    </ul> #}
+    {% if data['plan-status'] == 'draft' %}
+      <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-0">{{ "2 steps" if data['goal1-step2-added'] else "1 step" }}</p>
+    {% else %}
+      <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-0">0 of {{ "2" if data['goal1-step2-added'] else "1" }} steps completed</p>
+    {% endif %}
   </a>
 </li>

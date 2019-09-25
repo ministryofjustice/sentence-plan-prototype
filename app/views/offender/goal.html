@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% set goal = data['goal'] %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back to plan',
+    href: '/offender'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <div class="moj-page-header-actions">
+        <div class="moj-page-header-actions__title">
+          <h1 class="govuk-heading-l">
+            <span class="govuk-caption-l">Goal details</span>
+            {{ data[goal+'-description'] | nl2br | safe }}
+          </h1>
+          {% if data[step+'-status'] %}
+            <strong class="govuk-tag govuk-!-margin-top-4 govuk-!-margin-bottom-2 {{ 'moj-tag--grey' if data[step+'-status'] == 'In progress' or data[step+'-status'] == 'Paused' }}">{{ data[step+'-status'] }}</strong>
+          {% endif %}
+        </div>
+
+        <div class="moj-page-header-actions__actions">
+          <div class="moj-button-menu">
+            <div class="moj-button-menu__wrapper">
+
+              {# {{ govukButton ({
+                text: 'Update progress',
+                href: 'step-update?step='+step,
+                classes: 'moj-button-menu__item moj-page-header-actions__action'
+              }) }} #}
+
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+
+
+
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-m">
+        Needs and motivations
+      </h2>
+      <ul class="govuk-list govuk-list--bullet">
+        {% for need in data[goal+'-needs'] %}
+          <li>
+            {{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }}: 
+            {{ data[goal+'-motivation'+loop.index] }}
+          </li>
+        {% endfor %}
+      </ul>
+
+
+
+
+      <h2 class="govuk-heading-m">
+        Steps
+      </h2>
+      <ol class="app-task-list app-task-list__items  govuk-!-margin-bottom-4">
+        <li class="app-task-list__item">
+          <span class="app-task-list__task-name">
+            <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal1-step1">
+              {% if data[goal+'-step1-intervention'] == 'Yes' %}
+                Intervention: {{ data[goal+'-step1-intervention-type'] }}
+              {% else %}
+                {{ data[goal+'-step1-description'] }}
+              {% endif %}
+            </a>
+          </span>
+          {% if data[goal+'-step1-status'] %}
+            <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data[goal+'-step1-status'] == 'In progress' or data[goal+'-step1-status'] == 'Paused' }}">{{ data[goal+'-step1-status'] }}</strong>
+          {% endif %}
+        </li>
+
+        {% if data[goal+'-step2-added'] == 'true' %}
+        <li class="app-task-list__item">
+          <span class="app-task-list__task-name">
+            <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal1-step2">
+              {% if data[goal+'-step2-intervention'] == 'Yes' %}
+                Intervention: {{ data[goal+'-step2-intervention-type'] }}
+              {% else %}
+                {{ data[goal+'-step2-description'] }}
+              {% endif %}
+            </a>
+          </span>
+          {% if data[goal+'-step2-status'] %}
+            <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data[goal+'-step2-status'] == 'In progress' or data[goal+'-step2-status'] == 'Paused' }}">{{ data[goal+'-step2-status'] }}</strong>
+          {% endif %}
+        </li>
+        {% endif %}
+      </ol>
+
+      {{ govukButton ({
+          text: 'Add another step',
+          href: '#0',
+          classes: 'govuk-button--secondary'
+        }) }}
+        {{ govukButton ({
+          text: 'Reorder steps',
+          href: '#0',
+          classes: 'govuk-button--secondary'
+        }) }}
+
+    </div>
+  </div>
+{% endblock %}

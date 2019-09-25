@@ -154,7 +154,7 @@
 
 
 
-        {# <ul class="govuk-list">
+        <ul class="govuk-list">
           {% if data['goals-reordered'] == 'true' %}
             {% include "includes/goal2-card.html" %}
             {% include "includes/goal1-card.html" %}
@@ -165,121 +165,9 @@
               {% include "includes/goal2-card.html" %}
             {% endif %}
           {% endif %}
-        </ul> #}
+        </ul>
 
-        <ol class="app-task-list">
-          <li>
-            <h3 class="app-task-list__section govuk-!-font-size-19">
-              {{ data['goal1-description'] | nl2br | safe }}
-            </h3>
-            <p class="govuk-body-s"><strong>Needs and motivations</strong>: {% for need in data['goal1-needs'] %}{{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }} ({{ data["goal1-motivation"+loop.index] }}){% endfor %}</p>
-
-            <ul class="app-task-list__items">
-              <li class="app-task-list__item">
-                <span class="app-task-list__task-name">
-                  <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal1-step1">
-                    {% if data['goal1-step1-intervention'] == 'Yes' %}
-                      Intervention: {{ data['goal1-step1-intervention-type'] }}
-                    {% else %}
-                      {{ data['goal1-step1-description'] }}
-                    {% endif %}
-                  </a>
-                </span>
-                {% if data['goal1-step1-status'] %}
-                  <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data['goal1-step1-status'] == 'In progress' or data['goal1-step1-status'] == 'Paused' }}">{{ data['goal1-step1-status'] }}</strong>
-                {% endif %}
-              </li>
-
-              {% if data['goal1-step2-added'] == 'true' %}
-              <li class="app-task-list__item">
-                <span class="app-task-list__task-name">
-                  <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal1-step2">
-                    {% if data['goal1-step2-intervention'] == 'Yes' %}
-                      Intervention: {{ data['goal1-step2-intervention-type'] }}
-                    {% else %}
-                      {{ data['goal1-step2-description'] }}
-                    {% endif %}
-                  </a>
-                </span>
-                {% if data['goal1-step2-status'] %}
-                  <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data['goal1-step2-status'] == 'In progress' or data['goal1-step2-status'] == 'Paused' }}">{{ data['goal1-step2-status'] }}</strong>
-                {% endif %}
-              </li>
-              {% endif %}
-            </ul>
-          </li>
-
-          {% if data['goal2-added'] == 'true' %}
-          <li>
-            <h3 class="app-task-list__section govuk-!-font-size-19">
-              {{ data['goal2-description'] | nl2br | safe }}
-            </h3>
-            <p class="govuk-body-s"><strong>Needs and motivations</strong>: {% for need in data['goal2-needs'] %}{{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }} ({{ data["goal2-motivation"+loop.index] }}){% endfor %}</p>
-
-            <ul class="app-task-list__items">
-              <li class="app-task-list__item">
-                <span class="app-task-list__task-name">
-                  <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal2-step1">
-                    {% if data['goal2-step1-intervention'] == 'Yes' %}
-                      Intervention: {{ data['goal2-step1-intervention-type'] }}
-                    {% else %}
-                      {{ data['goal2-step1-description'] }}
-                    {% endif %}
-                  </a>
-                </span>
-                {% if data['goal2-step1-status'] %}
-                  <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data['goal2-step1-status'] == 'In progress' or data['goal2-step1-status'] == 'Paused' }}">{{ data['goal2-step1-status'] }}</strong>
-                {% endif %}
-              </li>
-              
-              {% if data['goal2-step2-added'] == 'true' %}
-              <li class="app-task-list__item">
-                <span class="app-task-list__task-name">
-                  <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal2-step2">
-                    {% if data['goal2-step2-intervention'] == 'Yes' %}
-                      Intervention: {{ data['goal2-step2-intervention-type'] }}
-                    {% else %}
-                      {{ data['goal2-step2-description'] }}
-                    {% endif %}
-                  </a>
-                </span>
-                {% if data['goal2-step2-status'] %}
-                  <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data['goal2-step2-status'] == 'In progress' or data['goal2-step2-status'] == 'Paused' }}">{{ data['goal2-step2-status'] }}</strong>
-                {% endif %}
-              </li>
-              {% endif %}
-            </ul>
-          </li>
-          {% endif %}
-
-
-          <li class="js-hidden">
-            <h3 class="app-task-list__section govuk-!-font-size-19">
-              An example goal which has been completed
-            </h3>
-            <ul class="app-task-list__items">
-              <li class="app-task-list__item">
-                <span class="app-task-list__task-name">
-                  <a class="govuk-link--no-visited-state" href="#0">
-                    Intervention: Thinking Skills Programme (TSP)
-                  </a>
-                </span>
-                <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
-              </li>
-              
-              {% if data['goal2-step2-added'] == 'true' %}
-              <li class="app-task-list__item">
-                <span class="app-task-list__task-name">
-                  <a class="govuk-link--no-visited-state" href="#0">
-                    Intervention: A – Z
-                  </a>
-                </span>
-                <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
-              </li>
-              {% endif %}
-            </ul>
-          </li>
-        </ol>
+        
 
 
         {{ govukButton ({

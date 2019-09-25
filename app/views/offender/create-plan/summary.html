@@ -4,12 +4,12 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
-{# {% block beforeContent %}
+{% block beforeContent %}
   {{ govukBackLink ({
     text: 'Back',
-    href: 'diversity'
+    href: '/offender'
   }) }}
-{% endblock %} #}
+{% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -17,7 +17,7 @@
 
       <form class="form" action="check-your-answers" method="post">
 
-        <h1 class="govuk-heading-l">Offender summary</h1>
+        <h1 class="govuk-heading-l">Sensitive details</h1>
 
         {{ govukTextarea ({
           id: 'diversity',
