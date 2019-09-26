@@ -42,7 +42,7 @@
         {% elif data['plan-status'] == 'draft' %}
 
       </div> 
-          <p>There is a draft plan.</p>
+          <p>There is a draft plan from {{ data | date("D MMMM YYYY") }}.</p>
           {{ govukButton ({
             text: 'View draft',
             href: '/offender/create-plan/check-your-answers'
