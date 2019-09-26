@@ -4,10 +4,23 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
+{% if data['goal2-added'] %}
+  {% block beforeContent %}
+    {{ govukBackLink ({
+      text: 'Back to draft plan',
+      href: '../check-your-answers'
+    }) }}
+  {% endblock %}
+{% endif %}
+
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      <h1 class="govuk-heading-l">Check the goal before saving</h1>
+      {% if data['goal2-added'] %}
+        <h1 class="govuk-heading-l">Review and update the goal</h1>
+      {% else %}
+        <h1 class="govuk-heading-l">Check the goal before saving</h1>
+      {% endif %}
 
       <h2 class="govuk-heading-m">Goal summary</h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -122,7 +135,11 @@
           html: 'Save goal',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a href="../cancel-goal">cancel</a></p>
+        {% if data['goal2-added'] %}
+          <p>or <a href="../cancel-goal">delete goal</a></p>
+        {% else %}
+          <p>or <a href="../cancel-goal">cancel</a></p>
+        {% endif %}
 
       </form>
 
