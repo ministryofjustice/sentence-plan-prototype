@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+<!-- Adds spacing for pages without a back button -->
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Sentence plan screens
+      </h1>
+    </div>
+    
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        <a href="sign-in/">Sign in</a>
+      </li>
+      <li>
+        <a href="/offender">Dashboard</a>
+      </li>
+      <li>
+        <a href="/offender/close">Close plan</a>
+      </li>
+      <li>
+        <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">Create plan</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="/offender/create-plan/summary">Plan details (diversity etc)</a>
+          </li>
+          <li>
+            <a href="/offender/create-plan/check-your-answers">Draft plan</a>
+          </li>
+          <li>
+            <a href="/offender/create-plan/cancel-plan">Cancel plan</a>
+          </li>
+          <li>
+            <a href="/offender/create-plan/reorder-goals">Reorder goals</a>
+          </li>
+          <li>
+            <a href="/offender/create-plan/comment">Comment and save plan</a>
+          </li>
+
+          <li>
+            <h3 class="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-2">Create goal</h3>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <a href="/offender/create-plan/add-goal/goal">Goal desc/needs</a>
+              </li>
+              <li>
+                <a href="/offender/create-plan/add-goal/motivations">Motivations</a>
+              </li>
+              <li>
+                <a href="/offender/create-plan/add-goal2/add-existing-step">Link steps (after goal 1 added)</a>
+              </li>
+              <li>
+                <a href="/offender/create-plan/add-goal/add-step">Step details</a>
+              </li>
+              <li>
+                <a href="/offender/create-plan/add-goal/check-your-answers">Check answers (content changes after saving)</a>
+              </li>
+              <li>
+                <a href="/offender/create-plan/add-goal/reorder-steps">Reorder steps</a>
+              </li>
+              <li>
+                <a href="/offender/create-plan/add-goal/cancel-goal">Cancel draft goal</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+
+      <li>
+        <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">View goal</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+              <a href="/offender/goal?goal=goal1">Goal overview</a>
+          </li>
+          <li>
+              <a href="/offender/steps/step?step=goal1-step1">Step overview</a>
+          </li>
+          <li>
+              <a href="/offender/steps/step-update">Update step</a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li>
+        <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">Print</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+              <a href="/offender/print/">Options</a>
+          </li>
+          <li>
+              <a href="/offender/print/full">Print full</a>
+          </li>
+          <li>
+              <a href="/offender/print/overview">Print offender summary</a>
+          </li>
+        </ul>
+      </li>
+
+
+
+    </ul>
+
+
+
+
+    </div>
+</div>
+
+{% endblock %}
