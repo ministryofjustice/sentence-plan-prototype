@@ -8,6 +8,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
+      {% if data['unpaidwork'] == 'yes' %}
+        {{ mojBanner({
+          type: 'information',
+          text: 'An unpaid work goal has been added automatically based on information from OASys.',
+          iconFallbackText: 'Information'
+        }) }} 
+      {% endif %}
+
       <h1 class="govuk-heading-l">Draft plan</h1>
 
       <h2 class="govuk-heading-m">Sensitive details</h2>
@@ -47,7 +55,7 @@
 
       <h2 class="govuk-heading-m">Goals</h2>
 
-      {% if not data['goal1-added'] %}
+      {% if not data['goal1-added'] and not data['unpaidwork'] %}
         <p class="govuk-!-margin-bottom-4">No goals added yet.</p>
         {{ govukButton ({
           text: 'Add a goal',
@@ -58,14 +66,19 @@
 
 
         <ul class="govuk-list govuk-!-margin-bottom-4">
-          {% if data['goals-reordered'] == 'true' %}
-            {% include "includes/goal2-card.html" %}
-            {% include "includes/goal1-card.html" %}
-          {% else %} 
-            {% include "includes/goal1-card.html" %}
-            
-            {% if data['goal2-added'] == 'true' %}
+          {% if data['unpaidwork'] %}
+            {% include "includes/unpaidwork-card.html" %}
+          {% endif %}
+          {% if data['goal1-added'] %}
+            {% if data['goals-reordered'] == 'true' %}
               {% include "includes/goal2-card.html" %}
+              {% include "includes/goal1-card.html" %}
+            {% else %} 
+              {% include "includes/goal1-card.html" %}
+              
+              {% if data['goal2-added'] == 'true' %}
+                {% include "includes/goal2-card.html" %}
+              {% endif %}
             {% endif %}
           {% endif %}
         </ul>

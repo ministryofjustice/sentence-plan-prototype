@@ -155,14 +155,19 @@
 
 
         <ul class="govuk-list">
-          {% if data['goals-reordered'] == 'true' %}
-            {% include "includes/goal2-card.html" %}
-            {% include "includes/goal1-card.html" %}
-          {% else %} 
-            {% include "includes/goal1-card.html" %}
-            
-            {% if data['goal2-added'] == 'true' %}
+          {% if data['unpaidwork'] %}
+            {% include "includes/unpaidwork-card.html" %}
+          {% endif %}
+          {% if data['goal1-added'] %}
+            {% if data['goals-reordered'] == 'true' %}
               {% include "includes/goal2-card.html" %}
+              {% include "includes/goal1-card.html" %}
+            {% else %} 
+              {% include "includes/goal1-card.html" %}
+              
+              {% if data['goal2-added'] == 'true' %}
+                {% include "includes/goal2-card.html" %}
+              {% endif %}
             {% endif %}
           {% endif %}
         </ul>
