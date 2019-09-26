@@ -31,7 +31,7 @@ module.exports = {
         { title:"ISP due", value:"13 March 2019"},
         { title:"Risk level", value: "High"},
         { title:"Keyworker", value: "Sarah Smith"},
-        { title:"Parom case", value:"Yes"},
+        { title:"Parole case", value:"Yes"},
       ],
       "needs": [
         { type:"Accommodation", risk: true},
