@@ -18,7 +18,7 @@
       <form class="form" action="/offender/plan-saved" method="post">
 
         <h1 class="govuk-heading-l">
-          Add comments and save the plan
+          Save the plan
         </h1>
 
         {{ govukTextarea ({
@@ -26,10 +26,24 @@
           name: 'practitioner-comment',
           value: data['practitioner-comment'] if data['practitioner-comment'] else '',
           label: {
-            html: 'Your words'
+            html: 'Your decisions',
+            classes: "govuk-label--m"
           },
           hint: {
-            text: ''
+            text: 'Record the key points from your conversations with the individual as you created their plan. Explain decisions you made, e.g. why you might not deal with a certain need at this time.'
+          }
+        }) }}
+
+        {{ govukTextarea ({
+          id: 'practitioner-expectations',
+          name: 'practitioner-expectations',
+          value: data['practitioner-expectations'] if data['practitioner-expectations'] else '',
+          label: {
+            html: 'Your expectations',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: 'Say what you expect the plan to achieve.'
           }
         }) }}
 
@@ -38,10 +52,11 @@
           name: 'offender-comment',
           value: data['offender-comment'] if data['offender-comment'] else '',
           label: {
-            html: 'Their words'
+            html: 'Individual&rsquo;s summary',
+            classes: "govuk-label--m"
           },
           hint: {
-            text: ''
+            text: 'Record anything they want to say about their plan. Include any points they want to make or clarify.'
           }
         }) }}
 

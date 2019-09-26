@@ -107,6 +107,16 @@
 
       <form action="../check-your-answers" method="post" novalidate>
 
+        {% if data['goal1-step1-started'] == 'Yes' %}
+          <input type="hidden" name="goal1-step1-status" value="In progress">
+        {% endif %}
+        {% if data['goal1-step1-started'] == 'Yes' %}
+          <input type="hidden" name="goal1-step1-status" value="In progress">
+        {% endif %}
+        {% if data['goal1-step1-started'] == 'Yes' %}
+          <input type="hidden" name="goal1-step1-status" value="In progress">
+        {% endif %}
+        
         <input type="hidden" name="goal1-added" value="true">
 
         {{ govukButton ({

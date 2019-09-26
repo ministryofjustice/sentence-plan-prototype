@@ -91,5 +91,28 @@
       </a>
     </dd>
   </div>
+
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Started
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {% if data['goal2-step1-started'] == 'Yes' %}
+        Yes
+      {% else %}
+        No
+      {% endif %}
+    </dd>
+    {% if data['plan-status'] == 'draft' %}
+    <dd class="govuk-summary-list__actions">
+      <a href="add-step">
+        Change
+        <span class="govuk-visually-hidden"> step progress</span>
+      </a>
+    </dd>
+    {% endif %}
+  </div>
   {% endif %}
 </dl>

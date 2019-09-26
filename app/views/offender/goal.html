@@ -100,6 +100,45 @@
           {% endif %}
         </li>
         {% endif %}
+
+
+
+        {% if data['linked-step'].length %}
+          <li class="app-task-list__item">
+            <span class="app-task-list__task-name">
+              <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal1-step1">
+                {% if data['goal1-step1-intervention'] == 'Yes' %}
+                  Intervention: {{ data['goal1-step1-intervention-type'] }}
+                {% else %}
+                  {{ data['goal1-step1-description'] }}
+                {% endif %}
+              </a>
+            </span>
+            {% if data['goal1-step1-status'] %}
+              <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data['goal1-step1-status'] == 'In progress' or data['goal1-step1-status'] == 'Paused' }}">
+                {{ data['goal1-step1-status'] }}
+              </strong>
+            {% endif %}
+          </li>
+
+          {% if data['linked-step'].length > 1 %}
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name">
+                <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal2-step1">
+                  {% if data['goal2-step1-intervention'] == 'Yes' %}
+                    Intervention: {{ data['goal2-step1-intervention-type'] }}
+                  {% else %}
+                    {{ data['goal2-step1-description'] }}
+                  {% endif %}
+                </a>
+              </span>
+              {% if data['goal2-step1-status'] %}
+                <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data['goal2-step1-status'] == 'In progress' or data['goal2-step1-status'] == 'Paused' }}">{{ data['goal2-step1-status'] }}</strong>
+              {% endif %}
+            </li>
+          {% endif %}
+        {% endif %}
+
       </ol>
 
       {{ govukButton ({

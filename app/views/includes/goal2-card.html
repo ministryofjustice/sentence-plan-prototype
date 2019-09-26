@@ -18,9 +18,25 @@
       {% endfor %}
     </ul> #}
     {% if data['plan-status'] == 'draft' %}
-      <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-0">{{ "2 steps" if data['goal2-step2-added'] else "1 step" }}</p>
+      <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+      {% if data['linked-step'].length > 1 %}
+        3 steps
+      {% elif data['linked-step'].length == 1 %}
+        2 steps
+      {% else %}
+        1 step
+      {% endif %}
+      </p>
     {% else %}
-      <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-0">0 of {{ "2" if data['goal2-step2-added'] else "1" }} steps completed</p>
+      <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+      {% if data['linked-step'].length > 1 %}
+        0 of 3 steps completed
+      {% elif data['linked-step'].length == 1 %}
+        0 of 2 steps completed
+      {% else %}
+        0 of 1 steps completed
+      {% endif %}
+      </p>
     {% endif %}
   </a>
 </li>

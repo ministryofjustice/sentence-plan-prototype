@@ -183,6 +183,28 @@
           ]
         }) }}
 
+
+        {{ govukRadios ({
+          idPrefix: 'goal2-step1-started',
+          name: 'goal2-step1-started',
+          fieldset: {
+            legend: {
+              text: 'Do you want to start the step straight away?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Yes',
+              value: 'Yes'
+            },
+            {
+              text: 'No',
+              value: 'No'
+            }
+          ]
+        }) }}
+
         
         {{ govukButton ({
           html: 'Save and continue',
