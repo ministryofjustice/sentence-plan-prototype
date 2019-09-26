@@ -93,7 +93,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Their summary
+              They need us to know 
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['offender-summary'] | nl2br | safe }}
@@ -101,7 +101,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Practitioner&rsquo;s comments on plan
+               Your decisions 
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['practitioner-comment'] | nl2br | safe }}
@@ -109,7 +109,15 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Their comments on plan
+              Your expectations  
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['practitioner-comment'] | nl2br | safe }}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Individual&rsquo;s summary 
             </dt>
             <dd class="govuk-summary-list__value">
               {{ data['offender-comment'] | nl2br | safe }}
