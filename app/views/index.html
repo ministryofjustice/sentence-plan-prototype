@@ -40,32 +40,17 @@
 
             <form action="/oasys" method="post" novalidate>
 
-              {# {{ govukRadios ({
-                classes: "govuk-radios--small",
-                idPrefix: 'prototype-options',
-                name: 'prototype-options',
-                fieldset: {
-                  legend: {
-                    text: 'Prototype options',
-                    classes: 'govuk-fieldset__legend--s'
-                  }
-                },
+              {{ govukCheckboxes({
+                classes: "govuk-checkboxes--small",
+                idPrefix: 'unpaidwork',
+                name: 'unpaidwork',
                 items: [
                   {
-                    text: 'Standard',
-                    value: 'Standard',
-                    checked: true
-                  },
-                  {
-                    text: 'Safeguarding',
-                    value: 'Safeguarding'
-                  },
-                  {
-                    text: 'Unpaid work',
-                    value: 'Unpaid work'
+                    text: 'Add in unpaid work',
+                    value: 'yes'
                   }
                 ]
-              }) }} #}
+              }) }}
 
               {{ govukButton ({
                 text: 'View prototype',
