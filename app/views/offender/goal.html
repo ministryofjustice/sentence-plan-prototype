@@ -71,7 +71,7 @@
       <ol class="app-task-list app-task-list__items  govuk-!-margin-bottom-4">
         <li class="app-task-list__item">
           <span class="app-task-list__task-name">
-            <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal1-step1">
+            <a class="govuk-link--no-visited-state" href="/offender/steps/step?step={{goal}}-step1">
               {% if data[goal+'-step1-intervention'] == 'Yes' %}
                 Intervention: {{ data[goal+'-step1-intervention-type'] }}
               {% else %}
@@ -103,7 +103,7 @@
 
 
 
-        {% if data['linked-step'].length %}
+        {% if data['linked-step'].length and goal == 'goal2' %}
           <li class="app-task-list__item">
             <span class="app-task-list__task-name">
               <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal1-step1">
@@ -124,16 +124,16 @@
           {% if data['linked-step'].length > 1 %}
             <li class="app-task-list__item">
               <span class="app-task-list__task-name">
-                <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal2-step1">
-                  {% if data['goal2-step1-intervention'] == 'Yes' %}
-                    Intervention: {{ data['goal2-step1-intervention-type'] }}
+                <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal1-step2">
+                  {% if data['goal1-step2-intervention'] == 'Yes' %}
+                    Intervention: {{ data['goal1-step2-intervention-type'] }}
                   {% else %}
-                    {{ data['goal2-step1-description'] }}
+                    {{ data['goal1-step2-description'] }}
                   {% endif %}
                 </a>
               </span>
-              {% if data['goal2-step1-status'] %}
-                <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data['goal2-step1-status'] == 'In progress' or data['goal2-step1-status'] == 'Paused' }}">{{ data['goal2-step1-status'] }}</strong>
+              {% if data['goal1-step2-status'] %}
+                <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data['goal1-step2-status'] == 'In progress' or data['goal1-step2-status'] == 'Paused' }}">{{ data['goal1-step2-status'] }}</strong>
               {% endif %}
             </li>
           {% endif %}
