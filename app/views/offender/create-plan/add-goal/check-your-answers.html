@@ -122,9 +122,14 @@
 
         {% if data['goal1-step1-started'] == 'Yes' %}
           <input type="hidden" name="goal1-step1-status" value="In progress">
+        {% else %}
+          <input type="hidden" name="goal1-step1-status" value="Not started">
         {% endif %}
+
         {% if data['goal1-step2-started'] == 'Yes' %}
           <input type="hidden" name="goal1-step2-status" value="In progress">
+        {% else %}
+          <input type="hidden" name="goal1-step2-status" value="Not started">
         {% endif %}
         
         <input type="hidden" name="goal1-added" value="true">

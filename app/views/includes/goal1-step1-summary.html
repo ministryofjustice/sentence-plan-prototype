@@ -44,6 +44,24 @@
     </dd>
     {% endif %}
   </div>
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Motivation
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['goal1-step1-motivation'] }}
+    </dd>
+    {% if data['plan-status'] == 'draft' %}
+    <dd class="govuk-summary-list__actions">
+      <a href="add-step">
+        Change
+        <span class="govuk-visually-hidden"> motivation</span>
+      </a>
+    </dd>
+    {% endif %}
+  </div>
   
   
   {# <div class="govuk-summary-list__row">

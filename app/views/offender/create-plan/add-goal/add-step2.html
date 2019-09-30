@@ -87,7 +87,62 @@
               text: "What is the target date for the step to be finished?",
               classes: "govuk-fieldset__legend--m"
             }
-          }
+          },
+          items: [
+            {
+              name: "day",
+              classes: "govuk-input--width-2",
+              value: data["goal1-step2-date-day"]
+            },
+            {
+              name: "month",
+              classes: "govuk-input--width-2",
+              value: data["goal1-step2-date-month"]
+            },
+            {
+              name: "year",
+              classes: "govuk-input--width-4",
+              value: data["goal1-step2-date-year"]
+            }
+          ]
+        }) }}
+
+
+
+
+        {{ govukSelect({
+          id: "goal1-step2-motivation",
+          name: "goal1-step2-motivation",
+          label: {
+            text: "How motivated is the individual to start or complete this step?",
+            classes: "govuk-label--m"
+          },
+          items: [
+            {
+              value: "Not aware of it",
+              text: "Not aware of it"
+            },
+            {
+              value: "Thinking about it",
+              text: "Thinking about it"
+            },
+            {
+              value: "Getting ready",
+              text: "Getting ready"
+            },
+            {
+              value: "Doing it",
+              text: "Doing it"
+            },
+            {
+              value: "Keeping going",
+              text: "Keeping going"
+            },
+            {
+              value: "Off track",
+              text: "Off track"
+            }
+          ]
         }) }}
 
 
@@ -165,17 +220,17 @@
             {
               text: 'Individual',
               value: 'Individual',
-              checked: checked('goal1-step2-responsible', 'individual')
+              checked: checked('goal1-step2-responsible', 'Individual')
             },
             {
               text: 'Responsible officer',
               value: 'Responsible officer',
-              checked: checked('goal1-step2-responsible', 'responsible-officer')
+              checked: checked('goal1-step2-responsible', 'Responsible officer')
             },
             {
               text: 'Other',
               value: 'Other',
-              checked: checked('goal1-step2-responsible', 'other'),
+              checked: checked('goal1-step2-responsible', 'Other'),
               conditional: {
                 html: doneHMTL
               }

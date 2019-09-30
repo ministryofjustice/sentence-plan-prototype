@@ -32,11 +32,11 @@
           <div class="moj-button-menu">
             <div class="moj-button-menu__wrapper">
 
-              {# {{ govukButton ({
-                text: 'Update progress',
+              {{ govukButton ({
+                text: 'Close goal',
                 href: 'step-update?step='+step,
                 classes: 'moj-button-menu__item moj-page-header-actions__action'
-              }) }} #}
+              }) }}
 
             </div>
           </div>
@@ -50,7 +50,7 @@
 
     <div class="govuk-grid-column-two-thirds">
 
-      <h2 class="govuk-heading-m">
+      {# <h2 class="govuk-heading-m">
         Needs and motivations
       </h2>
       <ul class="govuk-list govuk-list--bullet">
@@ -60,7 +60,7 @@
             {{ data[goal+'-motivation'+loop.index] }}
           </li>
         {% endfor %}
-      </ul>
+      </ul> #}
 
 
 
@@ -79,14 +79,17 @@
             </a>
           </span>
           {% if data[goal+'-step1-status'] %}
-            <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data[goal+'-step1-status'] == 'In progress' or data[goal+'-step1-status'] == 'Paused' }}">{{ data[goal+'-step1-status'] }}</strong>
+            <strong class="govuk-tag app-task-list__task-completed 
+            {{ 'moj-tag--grey' if data[goal+'-step1-status'] == 'Not started' or data[goal+'-step1-status'] == 'Paused' }}
+            {{ 'moj-tag--green' if data[goal+'-step1-status'] == 'Completed' or data[goal+'-step1-status'] == 'Partly completed' }}
+            {{ 'moj-tag--red' if data[goal+'-step1-status'] == 'Abandoned' }}">{{ data[goal+'-step1-status'] }}</strong>
           {% endif %}
         </li>
 
         {% if data[goal+'-step2-added'] == 'true' %}
         <li class="app-task-list__item">
           <span class="app-task-list__task-name">
-            <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal1-step2">
+            <a class="govuk-link--no-visited-state" href="/offender/steps/step?step={{goal}}-step2">
               {% if data[goal+'-step2-intervention'] == 'Yes' %}
                 Intervention: {{ data[goal+'-step2-intervention-type'] }}
               {% else %}
@@ -95,7 +98,10 @@
             </a>
           </span>
           {% if data[goal+'-step2-status'] %}
-            <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data[goal+'-step2-status'] == 'In progress' or data[goal+'-step2-status'] == 'Paused' }}">{{ data[goal+'-step2-status'] }}</strong>
+            <strong class="govuk-tag app-task-list__task-completed 
+            {{ 'moj-tag--grey' if data[goal+'-step2-status'] == 'Not started' or data[goal+'-step2-status'] == 'Paused' }}
+            {{ 'moj-tag--green' if data[goal+'-step2-status'] == 'Completed' or data[goal+'-step2-status'] == 'Partly completed' }}
+            {{ 'moj-tag--red' if data[goal+'-step2-status'] == 'Abandoned' }}">{{ data[goal+'-step2-status'] }}</strong>
           {% endif %}
         </li>
         {% endif %}

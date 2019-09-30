@@ -38,7 +38,9 @@
             {% endif %}
           </h1>
           {% if data[step+'-status'] %}
-            <strong class="govuk-tag govuk-!-margin-top-4 govuk-!-margin-bottom-2 {{ 'moj-tag--grey' if data[step+'-status'] == 'In progress' or data[step+'-status'] == 'Paused' }}">{{ data[step+'-status'] }}</strong>
+            <strong class="govuk-tag govuk-!-margin-top-4  govuk-!-margin-bottom-2
+            {{ 'moj-tag--grey' if data[step+'-status'] == 'Not started' or data[step+'-status'] == 'Paused' }}
+            {{ 'moj-tag--green' if data[step+'-status'] == 'Completed' or data[step+'-status'] == 'Partly completed' }}{{ 'moj-tag--red' if data[step+'-status'] == 'Abandoned' }}">{{ data[step+'-status'] }}</strong>
           {% endif %}
         </div>
 

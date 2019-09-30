@@ -26,9 +26,9 @@
           name: step+'-status',
           fieldset: {
             legend: {
-              text: 'Current status',
+              text: 'Status',
               isPageHeading: false,
-              classes: 'govuk-fieldset__legend--s'
+              classes: 'govuk-fieldset__legend--m'
             }
           },
           hint: {
@@ -63,6 +63,84 @@
           ]
         }) }}
 
+
+
+
+        {{ govukDateInput({
+          id: step+"-date",
+          namePrefix: step+"-date",
+          fieldset: {
+            legend: {
+              text: "Target date",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              name: "day",
+              classes: "govuk-input--width-2",
+              value: data[step+"-date-day"]
+            },
+            {
+              name: "month",
+              classes: "govuk-input--width-2",
+              value: data[step+"-date-month"]
+            },
+            {
+              name: "year",
+              classes: "govuk-input--width-4",
+              value: data[step+"-date-year"]
+            }
+          ]
+        }) }}
+
+
+
+        {% set doneHMTL %}
+          {{ govukInput ({
+            id: step+'-responsible-other',
+            name: step+'-responsible-other',
+            value: data[step+'-responsible-other'] if data[step+'-responsible-other'] else '',
+            classes: 'govuk-input--width-20',
+            label: {
+              text: 'Other',
+              classes: 'govuk-input--width-20'
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukCheckboxes ({
+          classes: "govuk-checkboxes--small",
+          idPrefix: step+'-responsible',
+          name: step+'-responsible',
+          fieldset: {
+            legend: {
+              text: 'Who will make sure the step is done?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Individual',
+              value: 'Individual',
+              checked: checked(step+'-responsible', 'Individual')
+            },
+            {
+              text: 'Responsible officer',
+              value: 'Responsible officer',
+              checked: checked(step+'-responsible', 'Responsible officer')
+            },
+            {
+              text: 'Other',
+              value: 'Other',
+              checked: checked(step+'-responsible', 'Other'),
+              conditional: {
+                html: doneHMTL
+              }
+            }
+          ]
+        }) }}
+
         {{ govukTextarea ({
             id: 'status-comment',
             name: step+'-status-comment',
@@ -70,7 +148,7 @@
             label: {
               html: 'Comment',
               isPageHeading: false,
-              classes: "govuk-label--s"
+              classes: "govuk-label--m"
             },
             hint: {
               text: ""
