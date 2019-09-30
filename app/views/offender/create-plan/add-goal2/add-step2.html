@@ -24,7 +24,7 @@
         <div class="govuk-form-group">
           <label for="goal2-step2-intervention-type" class="govuk-label govuk-label--m">What intervention are they going to take?</label>
           <div class="govuk-grid-row">
-            <div id="goal2-step2-intervention-type-container" class="govuk-grid-column-two-thirds"></div>
+            <div id="goal2-step2-intervention-type-container" class="govuk-grid-column-two-thirds" data-default-value="{{ data['goal2-step2-intervention-type'] }}"></div>
           </div>
         </div>
         {% endset -%}
@@ -252,11 +252,13 @@
           items: [
             {
               text: 'Yes',
-              value: 'Yes'
+              value: 'Yes',
+              checked: checked('goal2-step2-started', 'Yes')
             },
             {
               text: 'No',
-              value: 'No'
+              value: 'No',
+              checked: checked('goal2-step2-started', 'No')
             }
           ]
         }) }}
