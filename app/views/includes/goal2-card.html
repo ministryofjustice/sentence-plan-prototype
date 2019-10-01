@@ -20,7 +20,6 @@
       </p>
     {% else %}
       <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-0">
-      {{ 'Closed' if data['goal2-closed'] == 'true' else 'Active' }} &middot; 
       {% if data['linked-step'].length > 1 %}
         0 of 3 steps completed
       {% elif data['linked-step'].length == 1 %}
