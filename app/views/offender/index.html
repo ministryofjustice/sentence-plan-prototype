@@ -82,41 +82,13 @@
 
 
 
-        <h3 class="govuk-heading-m govuk-!-margin-bottom-1">
+        <h3 class="govuk-heading-m">
           Goals
         </h3>
 
-        <div class="filters govuk-!-margin-bottom-4">
-          {{ govukCheckboxes ({
-            idPrefix: 'js-toggle',
-            name: 'show-complete',
-            classes: 'govuk-checkboxes--small',
-            items: [
-            {
-              text: 'Show closed goals',
-              value: 'Show closed goals'
-            }
-            ]
-          }) }}
-
-          {# <div class="govuk-form-group">
-            <label class="govuk-label" for="sort">
-              Show need:
-            </label>
-
-
-            <select class="govuk-select" id="sort" name="sort">
-            <option value="All">All</option>
-            {% for need in offender.needs %}
-              <option value="{{ need.type }}">{{ need.type }}</option>
-            {% endfor %}
-            </select>
-          </div> #}
-        </div>
-
-
-
-
+        <h4 class="govuk-heading-s govuk-!-margin-bottom-1">
+          Active goals
+        </h4>
         <ul class="govuk-list">
           {% if data['unpaidwork'] %}
             {% include "includes/unpaidwork-card.html" %}
@@ -128,16 +100,12 @@
             {% else %} 
               {% include "includes/goal1-card.html" %}
               
-              {% if data['goal2-added'] == 'true' %}
+              {% if data['goal2-added'] %}
                 {% include "includes/goal2-card.html" %}
               {% endif %}
             {% endif %}
           {% endif %}
         </ul>
-
-        
-
-
         {{ govukButton ({
           text: 'Add another goal',
           href: '#0',
@@ -150,6 +118,19 @@
             classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
           }) }}
         {% endif %}
+
+        {% if data['goal1-closed'] == 'true' or data['goal2-closed'] == 'true' %}
+          <h4 class="govuk-heading-s govuk-!-margin-bottom-1" style="margin-top: -20px;">
+            Closed goals
+          </h4>
+          <ul class="closed-goals govuk-list govuk-!-margin-bottom-9">
+          </ul>
+        {% endif %}
+
+        
+
+
+        
 
         
 

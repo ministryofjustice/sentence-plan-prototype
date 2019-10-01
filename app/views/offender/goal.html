@@ -23,20 +23,27 @@
             <span class="govuk-caption-l">Goal details</span>
             {{ data[goal+'-description'] | nl2br | safe }}
           </h1>
-          {% if data[step+'-status'] %}
-            <strong class="govuk-tag govuk-!-margin-top-4 govuk-!-margin-bottom-2 {{ 'moj-tag--grey' if data[step+'-status'] == 'In progress' or data[step+'-status'] == 'Paused' }}">{{ data[step+'-status'] }}</strong>
-          {% endif %}
+          <strong class="govuk-tag govuk-!-margin-top-3 govuk-!-margin-bottom-2
+            {{ 'moj-tag--green' if data[goal+'-closed'] == 'true' }}">{{ 'Closed' if data[goal+'-closed'] else 'Active' }}</strong>
         </div>
 
         <div class="moj-page-header-actions__actions">
           <div class="moj-button-menu">
             <div class="moj-button-menu__wrapper">
 
-              {{ govukButton ({
+              {% if data[goal+'-closed'] %}
+                {{ govukButton ({
+                text: 'Reopen goal',
+                href: '#0',
+                classes: 'moj-button-menu__item moj-page-header-actions__action'
+                }) }}
+              {% else%}
+                {{ govukButton ({
                 text: 'Close goal',
                 href: 'goal-close?goal='+goal,
                 classes: 'moj-button-menu__item moj-page-header-actions__action'
-              }) }}
+                }) }}
+              {% endif %}
 
             </div>
           </div>
@@ -50,17 +57,16 @@
 
     <div class="govuk-grid-column-two-thirds">
 
-      {# <h2 class="govuk-heading-m">
-        Needs and motivations
+      <h2 class="govuk-heading-m">
+        Related needs 
       </h2>
-      <ul class="govuk-list govuk-list--bullet">
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
         {% for need in data[goal+'-needs'] %}
           <li>
-            {{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }}: 
-            {{ data[goal+'-motivation'+loop.index] }}
+            {{ need | safe }}
           </li>
         {% endfor %}
-      </ul> #}
+      </ul>
 
 
 
@@ -146,7 +152,9 @@
 
       </ol>
 
-      {{ govukButton ({
+
+      {% if not data[goal+'-closed'] %}
+        {{ govukButton ({
           text: 'Add another step',
           href: '#0',
           classes: 'govuk-button--secondary'
@@ -156,6 +164,37 @@
           href: '#0',
           classes: 'govuk-button--secondary'
         }) }}
+      {% endif %}
+
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">
+        History
+      </h2>
+      <div class="timeline">
+        <ul>
+        {% if data[goal+'-closed'] %}
+          <li>
+            <h2 class="timeline__title">
+              Goal {{ data[goal+'-outcome'] | lower }} and closed
+            </h2>
+            <p class="timeline__meta">
+              <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
+              by Sarah Smith
+            </p>
+
+            {% if data[goal+'-comment'] %}<p>{{ data[goal+'-comment'] }}</p>{% endif %}
+
+          </li>
+        {% endif %}
+          <li>
+            <h2 class="timeline__title">Goal created</h2>
+            <p class="timeline__meta">
+              <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("subtract", 4, "minutes") | date("h:mm a") }}</time>
+              by Sarah Smith
+            </p>
+          </li>
+        </ul>
+      </div>
 
     </div>
   </div>

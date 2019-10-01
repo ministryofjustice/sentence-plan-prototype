@@ -38,7 +38,7 @@
             {% endif %}
           </h1>
           {% if data[step+'-status'] %}
-            <strong class="govuk-tag govuk-!-margin-top-4  govuk-!-margin-bottom-2
+            <strong class="govuk-tag govuk-!-margin-top-3  govuk-!-margin-bottom-2
             {{ 'moj-tag--grey' if data[step+'-status'] == 'Not started' or data[step+'-status'] == 'Paused' }}
             {{ 'moj-tag--green' if data[step+'-status'] == 'Completed' or data[step+'-status'] == 'Partly completed' }}{{ 'moj-tag--red' if data[step+'-status'] == 'Abandoned' }}">{{ data[step+'-status'] }}</strong>
           {% endif %}
@@ -49,7 +49,7 @@
             <div class="moj-button-menu__wrapper">
 
               {{ govukButton ({
-                text: 'Update progress',
+                text: 'Update step',
                 href: 'step-update?step='+step,
                 classes: 'moj-button-menu__item moj-page-header-actions__action'
               }) }}

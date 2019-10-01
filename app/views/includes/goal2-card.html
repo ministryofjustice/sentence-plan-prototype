@@ -1,6 +1,4 @@
-{# {% set dueDate1 = data['step-date-year'] + "-" + data['step-date-month'] + "-" + data['step-date-day'] %} #}
-
-<li>
+<li {{ 'class=closed' if data['goal2-closed'] == 'true' }}>
   {% if data['plan-status'] == 'saved' %}
     <a href="/offender/goal?goal=goal2"  class="task">
   {% else %}
@@ -10,13 +8,6 @@
       {{ data['goal2-description'] | nl2br | safe }}
     </span>
 
-    {# {{ data['status'] }} &middot; Due by {{ dueDate | date("D MMMM YYYY") }} #}
-    {# <ul class="govuk-list list-tags">
-      <li class="govuk-!-font-weight-bold">Needs:</li>
-      {% for need in data['goal2-needs'] %}
-        <li class="tag">{{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }}</li>
-      {% endfor %}
-    </ul> #}
     {% if data['plan-status'] == 'draft' %}
       <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-0">
       {% if data['linked-step'].length > 1 %}
@@ -29,6 +20,7 @@
       </p>
     {% else %}
       <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+      {{ 'Closed' if data['goal2-closed'] == 'true' else 'Active' }} &middot; 
       {% if data['linked-step'].length > 1 %}
         0 of 3 steps completed
       {% elif data['linked-step'].length == 1 %}

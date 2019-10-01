@@ -13,8 +13,7 @@ $(document).ready(function () {
 $(".form").attr("autocomplete", "off");
 $(".govuk-input").attr("autocomplete", "off");
 
-
-$(".js-hidden").hide();
+$(".closed").appendTo($(".closed-goals"));
 $('#js-toggle').click(
   function(){
     if ( $(this).is(':checked') )
