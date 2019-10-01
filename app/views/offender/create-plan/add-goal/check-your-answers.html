@@ -60,20 +60,19 @@
         </div> #}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Needs and motivations
+            Needs
           </dt>
           <dd class="govuk-summary-list__value">
             <ul class="govuk-list govuk-list--bullet">
               {% for need in data['goal1-needs'] %}
                 <li>
-                  {{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }}: 
-                  {{ data["goal1-motivation"+loop.index] }}
+                  {{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }} }}
                 </li>
               {% endfor %}
             </ul>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="motivations">
+            <a href="goal">
               Change
               <span class="govuk-visually-hidden"> motivations</span>
             </a>
