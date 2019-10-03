@@ -27,10 +27,10 @@ module.exports = {
       "crn": "S000001",
       "noms": "A0000AB",
       "summary": [
-        { title:"Sentence remaining", value:"138 months 12 days"},
+        // { title:"Sentence remaining", value:"138 months 12 days"},
         { title:"ISP due", value:"13 March 2019"},
         { title:"Risk level", value: "High"},
-        { title:"Keyworker", value: "Sarah Smith"},
+        // { title:"Keyworker", value: "Sarah Smith"},
         { title:"Parole case", value:"Yes"},
       ],
       "needs": [
