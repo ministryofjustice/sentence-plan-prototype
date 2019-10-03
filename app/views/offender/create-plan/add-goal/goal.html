@@ -19,10 +19,11 @@
 
         <h1 class="govuk-heading-l">Add a goal</h1>
 
-        {{ govukTextarea ({
+        {{ govukCharacterCount({
           id: 'goal1-description',
           name: 'goal1-description',
           value: data['goal1-description'] if data['goal1-description'] else '',
+          maxwords: 50,
           label: {
             html: 'Goal description',
             classes: "govuk-label--m"

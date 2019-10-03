@@ -30,10 +30,10 @@
         {% endset -%}
 
         {% set interventionNoHtml %}
-        {{ govukTextarea ({
+        {{ govukCharacterCount ({
           id: 'goal2-step1-description',
           name: 'goal2-step1-description',
-          rows: '3',
+          maxwords: 50,
           value: data['goal2-step1-description'] if data['goal2-step1-description'] else '',
           label: {
             text: 'What step are they going to take?',
