@@ -17,18 +17,18 @@
 
       <form class="form" action="check-your-answers" method="post">
 
-        <h1 class="govuk-heading-l">Sensitive details</h1>
+        <h1 class="govuk-heading-l">Diversity</h1>
 
         {{ govukTextarea ({
           id: 'diversity',
           name: 'diversity',
           value: data['diversity'] if data['diversity'] else '',
           label: {
-            html: 'Diversity needs',
+            html: 'What we will do about diversity needs',
             classes: "govuk-label--m"
           },
           hint: {
-            text: "Record their diversity needs. For example: ethnicity, race, sexual orientation, gender, age or religion."
+            text: "Record how you will take account of diversity needs when creating the plan. For example: ethnicity, race, sexual orientation, gender, age or religion."
           }
         }) }}
 
