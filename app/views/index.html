@@ -28,15 +28,23 @@
   				{# Start of prototype write up #}
   				<div class="prototype-write-up">
             {{ govukTag({
-              text: 'Alpha sprint 5',
+              text: 'Alpha sprint 6',
               classes: 'govuk-!-margin-bottom-4'
             }) }}
 
             <h3 class='govuk-heading-m'>
               MVP reference
-              <span class="version">v0.1</span>
+              <span class="version">v0.2</span>
             </h3>
-            <p>First pass at an MVP.</p>
+            <p>Added/updated:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>content changes</li>
+              <li>reduced content in key details</li>
+              <li>goals and steps now use character count component</li>
+              <li>added liason arrangements</li>
+              <li>added board reviews</li>
+              <li>redesign plan overview to use tabs</li>
+            </ul>
 
             <form action="/oasys" method="post" novalidate>
 
@@ -91,6 +99,37 @@
 				<div class="govuk-details__text">
 
 
+
+          {# Start of prototype write up #}
+  				<div class="prototype-write-up">
+            {{ govukTag({
+              text: 'Alpha sprint 5',
+              classes: 'govuk-!-margin-bottom-4'
+            }) }}
+
+            <h3 class='govuk-heading-m'>
+              MVP reference
+              <span class="version">v0.1</span>
+            </h3>
+            <p>First pass at an MVP.</p>
+
+            <form action="https://sentence-plan-mvp-1.herokuapp.com/" method="post" novalidate>
+
+              {{ govukButton ({
+                text: 'View prototype',
+                isStartButton: true,
+                classes: 'govuk-!-margin-bottom-4'
+              }) }} 
+
+            </form>
+
+
+            {# <p class="govuk-!-margin-bottom-0"><a href="/offender/admin-plan">Create a mock plan</a></p> #}
+
+  				</div>
+  				{# End of prototype write up #}
+
+
           {# Start of prototype write up #}
   				<div class="prototype-write-up">
             {{ govukTag({
@@ -104,34 +143,7 @@
             </h3>
             <p>Previous prototypes were created as slidedecks, this takes that work and updates to ensure standards and patterns from GOV.UK and MOJ design systems are being followed.</p>
 
-            <form action="https://sentence-plan-sprint3.herokuapp.com/oasys" method="post" novalidate>
-
-              {{ govukRadios ({
-                classes: "govuk-radios--small",
-                idPrefix: 'prototype-options',
-                name: 'prototype-options',
-                fieldset: {
-                  legend: {
-                    text: 'Prototype options',
-                    classes: 'govuk-fieldset__legend--s'
-                  }
-                },
-                items: [
-                  {
-                    text: 'Standard',
-                    value: 'Standard',
-                    checked: true
-                  },
-                  {
-                    text: 'Safeguarding',
-                    value: 'Safeguarding'
-                  },
-                  {
-                    text: 'Unpaid work',
-                    value: 'Unpaid work'
-                  }
-                ]
-              }) }}
+            <form action="https://sentence-plan-sprint3.herokuapp.com" method="post" novalidate>
 
               {{ govukButton ({
                 text: 'View prototype',
