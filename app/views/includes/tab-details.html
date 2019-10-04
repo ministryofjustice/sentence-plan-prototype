@@ -1,0 +1,54 @@
+<h3 class="govuk-heading-m">
+  Plan summary
+</h3>
+
+<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Diversity
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['diversity'] | nl2br | safe }}
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      They need us to know 
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['offender-summary'] | nl2br | safe }}
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Liason arrangements
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['liason'] | nl2br | safe }}
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+        Your decisions 
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['practitioner-comment'] | nl2br | safe }}
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Your expectations  
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['practitioner-comment'] | nl2br | safe }}
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Individual&rsquo;s summary 
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['offender-comment'] | nl2br | safe }}
+    </dd>
+  </div>
+</dl>

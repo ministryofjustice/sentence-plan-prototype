@@ -78,54 +78,65 @@
     <div class="govuk-grid-column-two-thirds"> #}
 
 
+    
+
+
+
+
+{% from "govuk/components/tabs/macro.njk" import govukTabs %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% set goalsHtml %}
+  {% include "includes/tab-goals.html" %}
+{% endset -%}
+
+{% set detailsHtml %}
+  {% include "includes/tab-details.html" %}
+{% endset -%}
+
+{% set reviewsHtml %}
+  {% include "includes/tab-reviews.html" %}
+{% endset -%}
+
+
+
+      {{ govukTabs({
+        items: [
+          {
+            label: "Goals",
+            id: "goals",
+            panel: {
+              html: goalsHtml
+            }
+          },
+          {
+            label: "Plan summary",
+            id: "details",
+            panel: {
+              html: detailsHtml
+            }
+          },
+          {
+            label: "Sentence board reviews",
+            id: "board-reviews",
+            panel: {
+              html: reviewsHtml
+            }
+          }
+        ]
+      }) }}
+
+
+
+
+      
+
+
         
 
 
 
-        <h3 class="govuk-heading-m">
-          Goals
-        </h3>
-
-        <h4 class="govuk-heading-s govuk-!-margin-bottom-1">
-          Active goals
-        </h4>
-        <ul class="govuk-list">
-          {% if data['unpaidwork'] %}
-            {% include "includes/unpaidwork-card.html" %}
-          {% endif %}
-          {% if data['goal1-added'] %}
-            {% if data['goals-reordered'] == 'true' %}
-              {% include "includes/goal2-card.html" %}
-              {% include "includes/goal1-card.html" %}
-            {% else %} 
-              {% include "includes/goal1-card.html" %}
-              
-              {% if data['goal2-added'] %}
-                {% include "includes/goal2-card.html" %}
-              {% endif %}
-            {% endif %}
-          {% endif %}
-        </ul>
-        {{ govukButton ({
-          text: 'Add another goal',
-          href: '#0',
-          classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
-        }) }}
-        {% if data['goal2-added'] %}
-          {{ govukButton ({
-            text: 'Reorder goals',
-            href: '#0',
-            classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
-          }) }}
-        {% endif %}
-
-        {% if data['goal1-closed'] == 'true' or data['goal2-closed'] == 'true' %}
-          <h4 class="govuk-heading-s govuk-!-margin-bottom-1" style="margin-top: -20px;">
-            Closed goals
-          </h4>
-          <ul class="closed-goals govuk-list govuk-!-margin-bottom-9">
-          </ul>
-        {% endif %}
+        
 
         
 
@@ -134,52 +145,7 @@
 
         
 
-        <h3 class="govuk-heading-m">
-          Plan summary
-        </h3>
-
-        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Diversity
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['diversity'] | nl2br | safe }}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              They need us to know 
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['offender-summary'] | nl2br | safe }}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-               Your decisions 
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['practitioner-comment'] | nl2br | safe }}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Your expectations  
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['practitioner-comment'] | nl2br | safe }}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Individual&rsquo;s summary 
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['offender-comment'] | nl2br | safe }}
-            </dd>
-          </div>
-        </dl>
+        
 
       {% endif %} {# plan status #}
 
