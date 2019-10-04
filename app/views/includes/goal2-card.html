@@ -5,7 +5,7 @@
     <a href="add-goal2/check-your-answers" class="task">
   {% endif %}
     <span class="task__heading">
-      {{ data['goal2-description'] | nl2br | safe }}
+      {{ data['goal2-description'] | safe }}
     </span>
 
     {% if data['plan-status'] == 'draft' %}
