@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back',
+    href: 'summary'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="check-your-answers" method="post">
+
+        {{ govukTextarea ({
+          id: 'liason',
+          name: 'liason',
+          value: data['liason'] if data['liason'] else '',
+          label: {
+            html: 'Liaison arrangements',
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Say how often liaison or contact meetings will happen. Give the names of those involved and include their contact details."
+          }
+        }) }}
+
+        {{ govukButton ({
+          html: 'Save and continue',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="cancel-plan">cancel</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
