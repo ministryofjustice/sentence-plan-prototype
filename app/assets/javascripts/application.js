@@ -101,3 +101,29 @@ if ($('#goal2-step1-intervention-type-container').length > 0) {
     showAllValues: true
   })
 }
+
+if ($('#goal3-step1-intervention-type-container').length > 0) {
+  element = document.querySelector('#goal3-step1-intervention-type-container')
+  id = 'goal3-step1-intervention-type' // To match it to the existing <label>.
+
+  accessibleAutocomplete ({
+    element: element,
+    defaultValue: element.getAttribute('data-default-value'),
+    id: id,
+    name: 'goal3-step1-intervention-type',
+    source: topics,
+    showAllValues: true
+  })
+} else if ($('#goal3-step2-intervention-type-container').length > 0) {
+  element = document.querySelector('#goal3-step2-intervention-type-container')
+  id = 'goal3-step2-intervention-type' // To match it to the existing <label>.
+
+  accessibleAutocomplete ({
+    element: element,
+    defaultValue: element.getAttribute('data-default-value'),
+    id: id,
+    name: 'goal3-step2-intervention-type',
+    source: topics,
+    showAllValues: true
+  })
+}

@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Reorder steps</h1>
+
+      <dl class="govuk-summary-list">
+
+      {% if data['goal2-reordered'] == 'true' %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+            {{ data['goal2-step2-intervention-type'] if data['goal2-step2-intervention'] == 'Yes' else data['goal2-step2-description']  }}
+          </dt>
+          
+          <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <span style="visibility: hidden;">Move up</span>
+              </li>
+              
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link  govuk-link--no-visited-state" href="reorder-steps?goal2-reordered=false">Move down</a>
+              </li>
+            </ul>
+          </dd>
+        </div>
+
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+            {{ data['goal2-step1-intervention-type'] if data['goal2-step1-intervention'] == 'Yes' else data['goal2-step1-description']  }}
+          </dt>
+          
+          <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link govuk-link--no-visited-state" href="reorder-steps?goal2-reordered=false">Move up</a>
+              </li>
+              
+              <li class="govuk-summary-list__actions-list-item">
+                <span style="visibility: hidden;">Move down</span>
+              </li>
+            </ul>
+          </dd>
+        </div>
+
+      {% else %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+            {{ data['goal2-step1-intervention-type'] if data['goal2-step1-intervention'] == 'Yes' else data['goal2-step1-description']  }}
+          </dt>
+          
+          <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <span style="visibility: hidden;">Move up</span>
+              </li>
+              
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link  govuk-link--no-visited-state" href="reorder-steps?goal2-reordered=true">Move down</a>
+              </li>
+            </ul>
+          </dd>
+        </div>
+
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+            {{ data['goal2-step2-intervention-type'] if data['goal2-step2-intervention'] == 'Yes' else data['goal2-step2-description']  }}
+          </dt>
+          
+          <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link govuk-link--no-visited-state" href="reorder-steps?goal2-reordered=true">Move up</a>
+              </li>
+              
+              <li class="govuk-summary-list__actions-list-item">
+                <span style="visibility: hidden;">Move down</span>
+              </li>
+            </ul>
+          </dd>
+        </div>
+
+      {% endif %}
+        
+      </dl>
+      
+      {{ govukButton ({
+        text: 'Save order',
+        href: 'check-your-answers',
+          classes: 'govuk-!-margin-bottom-3'
+      }) }}
+      <p>or <a class="govuk-link govuk-link--no-visited-state" href="check-your-answers">cancel</a></p>
+
+
+    </div>
+  </div>
+{% endblock %}

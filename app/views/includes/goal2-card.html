@@ -1,6 +1,6 @@
 <li {{ 'class=closed' if data['goal2-closed'] == 'true' }}>
   {% if data['plan-status'] == 'saved' %}
-    <a href="/offender/goal?goal=goal2"  class="task">
+    <a href="/offender/goal?goal=goal2"  class="task {{ 'task--complete' if data['goal2-closed'] == 'true' }}">
   {% else %}
     <a href="add-goal2/check-your-answers" class="task">
   {% endif %}

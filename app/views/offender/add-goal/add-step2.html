@@ -1,0 +1,279 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back',
+    href: 'check-your-answers'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="check-your-answers" method="post">
+
+        <h1 class="govuk-heading-l">Add a step</h1>
+
+
+        {% set interventionYesHtml %}
+        <div class="govuk-form-group">
+          <label for="goal3-step2-intervention-type" class="govuk-label govuk-label--m">What intervention are they going to take?</label>
+          <div class="govuk-grid-row">
+            <div id="goal3-step2-intervention-type-container" class="govuk-grid-column-two-thirds" data-default-value="{{ data['goal3-step2-intervention-type'] }}"></div>
+          </div>
+        </div>
+        {% endset -%}
+
+        {% set interventionNoHtml %}
+        {{ govukCharacterCount ({
+          id: 'goal3-step2-description',
+          name: 'goal3-step2-description',
+          maxwords: 50,
+          value: data['goal3-step2-description'] if data['goal3-step2-description'] else '',
+          label: {
+            text: 'What step are they going to take?',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: ""
+          }
+        }) }}
+        {% endset -%}
+
+        {{ govukRadios ({
+          classes: "govuk-radios--inline govuk-radios--/small",
+          idPrefix: 'goal3-step2-intervention',
+          name: 'goal3-step2-intervention',
+          fieldset: {
+            legend: {
+              text: 'Will the step be an accredited intervention?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Yes',
+              value: 'Yes',
+              conditional: {
+                html: interventionYesHtml
+              },
+              checked: checked('goal3-step2-intervention', 'Yes')
+            },
+            {
+              text: 'No',
+              value: 'No',
+              conditional: {
+                html: interventionNoHtml
+              },
+              checked: checked('goal3-step2-intervention', 'No')
+            }
+          ]
+        }) }}
+
+
+
+
+        {{ govukDateInput({
+          id: "goal3-step2-date",
+          namePrefix: "goal3-step2-date",
+          fieldset: {
+            legend: {
+              text: "What is the target date for the step to be finished?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              name: "day",
+              classes: "govuk-input--width-2",
+              value: data["goal3-step2-date-day"]
+            },
+            {
+              name: "month",
+              classes: "govuk-input--width-2",
+              value: data["goal3-step2-date-month"]
+            },
+            {
+              name: "year",
+              classes: "govuk-input--width-4",
+              value: data["goal3-step2-date-year"]
+            }
+          ]
+        }) }}
+
+
+
+
+        {{ govukSelect({
+          id: "goal3-step2-motivation",
+          name: "goal3-step2-motivation",
+          label: {
+            text: "How motivated is the individual to start or complete this step?",
+            classes: "govuk-label--m"
+          },
+          items: [
+            {
+              value: "Not aware of it",
+              text: "Not aware of it"
+            },
+            {
+              value: "Thinking about it",
+              text: "Thinking about it"
+            },
+            {
+              value: "Getting ready",
+              text: "Getting ready"
+            },
+            {
+              value: "Doing it",
+              text: "Doing it"
+            },
+            {
+              value: "Keeping going",
+              text: "Keeping going"
+            },
+            {
+              value: "Off track",
+              text: "Off track"
+            }
+          ]
+        }) }}
+
+
+
+
+
+
+        {# {% set strengthHMTL %}
+          {{ govukTextarea ({
+            id: 'goal3-step2-strength',
+            name: 'goal3-step2-strength',
+            rows: "3",
+            value: data['goal3-step2-strength'] if data['goal3-step2-strength'] else '',
+            label: {
+              text: 'Positive factors'
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios ({
+          classes: "govuk-radios--small",
+          idPrefix: 'goal3-strength-check',
+          name: 'goal3-strength-check',
+          fieldset: {
+            legend: {
+              text: 'Do you want to enter any positive factors that will help them finish the step?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Yes',
+              value: 'yes',
+              checked: checked('goal3-strength-check', 'yes'),
+              conditional: {
+                html: strengthHMTL
+              }
+            },
+            {
+              text: 'No',
+              value: 'no',
+              checked: checked('goal3-strength-check', 'yes')
+            }
+          ]
+        }) }} #}
+
+
+
+
+
+        {% set doneHMTL %}
+          {{ govukInput ({
+            id: 'goal3-step2-responsible-other',
+            name: 'goal3-step2-responsible-other',
+            value: data['goal3-step2-responsible-other'] if data['goal3-step2-responsible-other'] else '',
+            classes: 'govuk-input--width-20',
+            label: {
+              text: 'Other',
+              classes: 'govuk-input--width-20'
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukCheckboxes ({
+          classes: "govuk-checkboxes--small",
+          idPrefix: 'goal3-step2-responsible',
+          name: 'goal3-step2-responsible',
+          fieldset: {
+            legend: {
+              text: 'Who will make sure the step is done?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Individual',
+              value: 'Individual',
+              checked: checked('goal3-step2-responsible', 'Individual')
+            },
+            {
+              text: 'Responsible officer',
+              value: 'Responsible officer',
+              checked: checked('goal3-step2-responsible', 'Responsible officer')
+            },
+            {
+              text: 'Other',
+              value: 'Other',
+              checked: checked('goal3-step2-responsible', 'Other'),
+              conditional: {
+                html: doneHMTL
+              }
+            }
+          ]
+        }) }}
+
+
+
+        {{ govukRadios ({
+          idPrefix: 'goal3-step2-started',
+          name: 'goal3-step2-started',
+          fieldset: {
+            legend: {
+              text: 'Do you want to start the step straight away?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Yes',
+              value: 'Yes',
+              checked: checked('goal3-step2-started', 'Yes')
+            },
+            {
+              text: 'No',
+              value: 'No',
+              checked: checked('goal3-step2-started', 'No')
+            }
+          ]
+        }) }}
+
+
+        <input type="hidden" name="goal3-step2-added" value="true">
+        
+        {{ govukButton ({
+          html: 'Save and continue',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="check-your-answers">cancel</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% if data['plan-status'] == 'draft' %}
+  <dl class="govuk-summary-list govuk-!-margin-bottom-4">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Description
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {% if data['goal3-step2-intervention'] == 'Yes' %}
+          Intervention: {{ data['goal3-step2-intervention-type'] }}
+        {% else %}
+          {{ data['goal3-step2-description'] }}
+        {% endif %}
+      </dd>
+      {% if data['plan-status'] == 'draft' %}
+      <dd class="govuk-summary-list__actions">
+        <a href="add-step2">
+          Change
+          <span class="govuk-visually-hidden"> description</span>
+        </a>
+      </dd>
+      {% endif %}
+    </div>
+
+{% else %}
+<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+{% endif %}
+  
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Due date
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {% set goal3step2DueDate = data['goal3-step2-date-year'] + "-" + data['goal3-step2-date-month'] + "-" + data['goal3-step2-date-day'] %}
+
+      {{ goal3step2DueDate | date("D MMMM YYYY") }}
+    </dd>
+    {% if data['plan-status'] == 'draft' %}
+    <dd class="govuk-summary-list__actions">
+      <a href="add-step2">
+        Change
+        <span class="govuk-visually-hidden"> date</span>
+      </a>
+    </dd>
+    {% endif %}
+  </div>
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Motivation
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['goal3-step2-motivation'] }}
+    </dd>
+    {% if data['plan-status'] == 'draft' %}
+    <dd class="govuk-summary-list__actions">
+      <a href="add-step">
+        Change
+        <span class="govuk-visually-hidden"> motivation</span>
+      </a>
+    </dd>
+    {% endif %}
+  </div>
+  
+  
+  {# <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Positive factors
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['goal3-step2-strength'] if data['goal3-step2-strength'] else 'No' }}
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a href="add-step2">
+        Change
+        <span class="govuk-visually-hidden"> strength</span>
+      </a>
+    </dd>
+  </div> #}
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Responsible
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {% if data['goal3-step2-responsible'].length > 1 %}
+      <ul class="govuk-list govuk-list--bullet">
+        {% for person in data['goal3-step2-responsible'] %}
+          <li>{{ person }}{{ ': '+data['goal3-step2-responsible-other'] if person == 'Other' else '' }}</li>
+        {% endfor %}
+      </ul>
+      {% else %}
+        {% for person in data['goal3-step2-responsible'] %}
+          {{ person }}{{ ': '+data['goal3-step2-responsible-other'] if person == 'Other' else '' }}
+        {% else %}
+          Nobody selected
+        {% endfor %}
+      {% endif %}
+    </dd>
+    {% if data['plan-status'] == 'draft' %}
+    <dd class="govuk-summary-list__actions">
+      <a href="add-step2">
+        Change
+        <span class="govuk-visually-hidden"> responsible persons</span>
+      </a>
+    </dd>
+  </div>
+
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Started
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {% if data['goal3-step2-started'] == 'Yes' %}
+        Yes
+      {% else %}
+        No
+      {% endif %}
+    </dd>
+    {% if data['plan-status'] == 'draft' %}
+    <dd class="govuk-summary-list__actions">
+      <a href="add-step2">
+        Change
+        <span class="govuk-visually-hidden"> step progress</span>
+      </a>
+    </dd>
+    {% endif %}
+  </div>
+  {% endif %}
+</dl>

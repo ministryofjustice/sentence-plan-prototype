@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back',
+    href: '/offender'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="add-step" method="post">
+
+        <h1 class="govuk-heading-l">Add a goal</h1>
+
+        {{ govukCharacterCount({
+          id: 'goal3-description',
+          name: 'goal3-description',
+          value: data['goal3-description'] if data['goal3-description'] else '',
+          maxwords: 50,
+          label: {
+            html: 'Goal description',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            html: 'What does the individual need to achieve? You&rsquo;ll be able to add steps for this goal later.'
+          }
+        }) }}
+
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h1 class="govuk-fieldset__heading">
+                Existing OASys needs related to this goal
+              </h1>
+            </legend>
+            <span class="govuk-hint">
+               Select all that apply. 
+            </span>
+
+            <div class="govuk-checkboxes govuk-checkboxes--small">
+              {% for need in offender.needs %}
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="goal3-needs{{ loop.index }}" name="goal3-needs" type="checkbox" value="{{ need.type }}{% if need.risk %} &ndash; <span class='risk'>Risk of serious harm</span>{% endif %}" {{ checked( "goal3-needs", need.type ) }}>
+                  <label class="govuk-label govuk-checkboxes__label" for="goal3-needs{{ loop.index }}">
+                    {{ need.type }}
+                    {% if need.risk %}
+                      &ndash; <span class="risk">Risk of serious harm</span>
+                    {% endif %}
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+
+          </fieldset>
+        </div>
+
+
+
+        <input type="hidden" name="goal3-started" value="true">
+
+
+
+        {{ govukButton ({
+          html: 'Save and continue',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="../cancel-goal">cancel</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
