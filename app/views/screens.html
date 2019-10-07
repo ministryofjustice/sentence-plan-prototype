@@ -8,6 +8,97 @@
 <!-- Adds spacing for pages without a back button -->
 {% set mainClasses = "govuk-main-wrapper--l" %}
 
+{% set noplan %}
+?plan-status=
+&diversity=
+&offender-summary=
+&liason=
+&goal1-description=
+{# &goal1-needs= #}
+&goal1-step1-intervention=
+&goal1-step1-intervention-type=
+&goal1-step1-date-day=&goal1-step1-date-month=&goal1-step1-date-year=
+&goal1-step1-motivation=
+{# &goal1-step1-responsible= #}
+&goal1-step1-status=
+&goal1-step2-intervention=
+&goal1-step2-intervention-type=
+&goal1-step2-date-day=&goal1-step2-date-month=&goal1-step2-date-year=
+&goal1-step2-motivation=
+{# &goal1-step2-responsible= #}
+&goal1-step2-added=
+&goal1-added=
+&goal1-step2-status=
+&goal2-description=
+{# &goal2-needs= #}
+&goal2-step1-intervention=
+&goal2-step1-intervention-type=
+&goal2-step1-date-day=&goal2-step1-date-month=&goal2-step1-date-year=
+&goal2-step1-motivation=
+{# &goal2-step1-responsible= #}
+&goal2-added=
+&goal2-step1-status=
+&practitioner-comment=
+&practitioner-expectations=
+&offender-comment=
+{% endset %}
+{% set activeplan %}
+?plan-status=saved
+&diversity=Diversity example
+&offender-summary=Offender summary example
+&liason=Liaison arrangements example
+&goal1-description=Goal 1 description example
+&goal1-needs=Alcohol+misuse
+&goal1-needs=Thinking+and+behaviour 
+&goal1-step1-intervention=Yes
+&goal1-step1-intervention-type=A – Z
+&goal1-step1-date-day=31&goal1-step1-date-month=8&goal1-step1-date-year=2020
+&goal1-step1-motivation=Thinking about it
+&goal1-step1-responsible=Individual
+&goal1-step1-responsible=Responsible officer 
+&goal1-step1-status=Not started
+&goal1-step2-intervention=Yes
+&goal1-step2-intervention-type=Kaizen
+&goal1-step2-date-day=14&goal1-step2-date-month=12&goal1-step2-date-year=2020
+&goal1-step2-motivation=Thinking about it
+&goal1-step2-responsible=Individual
+&goal1-step2-responsible=Responsible officer 
+&goal1-step2-added=true
+&goal1-added=true
+&goal1-step2-status=Not started
+&goal2-description=Goal 2 description example
+&goal2-needs=Alcohol+misuse
+&goal2-needs=Thinking+and+behaviour 
+&goal2-step1-intervention=Yes
+&goal2-step1-intervention-type=A – Z
+&goal2-step1-date-day=31&goal2-step1-date-month=8&goal2-step1-date-year=2020
+&goal2-step1-motivation=Thinking about it
+&goal2-step1-responsible=Individual
+&goal2-step1-responsible=Responsible officer 
+&goal2-added=true
+&goal2-step1-status=Not started
+&practitioner-comment=Your decisions example
+&practitioner-expectations=Your expectations example
+&offender-comment=Individuals summary example
+{% endset %}
+{% set draftplan %}
+?plan-status=draft
+&diversity=Diversity example
+&offender-summary=Offender summary example
+&liason=Liaison arrangements example
+&goal1-description=Goal 1 description example
+&goal1-needs=Alcohol+misuse
+&goal1-needs=Thinking+and+behaviour 
+&goal1-step1-intervention=Yes
+&goal1-step1-intervention-type=A – Z
+&goal1-step1-date-day=31&goal1-step1-date-month=8&goal1-step1-date-year=2020
+&goal1-step1-motivation=Thinking about it
+&goal1-step1-responsible=Individual
+&goal1-step1-responsible=Responsible officer 
+&goal1-step1-status=Not started
+&goal1-added=true
+{% endset %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -23,7 +114,13 @@
         <a href="sign-in/">Sign in</a>
       </li>
       <li>
-        <a href="/offender">Dashboard</a>
+        <a href="/offender{{ noplan | trim }}">Dashboard (no active plan)</a>
+      </li>
+      <li>
+        <a href="/offender{{ draftplan | trim }}">Dashboard (draft plan)</a>
+      </li>
+      <li>
+        <a href="/offender{{ activeplan | trim }}">Dashboard (active plan)</a>
       </li>
       <li>
         <a href="/offender/close">Close plan</a>
@@ -99,10 +196,10 @@
               <a href="/offender/print/">Options</a>
           </li>
           <li>
-              <a href="/offender/print/full">Print full</a>
+              <a href="/offender/print/full{{ activeplan | trim }}">Print full</a>
           </li>
           <li>
-              <a href="/offender/print/overview">Print offender summary</a>
+              <a href="/offender/print/overview{{ activeplan | trim }}">Print offender summary</a>
           </li>
         </ul>
       </li>
