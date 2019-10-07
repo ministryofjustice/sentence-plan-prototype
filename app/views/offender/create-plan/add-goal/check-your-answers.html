@@ -16,7 +16,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      {% if data['goal1-added'] %}
+      {% if data['goal1-added'] == 'true' %}
         <h1 class="govuk-heading-l">Review and update the goal</h1>
       {% else %}
         <h1 class="govuk-heading-l">Check the goal before saving</h1>
@@ -117,7 +117,7 @@
           html: 'Save goal',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        {% if data['goal1-added'] %}
+        {% if data['goal1-added'] == 'true' %}
           <p>or <a href="../cancel-goal">delete goal</a></p>
         {% else %}
           <p>or <a href="../cancel-goal">cancel</a></p>

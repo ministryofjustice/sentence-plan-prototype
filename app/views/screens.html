@@ -150,17 +150,17 @@
               <li>
                 <a href="/offender/create-plan/add-goal/goal">Goal desc/needs</a>
               </li>
-              <li>
-                <a href="/offender/create-plan/add-goal/motivations">Motivations</a>
-              </li>
-              <li>
+              {# <li>
                 <a href="/offender/create-plan/add-goal2/add-existing-step">Link steps (after goal 1 added)</a>
-              </li>
+              </li> #}
               <li>
                 <a href="/offender/create-plan/add-goal/add-step">Step details</a>
               </li>
               <li>
-                <a href="/offender/create-plan/add-goal/check-your-answers">Check answers (content changes after saving)</a>
+                <a href="/offender/create-plan/add-goal/check-your-answers{{ draftplan | trim }}&goal1-added=false">Check answers (before saving)</a>
+              </li>
+              <li>
+                <a href="/offender/create-plan/add-goal/check-your-answers{{ draftplan | trim }}">Check answers/delete goal (after saving)</a>
               </li>
               <li>
                 <a href="/offender/create-plan/add-goal/reorder-steps">Reorder steps</a>
