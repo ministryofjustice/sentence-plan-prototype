@@ -14,28 +14,28 @@
 &offender-summary=
 &liason=
 &goal1-description=
-{# &goal1-needs= #}
+&goal1-needs=
 &goal1-step1-intervention=
 &goal1-step1-intervention-type=
 &goal1-step1-date-day=&goal1-step1-date-month=&goal1-step1-date-year=
 &goal1-step1-motivation=
-{# &goal1-step1-responsible= #}
+&goal1-step1-responsible=
 &goal1-step1-status=
 &goal1-step2-intervention=
 &goal1-step2-intervention-type=
 &goal1-step2-date-day=&goal1-step2-date-month=&goal1-step2-date-year=
 &goal1-step2-motivation=
-{# &goal1-step2-responsible= #}
+&goal1-step2-responsible=
 &goal1-step2-added=
 &goal1-added=
 &goal1-step2-status=
 &goal2-description=
-{# &goal2-needs= #}
+&goal2-needs=
 &goal2-step1-intervention=
 &goal2-step1-intervention-type=
 &goal2-step1-date-day=&goal2-step1-date-month=&goal2-step1-date-year=
 &goal2-step1-motivation=
-{# &goal2-step1-responsible= #}
+&goal2-step1-responsible=
 &goal2-added=
 &goal2-step1-status=
 &practitioner-comment=
@@ -177,13 +177,16 @@
         <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">View goal</h2>
         <ul class="govuk-list govuk-list--bullet">
           <li>
-              <a href="/offender/goal?goal=goal1">Goal overview</a>
+              <a href="/offender/goal{{ activeplan | trim }}&goal=goal1">Goal overview</a>
           </li>
           <li>
-              <a href="/offender/steps/step?step=goal1-step1">Step overview</a>
+              <a href="/offender/steps/step{{ activeplan | trim }}&step=goal1-step1">Step overview</a>
           </li>
           <li>
-              <a href="/offender/steps/step-update">Update step</a>
+              <a href="/offender/steps/step-update{{ activeplan | trim }}&step=goal1-step1">Update step</a>
+          </li>
+          <li>
+              <a href="/offender/goal-close{{ activeplan | trim }}&goal=goal1">Close goal</a>
           </li>
         </ul>
       </li>
