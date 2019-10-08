@@ -33,9 +33,9 @@
       Due date
     </dt>
     <dd class="govuk-summary-list__value">
-      {% set goal3step1DueDate = data['goal3-step1-date-year'] + "-" + data['goal3-step1-date-month'] + "-" + data['goal3-step1-date-day'] %}
+      {% set goal3step1DueDate = data['goal3-step1-date-year'] + "-" + data['goal3-step1-date-month'] %}
 
-      {{ goal3step1DueDate | date("D MMMM YYYY") }}
+      {{ goal3step1DueDate | date("MMMM YYYY") }}
     </dd>
     {% if data['goal3-started'] == 'true' %}
     <dd class="govuk-summary-list__actions">
