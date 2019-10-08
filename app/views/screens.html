@@ -138,35 +138,35 @@
             <a href="/offender/create-plan/cancel-plan">Cancel plan</a>
           </li>
           <li>
-            <a href="/offender/create-plan/reorder-goals">Reorder goals</a>
+            <a href="/offender/create-plan/reorder-goals">Reorder objectives</a>
           </li>
           <li>
             <a href="/offender/create-plan/comment">Comment and save plan</a>
           </li>
 
           <li>
-            <h3 class="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-2">Create goal</h3>
+            <h3 class="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-2">Create objective</h3>
             <ul class="govuk-list govuk-list--bullet">
               <li>
-                <a href="/offender/create-plan/add-goal/goal">Goal desc/needs</a>
+                <a href="/offender/create-plan/add-goal/goal">Objective desc/needs</a>
               </li>
               {# <li>
                 <a href="/offender/create-plan/add-goal2/add-existing-step">Link steps (after goal 1 added)</a>
               </li> #}
               <li>
-                <a href="/offender/create-plan/add-goal/add-step">Step details</a>
+                <a href="/offender/create-plan/add-goal/add-step">Action details</a>
               </li>
               <li>
                 <a href="/offender/create-plan/add-goal/check-your-answers{{ draftplan | trim }}&goal1-added=false">Check answers (before saving)</a>
               </li>
               <li>
-                <a href="/offender/create-plan/add-goal/check-your-answers{{ draftplan | trim }}">Check answers/delete goal (after saving)</a>
+                <a href="/offender/create-plan/add-goal/check-your-answers{{ draftplan | trim }}">Check answers/delete objective (after saving)</a>
               </li>
               <li>
-                <a href="/offender/create-plan/add-goal/reorder-steps">Reorder steps</a>
+                <a href="/offender/create-plan/add-goal/reorder-steps">Reorder actions</a>
               </li>
               <li>
-                <a href="/offender/create-plan/add-goal/cancel-goal">Cancel draft goal</a>
+                <a href="/offender/create-plan/add-goal/cancel-goal">Cancel draft objective</a>
               </li>
             </ul>
           </li>
@@ -174,19 +174,19 @@
 
 
       <li>
-        <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">View goal</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">View objective</h2>
         <ul class="govuk-list govuk-list--bullet">
           <li>
-              <a href="/offender/goal{{ activeplan | trim }}&goal=goal1">Goal overview</a>
+              <a href="/offender/goal{{ activeplan | trim }}&goal=goal1">Objective overview</a>
           </li>
           <li>
-              <a href="/offender/steps/step{{ activeplan | trim }}&step=goal1-step1">Step overview</a>
+              <a href="/offender/steps/step{{ activeplan | trim }}&step=goal1-step1">Action overview</a>
           </li>
           <li>
-              <a href="/offender/steps/step-update{{ activeplan | trim }}&step=goal1-step1">Update step</a>
+              <a href="/offender/steps/step-update{{ activeplan | trim }}&step=goal1-step1">Update action</a>
           </li>
           <li>
-              <a href="/offender/goal-close{{ activeplan | trim }}&goal=goal1">Close goal</a>
+              <a href="/offender/goal-close{{ activeplan | trim }}&goal=goal1">Close objective</a>
           </li>
         </ul>
       </li>

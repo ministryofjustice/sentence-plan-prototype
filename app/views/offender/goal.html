@@ -20,7 +20,7 @@
       <div class="moj-page-header-actions">
         <div class="moj-page-header-actions__title">
           <h1 class="govuk-heading-l">
-            <span class="govuk-caption-l">Goal details</span>
+            <span class="govuk-caption-l">Objective details</span>
             {{ data[goal+'-description'] | nl2br | safe }}
           </h1>
           <strong class="govuk-tag govuk-!-margin-top-3 govuk-!-margin-bottom-2
@@ -33,13 +33,13 @@
 
               {% if data[goal+'-closed'] %}
                 {{ govukButton ({
-                text: 'Reopen goal',
+                text: 'Reopen objective',
                 href: '#0',
                 classes: 'moj-button-menu__item moj-page-header-actions__action'
                 }) }}
               {% else%}
                 {{ govukButton ({
-                text: 'Close goal',
+                text: 'Close objective',
                 href: 'goal-close?goal='+goal,
                 classes: 'moj-button-menu__item moj-page-header-actions__action'
                 }) }}
@@ -71,7 +71,7 @@
 
 
       <h2 class="govuk-heading-m">
-        Steps
+        Actions
       </h2>
       <ol class="app-task-list app-task-list__items  govuk-!-margin-bottom-4">
         <li class="app-task-list__item">
@@ -155,12 +155,12 @@
 
       {% if not data[goal+'-closed'] %}
         {{ govukButton ({
-          text: 'Add another step',
+          text: 'Add another action',
           href: '#0',
           classes: 'govuk-button--secondary'
         }) }}
         {{ govukButton ({
-          text: 'Reorder steps',
+          text: 'Reorder actions',
           href: '#0',
           classes: 'govuk-button--secondary'
         }) }}
@@ -175,7 +175,7 @@
         {% if data[goal+'-closed'] %}
           <li>
             <h2 class="timeline__title">
-              Goal {{ data[goal+'-outcome'] | lower }} and closed
+              Objective {{ data[goal+'-outcome'] | lower }} and closed
             </h2>
             <p class="timeline__meta">
               <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
@@ -187,7 +187,7 @@
           </li>
         {% endif %}
           <li>
-            <h2 class="timeline__title">Goal created</h2>
+            <h2 class="timeline__title">Objective created</h2>
             <p class="timeline__meta">
               <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("subtract", 4, "minutes") | date("h:mm a") }}</time>
               by Sarah Smith

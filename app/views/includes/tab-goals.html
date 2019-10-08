@@ -1,85 +1,9 @@
 <h3 class="govuk-heading-m">
-  Goals
+  Objectives
 </h3>
 
-{# <table class="govuk-table">
-  <caption class="govuk-table__caption">Active goals</caption>
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Goal</th>
-      <th scope="col" class="govuk-table__header govuk-table__header--numeric">Steps completed</th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
-    {% if data['goal1-added'] %}
-      {% if data['goals-reordered'] == 'true' %}
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a class="govuk-link--no-visited-state" href="/offender/goal?goal=goal2">
-              {{ data['goal2-description'] | safe }}
-            </a>
-          </th>
-          <td class="govuk-table__cell govuk-table__cell--numeric">
-            0 of {{ "2" if data['goal2-step2-added'] else "1" }}
-          </td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a class="govuk-link--no-visited-state" href="/offender/goal?goal=goal1">
-              {{ data['goal1-description'] | safe }}
-            </a>
-          </th>
-          <td class="govuk-table__cell govuk-table__cell--numeric">
-            0 of {{ "2" if data['goal1-step2-added'] else "1" }}
-          </td>
-        </tr>
-      {% else %} 
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a class="govuk-link--no-visited-state" href="/offender/goal?goal=goal1">
-              {{ data['goal1-description'] | safe }}
-            </a>
-          </th>
-          <td class="govuk-table__cell govuk-table__cell--numeric">
-            0 of {{ "2" if data['goal1-step2-added'] else "1" }}
-          </td>
-        </tr>
-        
-        {% if data['goal2-added'] %}
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">
-              <a class="govuk-link--no-visited-state" href="/offender/goal?goal=goal2">
-                {{ data['goal2-description'] | safe }}
-              </a>
-            </th>
-            <td class="govuk-table__cell govuk-table__cell--numeric">
-              0 of {{ "2" if data['goal2-step2-added'] else "1" }}
-            </td>
-          </tr>
-        {% endif %}
-      {% endif %}
-    {% endif %}
-  </tbody>
-</table>
-{{ govukButton ({
-  text: 'Add another goal',
-  href: '#0',
-  classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
-}) }}
-{% if data['goal2-added'] %}
-  {{ govukButton ({
-    text: 'Reorder goals',
-    href: '#0',
-    classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
-  }) }}
-{% endif %} #}
-
-
-
-
-
 <h4 class="govuk-heading-s govuk-!-margin-bottom-1">
-  Active goals
+  Active objectives
 </h4>
 <ul class="govuk-list">
   {% if data['unpaidwork'] %}
@@ -102,13 +26,13 @@
   {% endif %}
 </ul>
 {{ govukButton ({
-  text: 'Add another goal',
+  text: 'Add another objective',
   href: '/offender/add-goal/goal',
   classes: 'govuk-button--secondary'
 }) }}
 {% if data['goal2-added'] %}
   {{ govukButton ({
-    text: 'Reorder goals',
+    text: 'Reorder objectives',
     href: '#0',
     classes: 'govuk-button--secondary'
   }) }}
@@ -119,7 +43,7 @@
 
 {% if data['goal3-started'] == 'true' %}
   <h4 class="govuk-heading-s  govuk-!-margin-top-6" style="margin-top: -20px;">
-    Draft goals
+    Draft objectives
   </h4>
   <ul class="govuk-list">
     {% include "includes/goal3-card.html" %}
@@ -131,7 +55,7 @@
 
 {% if data['goal1-closed'] == 'true' or data['goal2-closed'] == 'true' %}
   <h4 class="govuk-heading-s  govuk-!-margin-top-6" style="margin-top: -20px;">
-    Closed goals
+    Closed objectives
   </h4>
   <ul class="closed-goals govuk-list">
   </ul>

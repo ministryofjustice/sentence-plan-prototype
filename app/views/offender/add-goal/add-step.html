@@ -17,7 +17,7 @@
 
       <form class="form" action="check-your-answers" method="post">
 
-        <h1 class="govuk-heading-l">Add a step</h1>
+        <h1 class="govuk-heading-l">Add an action</h1>
 
 
         {% set interventionYesHtml %}
@@ -36,7 +36,7 @@
           maxwords: 51,
           value: data['goal3-step1-description'] if data['goal3-step1-description'] else '',
           label: {
-            text: 'What step are they going to take?',
+            text: 'What action are they going to take?',
             classes: "govuk-label--m"
           },
           hint: {
@@ -51,7 +51,7 @@
           name: 'goal3-step1-intervention',
           fieldset: {
             legend: {
-              text: 'Will the step be an accredited intervention?',
+              text: 'Will the action be an accredited intervention?',
               isPageHeading: true,
               classes: 'govuk-fieldset__legend--m'
             }
@@ -84,7 +84,7 @@
           namePrefix: "goal3-step1-date",
           fieldset: {
             legend: {
-              text: "What is the target date for the step to be finished?",
+              text: "What is the target date for the action to be finished?",
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -114,7 +114,7 @@
           id: "goal3-step1-motivation",
           name: "goal3-step1-motivation",
           label: {
-            text: "How motivated is the individual to start or complete this step?",
+            text: "How motivated is the individual to start or complete this action?",
             classes: "govuk-label--m"
           },
           items: [
@@ -149,50 +149,6 @@
 
 
 
-
-        {# {% set strengthHMTL %}
-          {{ govukTextarea ({
-            id: 'goal1-step1-strength',
-            name: 'goal1-step1-strength',
-            rows: "3",
-            value: data['goal1-step1-strength'] if data['goal1-step1-strength'] else '',
-            label: {
-              text: 'Positive factors'
-            }
-          }) }}
-        {% endset -%}
-
-        {{ govukRadios ({
-          classes: "govuk-radios--small",
-          idPrefix: 'goal1-strength-check',
-          name: 'goal1-strength-check',
-          fieldset: {
-            legend: {
-              text: 'Do you want to enter any positive factors that will help them finish the step?',
-              classes: 'govuk-fieldset__legend--m'
-            }
-          },
-          items: [
-            {
-              text: 'Yes',
-              value: 'yes',
-              checked: checked('goal1-strength-check', 'yes'),
-              conditional: {
-                html: strengthHMTL
-              }
-            },
-            {
-              text: 'No',
-              value: 'no',
-              checked: checked('goal1-strength-check', 'yes')
-            }
-          ]
-        }) }} #}
-
-
-
-
-
         {% set doneHMTL %}
           {{ govukInput ({
             id: 'goal1-step1-responsible-other',
@@ -212,7 +168,7 @@
           name: 'goal1-step1-responsible',
           fieldset: {
             legend: {
-              text: 'Who will make sure the step is done?',
+              text: 'Who will make sure the action is done?',
               classes: 'govuk-fieldset__legend--m'
             }
           },
@@ -245,7 +201,7 @@
           name: 'goal1-step1-started',
           fieldset: {
             legend: {
-              text: 'Do you want to start the step straight away?',
+              text: 'Do you want to start the action straight away?',
               classes: 'govuk-fieldset__legend--m'
             }
           },

@@ -11,7 +11,7 @@
       {% if data['unpaidwork'] == 'yes' %}
         {{ mojBanner({
           type: 'information',
-          text: 'An unpaid work goal has been added automatically based on information from OASys.',
+          text: 'An unpaid work objective has been added automatically based on information from OASys.',
           iconFallbackText: 'Information'
         }) }} 
       {% endif %}
@@ -67,12 +67,12 @@
 
 
 
-      <h2 class="govuk-heading-m">Goals</h2>
+      <h2 class="govuk-heading-m">Objectives</h2>
 
       {% if not data['goal1-added'] and not data['unpaidwork'] %}
-        <p class="govuk-!-margin-bottom-4">No goals added yet.</p>
+        <p class="govuk-!-margin-bottom-4">No objectives added yet.</p>
         {{ govukButton ({
-          text: 'Add a goal',
+          text: 'Add an objective',
           href: 'add-goal/goal',
           classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
         }) }}
@@ -100,40 +100,24 @@
         
         {% if data['goal2-added'] %}
           {{ govukButton ({
-            text: 'Add another goal',
+            text: 'Add another objective',
             href: '#0',
             classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
           }) }}
           {{ govukButton ({
-            text: 'Reorder goals',
+            text: 'Reorder objectives',
             href: 'reorder-goals',
             classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
           }) }}
         {% else %}
           {{ govukButton ({
-            text: 'Add another goal',
+            text: 'Add another objective',
             href: 'add-goal2/goal',
             classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
           }) }}
         {% endif %}
       {% endif %}
 
-
-
-
-      {# {% if data['reordered'] == 'true' %}
-        <h2 class="govuk-heading-m">Step 1</h2>
-        {% include "includes/step2-summary.html" %}
-        <h2 class="govuk-heading-m">Step 2</h2>
-        {% include "includes/step1-summary.html" %}
-      {% else %} 
-        <h2 class="govuk-heading-m">Step 1</h2>
-        {% include "includes/step1-summary.html" %}
-        {% if data['step-2-added'] == 'true' %}
-        <h2 class="govuk-heading-m">Step 2</h2>
-        {% include "includes/step2-summary.html" %}
-        {% endif %}
-      {% endif %} #}
 
       <p class="govuk-!-margin-bottom-3">
       {{ govukButton ({
