@@ -94,18 +94,6 @@
       {% endif %}
 
       <form action="/offender" method="post" novalidate>
-
-        {% if data['goal3-step1-started'] == 'Yes' %}
-          <input type="hidden" name="goal3-step1-status" value="In progress">
-        {% else %}
-          <input type="hidden" name="goal3-step1-status" value="Not started">
-        {% endif %}
-
-        {% if data['goal3-step2-started'] == 'Yes' %}
-          <input type="hidden" name="goal3-step2-status" value="In progress">
-        {% else %}
-          <input type="hidden" name="goal3-step2-status" value="Not started">
-        {% endif %}
         
         <input type="hidden" name="goal3-added" value="true">
         <input type="hidden" name="goal3-started" value="false">

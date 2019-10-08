@@ -46,12 +46,12 @@
         {% endset -%}
 
         {{ govukRadios ({
-          classes: "govuk-radios--inline govuk-radios--/small",
+          classes: "govuk-radios--small",
           idPrefix: 'goal1-step2-intervention',
           name: 'goal1-step2-intervention',
           fieldset: {
             legend: {
-              text: 'Will this be an intervention from the National Interventions List?',
+              text: 'Will this action come from the National Interventions List?',
               isPageHeading: true,
               classes: 'govuk-fieldset__legend--m'
             }
@@ -192,24 +192,25 @@
 
 
         {{ govukRadios ({
-          idPrefix: 'goal1-step2-started',
-          name: 'goal1-step2-started',
+          classes: "govuk-radios--small",
+          idPrefix: 'goal1-step2-status',
+          name: 'goal1-step2-status',
           fieldset: {
             legend: {
-              text: 'Do you want to start the action straight away?',
+              text: 'Set an initial status for this action',
               classes: 'govuk-fieldset__legend--m'
             }
           },
           items: [
             {
-              text: 'Yes',
-              value: 'Yes',
-              checked: checked('goal1-step2-started', 'Yes')
+              text: 'Not started',
+              value: 'Not started',
+              checked: checked('goal1-step2-status', 'Not started')
             },
             {
-              text: 'No',
-              value: 'No',
-              checked: checked('goal1-step2-started', 'No')
+              text: 'In progress',
+              value: 'In progress',
+              checked: checked('goal1-step2-status', 'In progress')
             }
           ]
         }) }}
