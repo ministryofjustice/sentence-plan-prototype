@@ -84,12 +84,34 @@
     <h3 class="govuk-heading-s">
       {{ data['goal1-description'] | nl2br | safe }}
     </h3>
+    {% set goal1step1DueDate = data['goal1-step1-date-year'] + "-" + data['goal1-step1-date-month'] %}
+    {% set goal1step2DueDate = data['goal1-step2-date-year'] + "-" + data['goal1-step2-date-month'] %}
+    {% set goal2step1DueDate = data['goal2-step1-date-year'] + "-" + data['goal2-step1-date-month'] %}
+    {% set goal2step2DueDate = data['goal2-step2-date-year'] + "-" + data['goal2-step2-date-month'] %}
+
     {{ govukTable({
       firstCellIsHeader: false,
+      head: [
+        {
+          text: "Action"
+        },
+        {
+          text: "Due date",
+          format: "numeric"
+        },
+        {
+          text: "Status",
+          format: "numeric"
+        }
+      ],
       rows: [
         [
           {
             text: data['goal1-step1-intervention-type'] if data['goal1-step1-intervention'] == 'Yes' else data['goal1-step1-description']
+          },
+          {
+            text: goal1step1DueDate | date("MMMM YYYY"),
+            format: "numeric"
           },
           {
             text: data['goal1-step1-status'],
@@ -99,6 +121,10 @@
         [
           {
             text: data['goal1-step2-intervention-type'] if data['goal1-step2-intervention'] == 'Yes' else data['goal1-step2-description']
+          },
+          {
+            text: goal1step2DueDate | date("MMMM YYYY"),
+            format: "numeric"
           },
           {
             text: data['goal1-step2-status'],
@@ -115,10 +141,27 @@
     {{ govukTable({
       firstCellIsHeader: false,
       classes: 'govuk-!-top-bottom-4',
+      head: [
+        {
+          text: "Action"
+        },
+        {
+          text: "Due date",
+          format: "numeric"
+        },
+        {
+          text: "Status",
+          format: "numeric"
+        }
+      ],
       rows: [
         [
           {
             text: data['goal2-step1-intervention-type'] if data['goal2-step1-intervention'] == 'Yes' else data['goal2-step1-description']
+          },
+          {
+            text: goal2step1DueDate | date("MMMM YYYY"),
+            format: "numeric"
           },
           {
             text: data['goal2-step1-status'],
@@ -128,6 +171,10 @@
         [
           {
             text: data['goal2-step2-intervention-type'] if data['goal2-step2-intervention'] == 'Yes' else data['goal2-step2-description']
+          },
+          {
+            text: goal2step2DueDate | date("MMMM YYYY"),
+            format: "numeric"
           },
           {
             text: data['goal2-step2-status'],
@@ -148,6 +195,15 @@
     </h3>
     {{ govukTable({
       firstCellIsHeader: false,
+      head: [
+        {
+          text: "Action"
+        },
+        {
+          text: "Status",
+          format: "numeric"
+        }
+      ],
       rows: [
         [
           {
