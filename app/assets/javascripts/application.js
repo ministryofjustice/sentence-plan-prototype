@@ -26,6 +26,16 @@ $('#js-toggle').click(
 
 
 
+new MOJFrontend.ButtonMenu({
+  container: $('.moj-button-menu'),
+  mq: '(min-width: 200em)',
+  buttonText: 'Actions',
+  menuClasses: 'moj-button-menu__wrapper--right'
+});
+
+
+
+
 const topics = [
   'A – Z',
   'Motivation & Engagement (M&E) Standalone',

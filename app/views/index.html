@@ -28,24 +28,17 @@
   				{# Start of prototype write up #}
   				<div class="prototype-write-up">
             {{ govukTag({
-              text: 'Alpha sprint 6',
+              text: 'Alpha sprint 7',
               classes: 'govuk-!-margin-bottom-4'
             }) }}
 
             <h3 class='govuk-heading-m'>
               MVP reference
-              <span class="version">v0.2</span>
+              <span class="version">v0.3</span>
             </h3>
             <p>Added/updated:</p>
             <ul class="govuk-list govuk-list--bullet">
-              <li>content changes</li>
-              <li>reduced content in key details</li>
-              <li>goals and steps now use character count component</li>
-              <li>added liaison arrangements</li>
-              <li>added board reviews</li>
-              <li>redesign plan overview to use tabs</li>
-              <li>add a new goal once plan is live (inc. draft on overview)</li>
-              <li>Goals/Steps to Objective/Actions</li>
+              <li>Merged objective and action view on active plan as users were struggling to find a way to update an action</li>
             </ul>
 
             <form action="/oasys" method="post" novalidate>
@@ -99,6 +92,47 @@
           <span class="govuk-details__summary-text">Show all sprints</span>
         </summary>
 				<div class="govuk-details__text">
+
+          {# Start of prototype write up #}
+  				<div class="prototype-write-up">
+            {{ govukTag({
+              text: 'Alpha sprint 6',
+              classes: 'govuk-!-margin-bottom-4'
+            }) }}
+
+            <h3 class='govuk-heading-m'>
+              MVP reference
+              <span class="version">v0.2</span>
+            </h3>
+            <p>Added/updated:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>content changes</li>
+              <li>reduced content in key details</li>
+              <li>goals and steps now use character count component</li>
+              <li>added liaison arrangements</li>
+              <li>added board reviews</li>
+              <li>redesign plan overview to use tabs</li>
+              <li>add a new goal once plan is live (inc. draft on overview)</li>
+              <li>Goals/Steps to Objective/Actions</li>
+            </ul>
+
+            <form action="https://sentence-plan-mvp-2.herokuapp.com/" method="post" novalidate>
+
+              {{ govukButton ({
+                text: 'View prototype',
+                isStartButton: true,
+                classes: 'govuk-!-margin-bottom-4'
+              }) }} 
+
+              <p><a href="screens">View all screens</a></p>
+
+            </form>
+
+
+            {# <p class="govuk-!-margin-bottom-0"><a href="/offender/admin-plan">Create a mock plan</a></p> #}
+
+  				</div>
+  				{# End of prototype write up #}
 
 
 

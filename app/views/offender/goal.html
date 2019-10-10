@@ -17,21 +17,45 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
+      {% if stepUpdated %}
+        {{ mojBanner({
+          type: 'success',
+          text: stepUpdated,
+          iconFallbackText: 'Success'
+        }) }} 
+      {% endif %}
+
+
       <div class="moj-page-header-actions">
         <div class="moj-page-header-actions__title">
           <h1 class="govuk-heading-l">
             <span class="govuk-caption-l">Objective details</span>
             {{ data[goal+'-description'] | nl2br | safe }}
           </h1>
-          <strong class="govuk-tag govuk-!-margin-top-3 govuk-!-margin-bottom-2
-            {{ 'moj-tag--green' if data[goal+'-closed'] == 'true' }}">{{ 'Closed' if data[goal+'-closed'] else 'Active' }}</strong>
+          {# <strong class="govuk-tag govuk-!-margin-top-3 govuk-!-margin-bottom-2
+            {{ 'moj-tag--green' if data[goal+'-closed'] == 'true' }}">{{ 'Closed' if data[goal+'-closed'] else 'Active' }}</strong> #}
         </div>
 
         <div class="moj-page-header-actions__actions">
-          <div class="moj-button-menu">
-            <div class="moj-button-menu__wrapper">
 
-              {% if data[goal+'-closed'] %}
+          <div style="float: right;">
+            {{ mojButtonMenu({
+            items: [{
+              text: "Add another action",
+              href: "#"
+            }, {
+              text: "Reorder actions",
+              href: "#",
+              classes: "govuk-button--secondary"
+            }, {
+              text: "Close objective",
+              href: "#",
+              classes: "govuk-button--secondary"
+            }]
+            }) }}
+          </div> 
+
+              {# {% if data[goal+'-closed'] %}
                 {{ govukButton ({
                 text: 'Reopen objective',
                 href: '#0',
@@ -43,10 +67,8 @@
                 href: 'goal-close?goal='+goal,
                 classes: 'moj-button-menu__item moj-page-header-actions__action'
                 }) }}
-              {% endif %}
+              {% endif %} #}
 
-            </div>
-          </div>
         </div>
       </div> 
     </div>
@@ -60,7 +82,7 @@
       <h2 class="govuk-heading-m">
         Related needs 
       </h2>
-      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-9">
         {% for need in data[goal+'-needs'] %}
           <li>
             {{ need | safe }}
@@ -70,132 +92,129 @@
 
 
 
-      <h2 class="govuk-heading-m">
+      <h2 class="govuk-heading-m govuk-visually-hidden">
         Actions
       </h2>
-      <ol class="app-task-list app-task-list__items  govuk-!-margin-bottom-4">
-        <li class="app-task-list__item">
-          <span class="app-task-list__task-name">
-            <a class="govuk-link--no-visited-state" href="/offender/steps/step?step={{goal}}-step1">
-              {% if data[goal+'-step1-intervention'] == 'Yes' %}
-                Intervention: {{ data[goal+'-step1-intervention-type'] }}
-              {% else %}
-                {{ data[goal+'-step1-description'] }}
-              {% endif %}
-            </a>
-          </span>
-          {% if data[goal+'-step1-status'] %}
-            <strong class="govuk-tag app-task-list__task-completed 
-            {{ 'moj-tag--grey' if data[goal+'-step1-status'] == 'Not started' or data[goal+'-step1-status'] == 'Paused' }}
-            {{ 'moj-tag--green' if data[goal+'-step1-status'] == 'Completed' or data[goal+'-step1-status'] == 'Partly completed' }}
-            {{ 'moj-tag--red' if data[goal+'-step1-status'] == 'Abandoned' }}">{{ data[goal+'-step1-status'] }}</strong>
-          {% endif %}
-        </li>
 
-        {% if data[goal+'-step2-added'] == 'true' %}
-        <li class="app-task-list__item">
-          <span class="app-task-list__task-name">
-            <a class="govuk-link--no-visited-state" href="/offender/steps/step?step={{goal}}-step2">
-              {% if data[goal+'-step2-intervention'] == 'Yes' %}
-                Intervention: {{ data[goal+'-step2-intervention-type'] }}
-              {% else %}
-                {{ data[goal+'-step2-description'] }}
-              {% endif %}
-            </a>
-          </span>
-          {% if data[goal+'-step2-status'] %}
-            <strong class="govuk-tag app-task-list__task-completed 
-            {{ 'moj-tag--grey' if data[goal+'-step2-status'] == 'Not started' or data[goal+'-step2-status'] == 'Paused' }}
-            {{ 'moj-tag--green' if data[goal+'-step2-status'] == 'Completed' or data[goal+'-step2-status'] == 'Partly completed' }}
-            {{ 'moj-tag--red' if data[goal+'-step2-status'] == 'Abandoned' }}">{{ data[goal+'-step2-status'] }}</strong>
-          {% endif %}
-        </li>
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+        {% if data[goal+'-step1-intervention'] == 'Yes' %}
+          Intervention: {{ data[goal+'-step1-intervention-type'] }}
+        {% else %}
+          {{ data[goal+'-step1-description'] }}
         {% endif %}
+      </h3>
+      {% if data[goal+'-step1-status'] %}
+        <strong class="govuk-tag  govuk-!-margin-bottom-4
+        {{ 'moj-tag--grey' if data[goal+'-step1-status'] == 'Not started' or data[goal+'-step1-status'] == 'Paused' }}
+        {{ 'moj-tag--green' if data[goal+'-step1-status'] == 'Completed' or data[goal+'-step1-status'] == 'Partly completed' }}{{ 'moj-tag--red' if data[goal+'-step1-status'] == 'Abandoned' }}">{{ data[goal+'-step1-status'] }}</strong>
+      {% endif %}
+      {% include "includes/"+goal+"-step1-summary.html" %}
+      {{ govukButton ({
+        text: 'Update action',
+        href: 'step-update?step='+goal+'-step1',
+        classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
+      }) }}
 
 
 
-        {% if data['linked-step'].length and goal == 'goal2' %}
-          <li class="app-task-list__item">
-            <span class="app-task-list__task-name">
-              <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal1-step1">
-                {% if data['goal1-step1-intervention'] == 'Yes' %}
-                  Intervention: {{ data['goal1-step1-intervention-type'] }}
-                {% else %}
-                  {{ data['goal1-step1-description'] }}
-                {% endif %}
-              </a>
-            </span>
-            {% if data['goal1-step1-status'] %}
-              <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data['goal1-step1-status'] == 'In progress' or data['goal1-step1-status'] == 'Paused' }}">
-                {{ data['goal1-step1-status'] }}
-              </strong>
-            {% endif %}
-          </li>
-
-          {% if data['linked-step'].length > 1 %}
-            <li class="app-task-list__item">
-              <span class="app-task-list__task-name">
-                <a class="govuk-link--no-visited-state" href="/offender/steps/step?step=goal1-step2">
-                  {% if data['goal1-step2-intervention'] == 'Yes' %}
-                    Intervention: {{ data['goal1-step2-intervention-type'] }}
-                  {% else %}
-                    {{ data['goal1-step2-description'] }}
-                  {% endif %}
-                </a>
-              </span>
-              {% if data['goal1-step2-status'] %}
-                <strong class="govuk-tag app-task-list__task-completed {{ 'moj-tag--grey' if data['goal1-step2-status'] == 'In progress' or data['goal1-step2-status'] == 'Paused' }}">{{ data['goal1-step2-status'] }}</strong>
-              {% endif %}
-            </li>
+      {% if data[goal+'-step2-added'] == 'true' %}
+        <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+          {% if data[goal+'-step2-intervention'] == 'Yes' %}
+            Intervention: {{ data[goal+'-step2-intervention-type'] }}
+          {% else %}
+            {{ data[goal+'-step2-description'] }}
           {% endif %}
+        </h3>
+        {% if data[goal+'-step2-status'] %}
+          <strong class="govuk-tag  govuk-!-margin-bottom-4
+          {{ 'moj-tag--grey' if data[goal+'-step2-status'] == 'Not started' or data[goal+'-step2-status'] == 'Paused' }}
+          {{ 'moj-tag--green' if data[goal+'-step2-status'] == 'Completed' or data[goal+'-step2-status'] == 'Partly completed' }}{{ 'moj-tag--red' if data[goal+'-step2-status'] == 'Abandoned' }}">{{ data[goal+'-step2-status'] }}</strong>
         {% endif %}
-
-      </ol>
-
-
-      {% if not data[goal+'-closed'] %}
+        {% include "includes/"+goal+"-step2-summary.html" %}
         {{ govukButton ({
-          text: 'Add another action',
-          href: '#0',
-          classes: 'govuk-button--secondary'
-        }) }}
-        {{ govukButton ({
-          text: 'Reorder actions',
-          href: '#0',
-          classes: 'govuk-button--secondary'
+          text: 'Update action',
+          href: 'step-update?step='+goal+'-step2',
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
         }) }}
       {% endif %}
-
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">
-        History
-      </h2>
-      <div class="timeline">
-        <ul>
-        {% if data[goal+'-closed'] %}
-          <li>
-            <h2 class="timeline__title">
-              Objective {{ data[goal+'-outcome'] | lower }} and closed
-            </h2>
-            <p class="timeline__meta">
-              <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
-              by Sarah Smith
-            </p>
-
-            {% if data[goal+'-comment'] %}<p>{{ data[goal+'-comment'] }}</p>{% endif %}
-
-          </li>
-        {% endif %}
-          <li>
-            <h2 class="timeline__title">Objective created</h2>
-            <p class="timeline__meta">
-              <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("subtract", 4, "minutes") | date("h:mm a") }}</time>
-              by Sarah Smith
-            </p>
-          </li>
-        </ul>
-      </div>
-
     </div>
+
+
+
+
+    <div class="govuk-grid-column-one-third">
+  
+      <aside class="app-related-items" role="complementary" style="border-width: 4px">
+        <h2 class="govuk-heading-s" id="subsection-title">
+          History
+        </h2>
+        <div class="timeline">
+          <ul>
+          {% if data[goal+'-closed'] %}
+            <li>
+              <h2 class="timeline__title">
+                Objective {{ data[goal+'-outcome'] | lower }} and closed
+              </h2>
+              <p class="timeline__meta">
+                <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
+                by Sarah Smith
+              </p>
+
+              {% if data[goal+'-comment'] %}<p>{{ data[goal+'-comment'] }}</p>{% endif %}
+
+            </li>
+          {% endif %}
+          {% if data[goal+'-step2-updated'] %}
+            <li>
+              <h2 class="timeline__title">
+                {{ data [goal+'-step2-status'] }}: 
+                {% if data[goal+'-step2-intervention'] == 'Yes' %}
+                  Intervention: {{ data[goal+'-step2-intervention-type'] }}
+                {% else %}
+                  {{ data[goal+'-step2-description'] }}
+                {% endif %}
+              </h2>
+              <p class="timeline__meta">
+                <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
+                by Sarah Smith
+              </p>
+
+              {% if data[goal+'-step2-status-comment'] %}<p>{{ data[goal+'-step2-status-comment'] }}</p>{% endif %}
+
+            </li>
+          {% endif %}
+          {% if data[goal+'-step1-updated'] %}
+            <li>
+              <h2 class="timeline__title">
+                {{ data [goal+'-step1-status'] }}: 
+                {% if data[goal+'-step1-intervention'] == 'Yes' %}
+                  Intervention: {{ data[goal+'-step1-intervention-type'] }}
+                {% else %}
+                  {{ data[goal+'-step1-description'] }}
+                {% endif %}
+              </h2>
+              <p class="timeline__meta">
+                <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
+                by Sarah Smith
+              </p>
+
+              {% if data[goal+'-step1-status-comment'] %}<p>{{ data[goal+'-step1-status-comment'] }}</p>{% endif %}
+
+            </li>
+          {% endif %}
+            <li>
+              <h2 class="timeline__title">Objective created</h2>
+              <p class="timeline__meta">
+                <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("subtract", 4, "minutes") | date("h:mm a") }}</time>
+                by Sarah Smith
+              </p>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+
+
   </div>
 {% endblock %}

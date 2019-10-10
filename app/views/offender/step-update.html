@@ -6,11 +6,15 @@
 
 {% set step = data['step'] %}
 
+{% block beforeContent %}
+  <a onclick="history.go(-1); return false;" href="#0" class="govuk-back-link">Back</a>
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/offender/steps/step-updated" method="post">
+      <form class="form" action="/offender/step-updated" method="post">
 
         <h1 class="govuk-heading-l">
           <span class="govuk-caption-l">Update action</span>
@@ -156,7 +160,7 @@
             html: 'Save update',
             classes: 'govuk-!-margin-bottom-3'
           }) }}
-          <p>or <a href="step?step={{step}}">cancel</a></p>
+          <p>or <a onclick="history.go(-1); return false;" href="#0">cancel</a></p>
 
 
         </form>

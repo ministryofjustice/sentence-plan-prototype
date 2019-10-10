@@ -63,8 +63,8 @@ router.get('/offender/plan-saved', (req, res) => {
   res.render('offender/index', { 'planSaved' : 'The plan has been saved' });
 })
 
-router.get('/offender/steps/step-updated', (req, res) => {
-  res.render('offender/steps/step', { 'stepUpdated' : 'The step has been updated' });
+router.get('/offender/step-updated', (req, res) => {
+  res.render('offender/goal', { 'stepUpdated' : 'The action has been updated' });
 })
 
 

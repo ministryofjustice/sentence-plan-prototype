@@ -48,6 +48,15 @@ $govuk-assets-path: '/govuk/assets/';
 
 
 
+.moj-button-menu__toggle-button::after {
+  background-image: url(/public/images/icon-arrow-white-down.svg)!important;
+}
+.moj-button-menu__toggle-button[aria-expanded="true"]::after {
+  background-image: url(/public/images/icon-arrow-white-up.svg)!important;
+}
+
+
+
 
 .app-task-list__items {
   padding-left: 0;
