@@ -25,18 +25,6 @@
     {% include "includes/goal3-card.html" %}
   {% endif %}
 </ul>
-{{ govukButton ({
-  text: 'Add another objective',
-  href: '/offender/add-goal/goal',
-  classes: 'govuk-button--secondary'
-}) }}
-{% if data['goal2-added'] %}
-  {{ govukButton ({
-    text: 'Reorder objectives',
-    href: '#0',
-    classes: 'govuk-button--secondary'
-  }) }}
-{% endif %}
 
 
 
