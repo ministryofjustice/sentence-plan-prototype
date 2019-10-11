@@ -11,14 +11,6 @@
           {{ data['goal3-step1-description'] }}
         {% endif %}
       </dd>
-      {% if data['goal3-started'] == 'true' %}
-      <dd class="govuk-summary-list__actions">
-        <a href="add-step">
-          Change
-          <span class="govuk-visually-hidden"> description</span>
-        </a>
-      </dd>
-      {% endif %}
     </div>
 
 
@@ -37,14 +29,6 @@
 
       {{ goal3step1DueDate | date("MMMM YYYY") }}
     </dd>
-    {% if data['goal3-started'] == 'true' %}
-    <dd class="govuk-summary-list__actions">
-      <a href="add-step">
-        Change
-        <span class="govuk-visually-hidden"> date</span>
-      </a>
-    </dd>
-    {% endif %}
   </div>
 
 
@@ -55,31 +39,8 @@
     <dd class="govuk-summary-list__value">
       {{ data['goal3-step1-motivation'] }}
     </dd>
-    {% if data['goal3-started'] == 'true' %}
-    <dd class="govuk-summary-list__actions">
-      <a href="add-step">
-        Change
-        <span class="govuk-visually-hidden"> motivation</span>
-      </a>
-    </dd>
-    {% endif %}
   </div>
   
-  
-  {# <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Positive factors
-    </dt>
-    <dd class="govuk-summary-list__value">
-      {{ data['goal3-step1-strength'] if data['goal3-step1-strength'] else 'No' }}
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a href="add-step">
-        Change
-        <span class="govuk-visually-hidden"> strength</span>
-      </a>
-    </dd>
-  </div> #}
 
 
   <div class="govuk-summary-list__row">
@@ -101,17 +62,10 @@
         {% endfor %}
       {% endif %}
     </dd>
-    {% if data['goal3-started'] == 'true' %}
-    <dd class="govuk-summary-list__actions">
-      <a href="add-step">
-        Change
-        <span class="govuk-visually-hidden"> responsible persons</span>
-      </a>
-    </dd>
   </div>
 
 
-
+  {% if data['goal3-started'] == 'true' %}
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
       Status
@@ -119,14 +73,6 @@
     <dd class="govuk-summary-list__value">
       {{ data['goal3-step1-status'] }}
     </dd>
-    {% if data['plan-status'] == 'draft' %}
-    <dd class="govuk-summary-list__actions">
-      <a href="add-step2">
-        Change
-        <span class="govuk-visually-hidden"> status</span>
-      </a>
-    </dd>
-    {% endif %}
   </div>
 
   
