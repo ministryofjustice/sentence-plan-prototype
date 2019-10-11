@@ -22,7 +22,14 @@
         <h1 class="govuk-heading-l">Check the objective before saving</h1>
       {% endif %}
 
-      <h2 class="govuk-heading-m">Objective summary</h2>
+      <h2 class="govuk-heading-m">
+        Objective summary
+        <span style="font-size:19px; font-weight:400; float: right; margin-top: 2px;">
+          <a href="goal">
+            Change<span class="govuk-visually-hidden"> objective</span>
+          </a>
+        </span>
+      </h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -30,12 +37,6 @@
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['goal1-description'] | nl2br | safe }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="goal">
-              Change
-              <span class="govuk-visually-hidden"> objective</span>
-            </a>
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -50,12 +51,6 @@
                 </li>
               {% endfor %}
             </ul>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="goal">
-              Change
-              <span class="govuk-visually-hidden"> needs</span>
-            </a>
           </dd>
         </div>
       </dl>
