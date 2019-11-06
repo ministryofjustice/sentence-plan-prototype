@@ -35,19 +35,6 @@
         }) }}
 
         {{ govukTextarea ({
-          id: 'practitioner-expectations',
-          name: 'practitioner-expectations',
-          value: data['practitioner-expectations'] if data['practitioner-expectations'] else '',
-          label: {
-            html: 'Your expectations',
-            classes: "govuk-label--m"
-          },
-          hint: {
-            text: 'Say what you expect the plan to achieve.'
-          }
-        }) }}
-
-        {{ govukTextarea ({
           id: 'offender-comment',
           name: 'offender-comment',
           value: data['offender-comment'] if data['offender-comment'] else '',
