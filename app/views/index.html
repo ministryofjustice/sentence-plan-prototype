@@ -34,11 +34,13 @@
 
             <h3 class='govuk-heading-m'>
               MVP reference
-              <span class="version">v0.3</span>
+              <span class="version">v0.4</span>
             </h3>
             <p>Added/updated:</p>
             <ul class="govuk-list govuk-list--bullet">
-              <li>Merged objective and action view on active plan as users were struggling to find a way to update an action</li>
+              <li>remove practitioner expectations</li>
+              <li>change ‘diversity’ to ‘responsivity’</li>
+              <li>remove ‘liaison arrangements’ from create plan flow and add as a new tab on active plan renamed to 'contact arrangements'</li>
             </ul>
 
             <form action="/oasys" method="post" novalidate>
@@ -92,6 +94,32 @@
           <span class="govuk-details__summary-text">Show all sprints</span>
         </summary>
 				<div class="govuk-details__text">
+
+          {# Start of prototype write up #}
+  				<div class="prototype-write-up">
+            {{ govukTag({
+              text: 'Alpha sprint 7',
+              classes: 'govuk-!-margin-bottom-4'
+            }) }}
+
+            <h3 class='govuk-heading-m'>
+              MVP reference
+              <span class="version">v0.3</span>
+            </h3>
+            <p>Added/updated:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>Merged objective and action view on active plan as users were struggling to find a way to update an action</li>
+            </ul>
+
+            {{ govukButton ({
+              text: 'View prototype',
+              href: 'https://sentence-plan-mvp-3.herokuapp.com/'
+            }) }}
+
+  				</div>
+  				{# End of prototype write up #}
+
+
 
           {# Start of prototype write up #}
   				<div class="prototype-write-up">
