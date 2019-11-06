@@ -15,14 +15,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="check-your-answers" method="post">
+      <form class="form" action="/offender/#contact-arrangements" method="post">
 
         {{ govukTextarea ({
           id: 'liason',
           name: 'liason',
           value: data['liason'] if data['liason'] else '',
           label: {
-            html: 'Liaison arrangements',
+            html: 'Contact arrangements',
             classes: "govuk-label--l",
             isPageHeading: true
           },
@@ -32,10 +32,10 @@
         }) }}
 
         {{ govukButton ({
-          html: 'Continue',
+          html: 'Save contact arrangements',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a href="cancel-plan">cancel</a></p>
+        <p>or <a href="/offender">cancel</a></p>
 
       </form>
 

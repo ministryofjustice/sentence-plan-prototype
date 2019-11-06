@@ -118,6 +118,10 @@
   {% include "includes/tab-reviews.html" %}
 {% endset -%}
 
+{% set contactsHtml %}
+  {% include "includes/tab-contacts.html" %}
+{% endset -%}
+
 
 
       {{ govukTabs({
@@ -141,6 +145,13 @@
             id: "board-reviews",
             panel: {
               html: reviewsHtml
+            }
+          },
+          {
+            label: "Contact arrangements",
+            id: "contact-arrangements",
+            panel: {
+              html: contactsHtml
             }
           }
         ]
