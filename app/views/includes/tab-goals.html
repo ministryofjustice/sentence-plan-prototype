@@ -1,0 +1,50 @@
+<h3 class="govuk-heading-m">
+  Objectives
+</h3>
+
+<h4 class="govuk-heading-s govuk-!-margin-bottom-1">
+  Active objectives
+</h4>
+<ul class="govuk-list">
+  {% if data['unpaidwork'] %}
+    {% include "includes/unpaidwork-card.html" %}
+  {% endif %}
+  {% if data['goal1-added'] %}
+    {% if data['goals-reordered'] == 'true' %}
+      {% include "includes/goal2-card.html" %}
+      {% include "includes/goal1-card.html" %}
+    {% else %} 
+      {% include "includes/goal1-card.html" %}
+      
+      {% if data['goal2-added'] %}
+        {% include "includes/goal2-card.html" %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+  {% if data['goal3-added'] %}
+    {% include "includes/goal3-card.html" %}
+  {% endif %}
+</ul>
+
+
+
+
+{% if data['goal3-started'] == 'true' %}
+  <h4 class="govuk-heading-s  govuk-!-margin-top-6" style="margin-top: -20px;">
+    Draft objectives
+  </h4>
+  <ul class="govuk-list">
+    {% include "includes/goal3-card.html" %}
+  </ul>
+{% endif %}
+
+
+
+
+{% if data['goal1-closed'] == 'true' or data['goal2-closed'] == 'true' %}
+  <h4 class="govuk-heading-s  govuk-!-margin-top-6" style="margin-top: -20px;">
+    Closed objectives
+  </h4>
+  <ul class="closed-goals govuk-list">
+  </ul>
+{% endif %}

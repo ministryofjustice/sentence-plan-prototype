@@ -1,0 +1,233 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back',
+    href: 'goal'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="check-your-answers" method="post">
+
+        <h1 class="govuk-heading-l">Add an action</h1>
+
+
+        {% set interventionYesHtml %}
+        <div class="govuk-form-group">
+          <label for="goal1-step1-intervention-type" class="govuk-label govuk-label--m">What intervention are they going to take?</label>
+          <div class="govuk-grid-row">
+            <div id="goal1-step1-intervention-type-container" class="govuk-grid-column-two-thirds" data-default-value="{{ data['goal1-step1-intervention-type'] }}"></div>
+          </div>
+        </div>
+        {% endset -%}
+
+        {% set interventionNoHtml %}
+        {{ govukCharacterCount ({
+          id: 'goal1-step1-description',
+          name: 'goal1-step1-description',
+          maxwords: 51,
+          value: data['goal1-step1-description'] if data['goal1-step1-description'] else '',
+          label: {
+            text: 'What action are they going to take?',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: ""
+          }
+        }) }}
+        {% endset -%}
+
+        {{ govukRadios ({
+          classes: "govuk-radios--small",
+          idPrefix: 'goal1-step1-intervention',
+          name: 'goal1-step1-intervention',
+          fieldset: {
+            legend: {
+              text: 'Will this action come from the National Interventions List?',
+              isPageHeading: true,
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Yes',
+              value: 'Yes',
+              conditional: {
+                html: interventionYesHtml
+              },
+              checked: checked('goal1-step1-intervention', 'Yes')
+            },
+            {
+              text: 'No',
+              value: 'No',
+              conditional: {
+                html: interventionNoHtml
+              },
+              checked: checked('goal1-step1-intervention', 'No')
+            }
+          ]
+        }) }}
+
+
+
+
+        {{ govukDateInput({
+          id: "goal1-step1-date",
+          namePrefix: "goal1-step1-date",
+          fieldset: {
+            legend: {
+              text: "What is the target date for the action to be finished?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              name: "month",
+              classes: "govuk-input--width-2",
+              value: data["goal1-step1-date-month"]
+            },
+            {
+              name: "year",
+              classes: "govuk-input--width-4",
+              value: data["goal1-step1-date-year"]
+            }
+          ]
+        }) }}
+
+        
+        
+        
+        {{ govukSelect({
+          id: "goal1-step1-motivation",
+          name: "goal1-step1-motivation",
+          label: {
+            text: "How motivated is the individual to start or complete this action?",
+            classes: "govuk-label--m"
+          },
+          items: [
+            {
+              value: "Not aware of it",
+              text: "Not aware of it"
+            },
+            {
+              value: "Thinking about it",
+              text: "Thinking about it"
+            },
+            {
+              value: "Getting ready",
+              text: "Getting ready"
+            },
+            {
+              value: "Doing it",
+              text: "Doing it"
+            },
+            {
+              value: "Keeping going",
+              text: "Keeping going"
+            },
+            {
+              value: "Off track",
+              text: "Off track"
+            }
+          ]
+        }) }}
+
+
+
+
+
+        {% set doneHMTL %}
+          {{ govukInput ({
+            id: 'goal1-step1-responsible-other',
+            name: 'goal1-step1-responsible-other',
+            value: data['goal1-step1-responsible-other'] if data['goal1-step1-responsible-other'] else '',
+            classes: 'govuk-input--width-20',
+            label: {
+              text: 'Other',
+              classes: 'govuk-input--width-20'
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukCheckboxes ({
+          classes: "govuk-checkboxes--small",
+          idPrefix: 'goal1-step1-responsible',
+          name: 'goal1-step1-responsible',
+          fieldset: {
+            legend: {
+              text: 'Who will make sure the action is done?',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Individual',
+              value: 'Individual',
+              checked: checked('goal1-step1-responsible', 'Individual')
+            },
+            {
+              text: 'Offender manager',
+              value: 'Offender manager',
+              checked: checked('goal1-step1-responsible', 'Offender manager')
+            },
+            {
+              text: 'Other',
+              value: 'Other',
+              checked: checked('goal1-step1-responsible', 'Other'),
+              conditional: {
+                html: doneHMTL
+              }
+            }
+          ]
+        }) }}
+
+
+
+        {{ govukRadios ({
+        classes: "govuk-radios--small",
+          idPrefix: 'goal1-step1-status',
+          name: 'goal1-step1-status',
+          fieldset: {
+            legend: {
+              text: 'Set an initial status for this action',
+              classes: 'govuk-fieldset__legend--m'
+            }
+          },
+          items: [
+            {
+              text: 'Not started',
+              value: 'Not started',
+              checked: checked('goal1-step1-status', 'Not started')
+            },
+            {
+              text: 'In progress',
+              value: 'In progress',
+              checked: checked('goal1-step1-status', 'In progress')
+            }
+          ]
+        }) }}
+        
+        
+
+
+        
+        {{ govukButton ({
+          html: 'Continue',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="../cancel-goal">cancel</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+

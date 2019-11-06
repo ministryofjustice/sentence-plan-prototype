@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back',
+    href: 'check-your-answers'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/offender/plan-saved" method="post">
+
+        <h1 class="govuk-heading-l">
+          Enter final information and start the plan
+        </h1>
+
+        {{ govukTextarea ({
+          id: 'practitioner-comment',
+          name: 'practitioner-comment',
+          value: data['practitioner-comment'] if data['practitioner-comment'] else '',
+          label: {
+            html: 'Your decisions',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: 'Record the key points from your conversations with the individual as you created their plan. Explain decisions you made, e.g. why you might not deal with a certain need at this time.'
+          }
+        }) }}
+
+        {{ govukTextarea ({
+          id: 'practitioner-expectations',
+          name: 'practitioner-expectations',
+          value: data['practitioner-expectations'] if data['practitioner-expectations'] else '',
+          label: {
+            html: 'Your expectations',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: 'Say what you expect the plan to achieve.'
+          }
+        }) }}
+
+        {{ govukTextarea ({
+          id: 'offender-comment',
+          name: 'offender-comment',
+          value: data['offender-comment'] if data['offender-comment'] else '',
+          label: {
+            html: 'Individual&rsquo;s summary',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: 'Record anything they want to say about their plan. Include any points they want to make or clarify.'
+          }
+        }) }}
+
+
+        <input type="hidden" name="plan-status" value="saved">
+
+        {{ govukButton ({
+          html: 'Start the plan',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="cancel-plan">cancel</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

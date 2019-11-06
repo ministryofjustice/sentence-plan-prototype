@@ -13,8 +13,7 @@ $(document).ready(function () {
 $(".form").attr("autocomplete", "off");
 $(".govuk-input").attr("autocomplete", "off");
 
-
-$(".js-hidden").hide();
+$(".closed").appendTo($(".closed-goals"));
 $('#js-toggle').click(
   function(){
     if ( $(this).is(':checked') )
@@ -23,6 +22,16 @@ $('#js-toggle').click(
       $('.js-hidden').hide();
   }
 );
+
+
+
+
+new MOJFrontend.ButtonMenu({
+  container: $('.moj-button-menu'),
+  mq: '(min-width: 200em)',
+  buttonText: 'Options',
+  menuClasses: 'moj-button-menu__wrapper--right'
+});
 
 
 
@@ -51,19 +60,79 @@ const topics = [
 ]
 
 
-if ($('#intervention-type-container').length > 0) {
+if ($('#goal1-step1-intervention-type-container').length > 0) {
+  element = document.querySelector('#goal1-step1-intervention-type-container')
+  id = 'goal1-step1-intervention-type' // To match it to the existing <label>.
+
   accessibleAutocomplete ({
-    element: document.querySelector('#intervention-type-container'),
-    id: 'intervention-type', // To match it to the existing <label>.
-    name: 'intervention-type',
+    element: element,
+    defaultValue: element.getAttribute('data-default-value'),
+    id: id,
+    name: 'goal1-step1-intervention-type',
     source: topics,
     showAllValues: true
   })
-} else if ($('#intervention-type-2-container').length > 0) {
+} else if ($('#goal1-step2-intervention-type-container').length > 0) {
+  element = document.querySelector('#goal1-step2-intervention-type-container')
+  id = 'goal1-step2-intervention-type' // To match it to the existing <label>.
+
   accessibleAutocomplete ({
-    element: document.querySelector('#intervention-type-2-container'),
-    id: 'intervention-type-2', // To match it to the existing <label>.
-    name: 'intervention-type-2',
+    element: element,
+    defaultValue: element.getAttribute('data-default-value'),
+    id: id,
+    name: 'goal1-step2-intervention-type',
+    source: topics,
+    showAllValues: true
+  })
+}
+
+if ($('#goal2-step1-intervention-type-container').length > 0) {
+  element = document.querySelector('#goal2-step1-intervention-type-container')
+  id = 'goal2-step1-intervention-type' // To match it to the existing <label>.
+
+  accessibleAutocomplete ({
+    element: element,
+    defaultValue: element.getAttribute('data-default-value'),
+    id: id,
+    name: 'goal2-step1-intervention-type',
+    source: topics,
+    showAllValues: true
+  })
+} else if ($('#goal2-step2-intervention-type-container').length > 0) {
+  element = document.querySelector('#goal2-step2-intervention-type-container')
+  id = 'goal2-step2-intervention-type' // To match it to the existing <label>.
+
+  accessibleAutocomplete ({
+    element: element,
+    defaultValue: element.getAttribute('data-default-value'),
+    id: id,
+    name: 'goal2-step2-intervention-type',
+    source: topics,
+    showAllValues: true
+  })
+}
+
+if ($('#goal3-step1-intervention-type-container').length > 0) {
+  element = document.querySelector('#goal3-step1-intervention-type-container')
+  id = 'goal3-step1-intervention-type' // To match it to the existing <label>.
+
+  accessibleAutocomplete ({
+    element: element,
+    defaultValue: element.getAttribute('data-default-value'),
+    id: id,
+    name: 'goal3-step1-intervention-type',
+    source: topics,
+    showAllValues: true
+  })
+} else if ($('#goal3-step2-intervention-type-container').length > 0) {
+  element = document.querySelector('#goal3-step2-intervention-type-container')
+  id = 'goal3-step2-intervention-type' // To match it to the existing <label>.
+
+  accessibleAutocomplete ({
+    element: element,
+    defaultValue: element.getAttribute('data-default-value'),
+    id: id,
+    name: 'goal3-step2-intervention-type',
     source: topics,
     showAllValues: true
   })

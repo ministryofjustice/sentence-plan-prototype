@@ -26,15 +26,12 @@ module.exports = {
       "lastname": "Curtis",
       "crn": "S000001",
       "noms": "A0000AB",
-      "keyworker": "Sarah Smith",
       "summary": [
-        // { title:"Main offence(s)", value: "Robbery"},
-        // { title:"Sentence type", value:"Extended Determinate Sentence"},
-        // { title:"Sentence length", value:"138 months"},
-        // { title:"Start date", value: "27 February 2019"},
-        { title:"Date ISP due", value:"13 March 2019"},
-        { title:"PAROM eligibility date", value: "20 December 2023"},
-        { title:"Expected HDC/release date", value:"19 June 2026"}
+        // { title:"Sentence remaining", value:"138 months 12 days"},
+        { title:"ISP due", value:"13 March 2019"},
+        { title:"Risk level", value: "High"},
+        // { title:"Keyworker", value: "Sarah Smith"},
+        { title:"Parole case", value:"Yes"},
       ],
       "needs": [
         { type:"Accommodation", risk: true},

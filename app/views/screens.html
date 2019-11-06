@@ -1,0 +1,220 @@
+{% extends "layout.html" %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+<!-- Adds spacing for pages without a back button -->
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% set noplan %}
+?plan-status=
+&diversity=
+&offender-summary=
+&liason=
+&goal1-description=
+&goal1-needs=
+&goal1-step1-intervention=
+&goal1-step1-intervention-type=
+&goal1-step1-date-day=&goal1-step1-date-month=&goal1-step1-date-year=
+&goal1-step1-motivation=
+&goal1-step1-responsible=
+&goal1-step1-status=
+&goal1-step2-intervention=
+&goal1-step2-intervention-type=
+&goal1-step2-date-day=&goal1-step2-date-month=&goal1-step2-date-year=
+&goal1-step2-motivation=
+&goal1-step2-responsible=
+&goal1-step2-added=
+&goal1-added=
+&goal1-step2-status=
+&goal2-description=
+&goal2-needs=
+&goal2-step1-intervention=
+&goal2-step1-intervention-type=
+&goal2-step1-date-day=&goal2-step1-date-month=&goal2-step1-date-year=
+&goal2-step1-motivation=
+&goal2-step1-responsible=
+&goal2-added=
+&goal2-step1-status=
+&practitioner-comment=
+&practitioner-expectations=
+&offender-comment=
+{% endset %}
+{% set activeplan %}
+?plan-status=saved
+&diversity=Diversity example
+&offender-summary=Offender summary example
+&liason=Liaison arrangements example
+&goal1-description=Objective 1 description example
+&goal1-needs=Alcohol+misuse
+&goal1-needs=Thinking+and+behaviour 
+&goal1-step1-intervention=Yes
+&goal1-step1-intervention-type=A – Z
+&goal1-step1-date-day=31&goal1-step1-date-month=8&goal1-step1-date-year=2020
+&goal1-step1-motivation=Thinking about it
+&goal1-step1-responsible=Individual
+&goal1-step1-responsible=Responsible officer 
+&goal1-step1-status=Not started
+&goal1-step2-intervention=Yes
+&goal1-step2-intervention-type=Kaizen
+&goal1-step2-date-day=14&goal1-step2-date-month=12&goal1-step2-date-year=2020
+&goal1-step2-motivation=Thinking about it
+&goal1-step2-responsible=Individual
+&goal1-step2-responsible=Responsible officer 
+&goal1-step2-added=true
+&goal1-added=true
+&goal1-step2-status=Not started
+&goal2-description=Objective 2 description example
+&goal2-needs=Alcohol+misuse
+&goal2-needs=Thinking+and+behaviour 
+&goal2-step1-intervention=Yes
+&goal2-step1-intervention-type=A – Z
+&goal2-step1-date-day=31&goal2-step1-date-month=8&goal2-step1-date-year=2020
+&goal2-step1-motivation=Thinking about it
+&goal2-step1-responsible=Individual
+&goal2-step1-responsible=Responsible officer 
+&goal2-added=true
+&goal2-step1-status=Not started
+&practitioner-comment=Your decisions example
+&practitioner-expectations=Your expectations example
+&offender-comment=Individuals summary example
+{% endset %}
+{% set draftplan %}
+?plan-status=draft
+&diversity=Diversity example
+&offender-summary=Offender summary example
+&liason=Liaison arrangements example
+&goal1-description=Objective 1 description example
+&goal1-needs=Alcohol+misuse
+&goal1-needs=Thinking+and+behaviour 
+&goal1-step1-intervention=Yes
+&goal1-step1-intervention-type=A – Z
+&goal1-step1-date-day=31&goal1-step1-date-month=8&goal1-step1-date-year=2020
+&goal1-step1-motivation=Thinking about it
+&goal1-step1-responsible=Individual
+&goal1-step1-responsible=Responsible officer 
+&goal1-step1-status=Not started
+&goal1-added=true
+{% endset %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Sentence plan screens
+      </h1>
+    </div>
+    
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        <a href="sign-in/">Sign in</a>
+      </li>
+      <li>
+        <a href="/offender{{ noplan | trim }}">Dashboard (no active plan)</a>
+      </li>
+      <li>
+        <a href="/offender{{ draftplan | trim }}">Dashboard (draft plan)</a>
+      </li>
+      <li>
+        <a href="/offender{{ activeplan | trim }}">Dashboard (active plan)</a>
+      </li>
+      <li>
+        <a href="/offender/close">Close plan</a>
+      </li>
+      <li>
+        <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">Create plan</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="/offender/create-plan/summary">Plan details (diversity etc)</a>
+          </li>
+          <li>
+            <a href="/offender/create-plan/check-your-answers">Draft plan</a>
+          </li>
+          <li>
+            <a href="/offender/create-plan/cancel-plan">Cancel plan</a>
+          </li>
+          <li>
+            <a href="/offender/create-plan/reorder-goals">Reorder objectives</a>
+          </li>
+          <li>
+            <a href="/offender/create-plan/comment">Comment and save plan</a>
+          </li>
+
+          <li>
+            <h3 class="govuk-heading-s govuk-!-margin-top-6 govuk-!-margin-bottom-2">Create objective</h3>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <a href="/offender/create-plan/add-goal/goal">Objective desc/needs</a>
+              </li>
+              {# <li>
+                <a href="/offender/create-plan/add-goal2/add-existing-step">Link steps (after goal 1 added)</a>
+              </li> #}
+              <li>
+                <a href="/offender/create-plan/add-goal/add-step">Action details</a>
+              </li>
+              <li>
+                <a href="/offender/create-plan/add-goal/check-your-answers{{ draftplan | trim }}&goal1-added=false">Check answers (before saving)</a>
+              </li>
+              <li>
+                <a href="/offender/create-plan/add-goal/check-your-answers{{ draftplan | trim }}">Check answers/delete objective (after saving)</a>
+              </li>
+              <li>
+                <a href="/offender/create-plan/add-goal/reorder-steps">Reorder actions</a>
+              </li>
+              <li>
+                <a href="/offender/create-plan/add-goal/cancel-goal">Cancel draft objective</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+
+      <li>
+        <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">View objective</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+              <a href="/offender/goal{{ activeplan | trim }}&goal=goal1">Objective overview</a>
+          </li>
+          {# <li>
+              <a href="/offender/steps/step{{ activeplan | trim }}&step=goal1-step1">Action overview</a>
+          </li> #}
+          <li>
+              <a href="/offender/steps/step-update{{ activeplan | trim }}&step=goal1-step1">Update action</a>
+          </li>
+          <li>
+              <a href="/offender/goal-close{{ activeplan | trim }}&goal=goal1">Close objective</a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li>
+        <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-2">Print</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+              <a href="/offender/print/">Options</a>
+          </li>
+          <li>
+              <a href="/offender/print/full{{ activeplan | trim }}">Print full</a>
+          </li>
+          <li>
+              <a href="/offender/print/overview{{ activeplan | trim }}">Print offender summary</a>
+          </li>
+        </ul>
+      </li>
+
+
+
+    </ul>
+
+
+
+
+    </div>
+</div>
+
+{% endblock %}

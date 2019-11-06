@@ -1,0 +1,78 @@
+{% if data['plan-status'] == 'draft' %}
+  <dl class="govuk-summary-list govuk-!-margin-bottom-4">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Description
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {% if data['goal2-step1-intervention'] == 'Yes' %}
+          Intervention: {{ data['goal2-step1-intervention-type'] }}
+        {% else %}
+          {{ data['goal2-step1-description'] }}
+        {% endif %}
+      </dd>
+    </div>
+
+
+{% else %}
+<dl class="govuk-summary-list govuk-!-margin-bottom-3">
+{% endif %}
+  
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Due date
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {% set goal2step1DueDate = data['goal2-step1-date-year'] + "-" + data['goal2-step1-date-month'] %}
+
+      {{ goal2step1DueDate | date("MMMM YYYY") }}
+    </dd>
+  </div>
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Motivation
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['goal2-step1-motivation'] }}
+    </dd>
+  </div>
+  
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Responsible
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {% if data['goal2-step1-responsible'].length > 1 %}
+      <ul class="govuk-list govuk-list--bullet">
+        {% for person in data['goal2-step1-responsible'] %}
+          <li>{{ person }}{{ ': '+data['goal2-step1-responsible-other'] if person == 'Other' else '' }}</li>
+        {% endfor %}
+      </ul>
+      {% else %}
+        {% for person in data['goal2-step1-responsible'] %}
+          {{ person }}{{ ': '+data['goal2-step1-responsible-other'] if person == 'Other' else '' }}
+        {% else %}
+          Nobody selected
+        {% endfor %}
+      {% endif %}
+    </dd>
+  </div>
+
+
+  {% if data['plan-status'] == 'draft' %}
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Status
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ data['goal2-step1-status'] }}
+    </dd>
+  </div>
+  {% endif %}
+</dl>

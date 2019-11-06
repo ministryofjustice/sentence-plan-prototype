@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back to plan',
+    href: '/offender/#board-reviews'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Sentence board minutes
+      </h1>
+
+      {% set reviewDate = data['review-date-year'] + "-" + data['review-date-month'] + "-" + data['review-date-day'] %}
+
+      {{ govukSummaryList ({
+        rows: [
+          {
+            key: {
+              text: 'Date of review'
+            },
+            value: {
+              text: reviewDate | date("D MMMM YYYY")
+            }
+          },
+          {
+            key: {
+              text: 'Comments'
+            },
+            value: {
+              text: data['review-comment'] | nl2br | safe
+            }
+          },
+          {
+            key: {
+              text: 'Attendees'
+            },
+            value: {
+              text: data['review-attendees'] | nl2br | safe
+            }
+          }
+        ]
+      }) }}
+
+
+    </div>
+  </div>
+{% endblock %}

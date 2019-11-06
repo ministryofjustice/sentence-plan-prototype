@@ -28,41 +28,29 @@
   				{# Start of prototype write up #}
   				<div class="prototype-write-up">
             {{ govukTag({
-              text: 'Alpha sprint 3',
+              text: 'Alpha sprint 7',
               classes: 'govuk-!-margin-bottom-4'
             }) }}
 
             <h3 class='govuk-heading-m'>
-              Review and update previous prototype
-              {# <span class="version">Version 1</span> #}
+              MVP reference
+              <span class="version">v0.3</span>
             </h3>
-            <p>Previous prototypes were created as slidedecks, this takes that work and updates to ensure standards and patterns from GOV.UK and MOJ design systems are being followed.</p>
+            <p>Added/updated:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>Merged objective and action view on active plan as users were struggling to find a way to update an action</li>
+            </ul>
 
             <form action="/oasys" method="post" novalidate>
 
-              {{ govukRadios ({
-                classes: "govuk-radios--small",
-                idPrefix: 'prototype-options',
-                name: 'prototype-options',
-                fieldset: {
-                  legend: {
-                    text: 'Prototype options',
-                    classes: 'govuk-fieldset__legend--s'
-                  }
-                },
+              {{ govukCheckboxes({
+                classes: "govuk-checkboxes--small",
+                idPrefix: 'unpaidwork',
+                name: 'unpaidwork',
                 items: [
                   {
-                    text: 'Standard',
-                    value: 'Standard',
-                    checked: true
-                  },
-                  {
-                    text: 'Safeguarding',
-                    value: 'Safeguarding'
-                  },
-                  {
-                    text: 'Unpaid work',
-                    value: 'Unpaid work'
+                    text: 'Add in unpaid work',
+                    value: 'yes'
                   }
                 ]
               }) }}
@@ -71,12 +59,14 @@
                 text: 'View prototype',
                 isStartButton: true,
                 classes: 'govuk-!-margin-bottom-4'
-              }) }}
+              }) }} 
+
+              <p><a href="screens">View all screens</a></p>
 
             </form>
 
 
-            <p class="govuk-!-margin-bottom-0"><a href="/offender/admin-plan">Create a mock plan</a></p>
+            {# <p class="govuk-!-margin-bottom-0"><a href="/offender/admin-plan">Create a mock plan</a></p> #}
 
   				</div>
   				{# End of prototype write up #}
@@ -103,19 +93,104 @@
         </summary>
 				<div class="govuk-details__text">
 
-
           {# Start of prototype write up #}
   				<div class="prototype-write-up">
             {{ govukTag({
-              text: 'Alpha sprint #',
+              text: 'Alpha sprint 6',
               classes: 'govuk-!-margin-bottom-4'
             }) }}
 
             <h3 class='govuk-heading-m'>
-              This would be a previous prototype
+              MVP reference
+              <span class="version">v0.2</span>
+            </h3>
+            <p>Added/updated:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>content changes</li>
+              <li>reduced content in key details</li>
+              <li>goals and steps now use character count component</li>
+              <li>added liaison arrangements</li>
+              <li>added board reviews</li>
+              <li>redesign plan overview to use tabs</li>
+              <li>add a new goal once plan is live (inc. draft on overview)</li>
+              <li>Goals/Steps to Objective/Actions</li>
+            </ul>
+
+            <form action="https://sentence-plan-mvp-2.herokuapp.com/" method="post" novalidate>
+
+              {{ govukButton ({
+                text: 'View prototype',
+                isStartButton: true,
+                classes: 'govuk-!-margin-bottom-4'
+              }) }} 
+
+              <p><a href="screens">View all screens</a></p>
+
+            </form>
+
+
+            {# <p class="govuk-!-margin-bottom-0"><a href="/offender/admin-plan">Create a mock plan</a></p> #}
+
+  				</div>
+  				{# End of prototype write up #}
+
+
+
+          {# Start of prototype write up #}
+  				<div class="prototype-write-up">
+            {{ govukTag({
+              text: 'Alpha sprint 5',
+              classes: 'govuk-!-margin-bottom-4'
+            }) }}
+
+            <h3 class='govuk-heading-m'>
+              MVP reference
+              <span class="version">v0.1</span>
+            </h3>
+            <p>First pass at an MVP.</p>
+
+            <form action="https://sentence-plan-mvp-1.herokuapp.com/" method="post" novalidate>
+
+              {{ govukButton ({
+                text: 'View prototype',
+                isStartButton: true,
+                classes: 'govuk-!-margin-bottom-4'
+              }) }} 
+
+            </form>
+
+
+            {# <p class="govuk-!-margin-bottom-0"><a href="/offender/admin-plan">Create a mock plan</a></p> #}
+
+  				</div>
+  				{# End of prototype write up #}
+
+
+          {# Start of prototype write up #}
+  				<div class="prototype-write-up">
+            {{ govukTag({
+              text: 'Alpha sprint 3',
+              classes: 'govuk-!-margin-bottom-4'
+            }) }}
+
+            <h3 class='govuk-heading-m'>
+              Review and update previous prototype
               {# <span class="version">Version 1</span> #}
             </h3>
-            <p>Just a placeholder for now.</p>
+            <p>Previous prototypes were created as slidedecks, this takes that work and updates to ensure standards and patterns from GOV.UK and MOJ design systems are being followed.</p>
+
+            <form action="https://sentence-plan-sprint3.herokuapp.com" method="post" novalidate>
+
+              {{ govukButton ({
+                text: 'View prototype',
+                isStartButton: true,
+                classes: 'govuk-!-margin-bottom-4'
+              }) }}
+
+            </form>
+
+
+            <p class="govuk-!-margin-bottom-0"><a href="/offender/admin-plan">Create a mock plan</a></p>
 
   				</div>
   				{# End of prototype write up #}

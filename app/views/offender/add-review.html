@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back to plan',
+    href: '/offender/#board-reviews'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/offender/#board-reviews" method="post">
+
+        <h1 class="govuk-heading-l">
+          Sentence board review
+        </h1>
+
+        {{ govukTextarea ({
+          id: 'review-comment',
+          name: 'review-comment',
+          label: {
+            html: 'Comments',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: ""
+          }
+        }) }}
+
+        {{ govukTextarea ({
+          id: 'review-attendees',
+          name: 'review-attendees',
+          label: {
+            html: 'Attendees',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: ""
+          }
+        }) }}
+
+        {{ govukDateInput({
+          id: "review-date",
+          namePrefix: "review-date",
+          fieldset: {
+            legend: {
+              text: "Date of board",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: ""
+          }
+        }) }}
+
+        <input type="hidden" name="review-done" value="true">
+
+        {{ govukButton ({
+          html: 'Save review',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="/offender">cancel</a></p>
+
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

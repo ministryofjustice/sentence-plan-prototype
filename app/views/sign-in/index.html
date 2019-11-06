@@ -1,5 +1,21 @@
 {% extends "layout.html" %}
 
+{% block header %}
+  {{ mojHeader({
+    organisationLabel: {
+      text: 'HMPPS',
+      href: '/index'
+    },
+    serviceLabel: {
+      text: serviceName,
+      href: '#0'
+    }
+
+  }) }} 
+
+  {% block afterHeader %}{% endblock %}
+{% endblock %}
+
 {# {% block beforeContent %}
   <a class="govuk-back-link" href="account-check">Back</a>
 {% endblock %} #}
@@ -10,7 +26,7 @@
       <form class="form" action="/offender?id=1" method="post">
 
         <h1 class="govuk-heading-l">
-          Sign in
+          Sign in with your OASys credentials
         </h1>
 
         {{ govukInput({
@@ -18,8 +34,8 @@
             name: 'email',
             classes: 'govuk-input--width-20',
             label: {
-                text: 'Email address',
-                classes: ''
+              text: 'Username',
+              classes: ''
             }
         }) }}
 
@@ -28,8 +44,8 @@
             name: 'password',
             classes: 'govuk-input--width-20',
             label: {
-                text: 'Password',
-                classes: ''
+              text: 'Password',
+              classes: ''
             }
         }) }}
 
@@ -41,12 +57,9 @@
           Problems signing in?
         </h2>
 
-        <p><a class="govuk-link" href="forgotten-password">I have forgotten my password</a></p>
+        <p>Please return to OASys to reset your password or to get help with your account.</p>
 
-        {{ govukDetails({
-          summaryText: "Why does my password not work?",
-          text: "Help text."
-        }) }}
+        <p><a href="#0">Back to OASys</a></p>
 
       </form>
     </div>

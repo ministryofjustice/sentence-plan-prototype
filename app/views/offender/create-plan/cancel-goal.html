@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  <a onclick="history.go(-1); return false;" href="#0" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="check-your-answers" method="post">
+
+        <h1 class="govuk-heading-l">Are you sure you want to cancel?</h1>
+
+        {{ govukInsetText({
+          text: "You will lose the information entered for the objective so far."
+        }) }}
+
+        {{ govukButton ({
+          html: 'Yes, cancel the objective',
+          classes: 'govuk-button--warning govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a onclick="history.go(-1); return false;" href="#0">no, go back</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

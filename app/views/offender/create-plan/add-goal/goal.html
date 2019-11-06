@@ -7,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink ({
     text: 'Back',
-    href: 'summary'
+    href: 'check-your-answers'
   }) }}
 {% endblock %}
 
@@ -15,16 +15,31 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="intervention" method="post">
+      <form class="form" action="add-step" method="post">
 
-        <span class="govuk-caption-l">Create plan</span>
-        <span class="govuk-heading-l">Add a step</span>
+        <h1 class="govuk-heading-l">Add an objective</h1>
+
+        {{ govukCharacterCount({
+          id: 'goal1-description',
+          name: 'goal1-description',
+          value: data['goal1-description'] if data['goal1-description'] else '',
+          maxwords: 50,
+          label: {
+            html: 'Objective description',
+            classes: "govuk-label--m"
+          },
+          hint: {
+            html: 'What does the individual need to achieve? You&rsquo;ll be able to add actions for this objective later.'
+          }
+        }) }}
+
+
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h1 class="govuk-fieldset__heading">
-                Which of their needs are related to this step?
+                Existing OASys needs related to this objective
               </h1>
             </legend>
             <span class="govuk-hint">
@@ -34,11 +49,10 @@
             <div class="govuk-checkboxes govuk-checkboxes--small">
               {% for need in offender.needs %}
                 <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="step-needs-{{ loop.index }}" name="step-needs" type="checkbox" value="{{ need.type }}" {{ checked( "step-needs", need.type ) }}>
-                  <label class="govuk-label govuk-checkboxes__label" for="step-needs-{{ loop.index }}">
+                  <input class="govuk-checkboxes__input" id="goal1-needs{{ loop.index }}" name="goal1-needs" type="checkbox" value="{{ need.type }}{% if need.risk %} &ndash; <span class='risk'>Risk of serious harm</span>{% endif %}" {{ checked( "goal1-needs", need.type ) }}>
+                  <label class="govuk-label govuk-checkboxes__label" for="goal1-needs{{ loop.index }}">
                     {{ need.type }}
                     {% if need.risk %}
-                      {# <strong class="govuk-tag moj-tag--red">Risk of serious harm</strong> #}
                       &ndash; <span class="risk">Risk of serious harm</span>
                     {% endif %}
                   </label>
@@ -50,11 +64,12 @@
         </div>
 
 
+
         {{ govukButton ({
           html: 'Continue',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a class="delete-link" href="/offender">cancel plan</a></p>
+        <p>or <a href="../cancel-goal">cancel</a></p>
 
       </form>
 

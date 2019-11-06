@@ -15,21 +15,19 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/startsteps" method="post">
-
-        <span class="govuk-caption-l">Create plan</span>
+      <form class="form" action="check-your-answers" method="post">
 
         {{ govukTextarea ({
-          id: 'goal',
-          name: 'goal',
-          value: data['goal'] if data['goal'] else '',
+          id: 'liason',
+          name: 'liason',
+          value: data['liason'] if data['liason'] else '',
           label: {
-            html: 'Write a goal',
-            isPageHeading: true,
-            classes: "govuk-label--l"
+            html: 'Liaison arrangements',
+            classes: "govuk-label--l",
+            isPageHeading: true
           },
           hint: {
-            html: 'When you set goals and steps for this person, think about how motivated they are. For example, will they need help getting started? Will they continue without support?'
+            text: "Say how often liaison or contact meetings will happen. Give the names of those involved and include their contact details."
           }
         }) }}
 
@@ -37,7 +35,7 @@
           html: 'Continue',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a class="delete-link" href="/offender">cancel plan</a></p>
+        <p>or <a href="cancel-plan">cancel</a></p>
 
       </form>
 

@@ -1,0 +1,134 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% if data['goal3-added'] %}
+  {% block beforeContent %}
+    {{ govukBackLink ({
+      text: 'Back to plan',
+      href: '/offender'
+    }) }}
+  {% endblock %}
+{% endif %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+        <h1 class="govuk-heading-l">Check the objective before saving</h1>
+
+      <h2 class="govuk-heading-m">
+        Objective summary
+        <span style="font-size:19px; font-weight:400; float: right; margin-top: 2px;">
+          <a href="goal">
+            Change<span class="govuk-visually-hidden"> objective</span>
+          </a>
+        </span>
+      </h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Objective
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['goal3-description'] | nl2br | safe }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Needs
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              {% for need in data['goal3-needs'] %}
+                <li>
+                  {{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }}
+                </li>
+              {% endfor %}
+            </ul>
+          </dd>
+        </div>
+      </dl>
+
+
+
+
+      {% if data['goal3-reordered'] == 'true' %}
+        <h2 class="govuk-heading-m">
+          Action 1
+          <span style="font-size:19px; font-weight:400; float: right; margin-top: 2px;">
+            <a href="add-step">
+              Change<span class="govuk-visually-hidden"> action</span>
+            </a>
+          </span>
+        </h2>
+        {% include "includes/goal3-step2-summary.html" %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">
+          Action 2
+          <span style="font-size:19px; font-weight:400; float: right; margin-top: 2px;">
+            <a href="add-step2">
+              Change<span class="govuk-visually-hidden"> action</span>
+            </a>
+          </span>
+        </h2>
+        {% include "includes/goal3-step1-summary.html" %}
+      {% else %} 
+        <h2 class="govuk-heading-m">
+          Action 1
+          <span style="font-size:19px; font-weight:400; float: right; margin-top: 2px;">
+            <a href="add-step">
+              Change<span class="govuk-visually-hidden"> action</span>
+            </a>
+          </span>
+        </h2>
+        {% include "includes/goal3-step1-summary.html" %}
+        {% if data['goal3-step2-added'] == 'true' %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">
+          Action 2
+          <span style="font-size:19px; font-weight:400; float: right; margin-top: 2px;">
+            <a href="add-step2">
+              Change<span class="govuk-visually-hidden"> action</span>
+            </a>
+          </span>
+        </h2>
+        {% include "includes/goal3-step2-summary.html" %}
+        {% endif %}
+      {% endif %}
+
+      
+      {% if data['goal3-step2-added'] %}
+        {{ govukButton ({
+          text: 'Add another action',
+          href: '#0',
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
+        }) }}
+        {{ govukButton ({
+          text: 'Reorder actions',
+          href: 'reorder-steps',
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
+        }) }}
+      {% else %}
+        {{ govukButton ({
+          text: 'Add another action',
+          href: 'add-step2',
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
+        }) }}
+      {% endif %}
+
+      <form action="/offender" method="post" novalidate>
+        
+        <input type="hidden" name="goal3-added" value="true">
+        <input type="hidden" name="goal3-started" value="false">
+
+        {{ govukButton ({
+          html: 'Save objective',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="../cancel-goal">delete objective</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

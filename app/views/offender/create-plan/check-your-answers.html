@@ -4,21 +4,21 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
-{% block beforeContent %}
-  {{ govukBackLink ({
-    text: 'Back',
-    href: 'steps'
-  }) }}
-{% endblock %}
-
 {% block content %}
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
 
-      <span class="govuk-caption-l">Create plan</span>
-      <h1 class="govuk-heading-l">Check the plan before saving</h1>
+      {% if data['unpaidwork'] == 'yes' %}
+        {{ mojBanner({
+          type: 'information',
+          text: 'An unpaid work objective has been added automatically based on information from OASys.',
+          iconFallbackText: 'Information'
+        }) }} 
+      {% endif %}
 
-      <h2 class="govuk-heading-m">Summary</h2>
+      <h1 class="govuk-heading-l">Draft plan</h1>
+
+      <h2 class="govuk-heading-m">Diversity</h2>
       <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -28,9 +28,9 @@
             {{ data['diversity'] | nl2br | safe }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="diversity">
+            <a href="summary">
               Change
-              <span class="govuk-visually-hidden"> notes</span>
+              <span class="govuk-visually-hidden"> diversity</span>
             </a>
           </dd>
         </div>
@@ -44,79 +44,89 @@
           <dd class="govuk-summary-list__actions">
             <a href="summary">
               Change
-              <span class="govuk-visually-hidden"> summary</span>
+              <span class="govuk-visually-hidden"> their summary</span>
             </a>
           </dd>
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Goal
+            Liason arrangements
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['goal'] | nl2br | safe }}
+            {{ data['liason'] | nl2br | safe }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a href="goal">
+            <a href="liason">
               Change
-              <span class="govuk-visually-hidden"> summary</span>
+              <span class="govuk-visually-hidden"> liason arrangments</span>
             </a>
           </dd>
         </div>
-        {# <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Motivations
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <ul class="govuk-list govuk-list--bullet">
-              {% for need in offender.needs %}
-                <li>
-                  {{ need.type }}: 
-                  {{ data["motivation-"+loop.index] }}
-                </li>
-              {% endfor %}
-            </ul>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a href="motivations">
-              Change
-              <span class="govuk-visually-hidden"> motivations</span>
-            </a>
-          </dd>
-        </div> #}
       </dl>
 
 
 
 
-      {% if data['reordered'] == 'true' %}
-        <h2 class="govuk-heading-m">Step 1</h2>
-        {% include "includes/step2-summary.html" %}
-        <h2 class="govuk-heading-m">Step 2</h2>
-        {% include "includes/step1-summary.html" %}
-      {% else %} 
-        <h2 class="govuk-heading-m">Step 1</h2>
-        {% include "includes/step1-summary.html" %}
-        {% if data['step-2-added'] == 'true' %}
-        <h2 class="govuk-heading-m">Step 2</h2>
-        {% include "includes/step2-summary.html" %}
+      <h2 class="govuk-heading-m">Objectives</h2>
+
+      {% if not data['goal1-added'] and not data['unpaidwork'] %}
+        <p class="govuk-!-margin-bottom-4">No objectives added yet.</p>
+        {{ govukButton ({
+          text: 'Add an objective',
+          href: 'add-goal/goal',
+          classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
+        }) }}
+      {% else %}
+
+
+        <ul class="govuk-list govuk-!-margin-bottom-4">
+          {% if data['unpaidwork'] %}
+            {% include "includes/unpaidwork-card.html" %}
+          {% endif %}
+          {% if data['goal1-added'] %}
+            {% if data['goals-reordered'] == 'true' %}
+              {% include "includes/goal2-card.html" %}
+              {% include "includes/goal1-card.html" %}
+            {% else %} 
+              {% include "includes/goal1-card.html" %}
+              
+              {% if data['goal2-added'] == 'true' %}
+                {% include "includes/goal2-card.html" %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        </ul>
+
+        
+        {% if data['goal2-added'] %}
+          {{ govukButton ({
+            text: 'Add another objective',
+            href: '#0',
+            classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
+          }) }}
+          {{ govukButton ({
+            text: 'Reorder objectives',
+            href: 'reorder-goals',
+            classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
+          }) }}
+        {% else %}
+          {{ govukButton ({
+            text: 'Add another objective',
+            href: 'add-goal2/goal',
+            classes: 'govuk-button--secondary govuk-!-margin-bottom-9'
+          }) }}
         {% endif %}
       {% endif %}
 
 
-
-      <form action="/offender/plan-saved" method="post" novalidate>
-
-        <input type="hidden" name="answers-checked" value="true">
-        <input type="hidden" name="status" value="In progress">
-        <input type="hidden" name="status-2" value="In progress">
-
-        {{ govukButton ({
-          html: 'Save plan',
-          classes: 'govuk-!-margin-bottom-3'
-        }) }}
-        <p>or <a class="delete-link" href="/offender">cancel plan</a></p>
-
-      </form>
+      <p class="govuk-!-margin-bottom-3">
+      {{ govukButton ({
+        text: 'Continue',
+        href: 'comment',
+        classes: 'govuk-!-margin-bottom-0'
+      }) }}
+      </p>
+      <p>or <a href="cancel-plan">cancel</a></p>
 
     </div>
   </div>

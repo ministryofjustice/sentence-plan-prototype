@@ -4,6 +4,13 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back to plan',
+    href: '/offender'
+  }) }}
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -11,15 +18,17 @@
       <form class="form" action="/offender/plan-closed" method="post">
 
         <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
-          Are you sure you want to close the plan?
+          Are you sure you want to end the plan?
         </h1>
-        <p class="govuk-!-margin-bottom-6">This will close any incomplete tasks and cannot be undone.</p>
+        <p class="govuk-!-margin-bottom-6">
+          This will finish the plan. It will be marked as completed, and stored. You will not be able to change it again.
+        </p>
 
         {{ govukButton ({
-          html: 'Yes, close',
+          html: 'Yes, end the plan',
           classes: 'govuk-button--warning / govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a class="govuk-link govuk-link--no-visited-state" href="/offender">cancel</a></p>
+        <p>or <a class="govuk-link govuk-link--no-visited-state" href="/offender">no, go back</a></p>
 
       </form>
 

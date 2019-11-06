@@ -1,0 +1,17 @@
+<li {{ 'class=closed' if data['goal3-closed'] == 'true' }}>
+  {% if data['goal3-added'] == 'true' %}
+    <a href="/offender/goal?goal=goal3"  class="task {{ 'task--complete' if data['goal3-closed'] == 'true' }}">
+  {% else %}
+    <a href="/offender/add-goal/check-your-answers" class="task">
+  {% endif %}
+    <span class="task__heading">
+      {{ data['goal3-description'] | safe }}
+    </span>
+
+    {% if data['goal3-added'] %}
+      <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+        0 of {{ "2" if data['goal3-step2-added'] else "1" }} actions completed
+      </p>
+    {% endif %}
+  </a>
+</li>

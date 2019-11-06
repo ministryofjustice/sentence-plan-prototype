@@ -4,6 +4,13 @@
   {% include "includes/key-details.html" %}
 {% endblock %}
 
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back to plan',
+    href: '/offender'
+  }) }}
+{% endblock %}
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -22,12 +29,12 @@
           },
           items: [
             {
-              text: 'Full plan',
+              text: 'Full plan details',
               value: 'Full plan'
             },
             {
-              text: 'Overview for '+offender.firstname,
-              value: 'Overview for '+offender.firstname
+              text: 'Simplified plan view',
+              value: 'Simplified plan view'
             }
           ]
         }) }}
@@ -36,7 +43,7 @@
           html: 'Continue',
           classes: 'govuk-!-margin-bottom-3'
         }) }}
-        <p>or <a class="delete-link" href="/offender">cancel printing</a></p>
+        <p>or <a href="/offender">cancel</a></p>
 
       </form>
 
