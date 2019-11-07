@@ -1,0 +1,103 @@
+<div class="moj-page-header-actions"">
+  <div class="moj-page-header-actions__title">
+    <h2 class="govuk-heading-l">
+      Active plan
+    </h2>
+  </div>
+
+  <div class="moj-page-header-actions__actions">
+    <div class="moj-button-menu">
+      <div class="moj-button-menu__wrapper">
+
+        {{ govukButton ({
+          text: 'Add an objective',
+          href: '/offender/add-goal/goal',
+          classes: 'govuk-button--secondary moj-button-menu__item moj-page-header-actions__action'
+        }) }}
+
+        {% if data['goal2-added'] or data['goal3-added'] %}
+          {{ govukButton ({
+            text: 'Reorder objectives',
+            href: '#0',
+            classes: 'govuk-button--secondary moj-button-menu__item moj-page-header-actions__action'
+          }) }}
+        {% endif %}
+
+        {{ govukButton ({
+          text: 'Print full plan ',
+          href: '/offender/print/full',
+          classes: 'govuk-button--secondary moj-button-menu__item moj-page-header-actions__action'
+        }) }}
+
+        {{ govukButton ({
+          text: 'Print simplified plan ',
+          href: '/offender/print/overview',
+          classes: 'govuk-button--secondary moj-button-menu__item moj-page-header-actions__action'
+        }) }}
+
+        {{ govukButton ({
+          text: 'End the plan',
+          href: '/offender/close',
+          classes: 'moj-button-menu__item moj-page-header-actions__action'
+        }) }}
+
+      </div>
+    </div>
+  </div>
+</div> 
+
+    
+
+
+
+
+{% set goalsHtml %}
+  {% include "includes/tab-goals.html" %}
+{% endset -%}
+
+{% set detailsHtml %}
+  {% include "includes/tab-details.html" %}
+{% endset -%}
+
+{% set reviewsHtml %}
+  {% include "includes/tab-reviews.html" %}
+{% endset -%}
+
+{% set contactsHtml %}
+  {% include "includes/tab-contacts.html" %}
+{% endset -%}
+
+
+
+{{ govukTabs({
+  items: [
+    {
+      label: "Objectives",
+      id: "goals",
+      panel: {
+        html: goalsHtml
+      }
+    },
+    {
+      label: "Plan summary",
+      id: "details",
+      panel: {
+        html: detailsHtml
+      }
+    },
+    {
+      label: "Sentence board reviews",
+      id: "board-reviews",
+      panel: {
+        html: reviewsHtml
+      }
+    },
+    {
+      label: "Contact arrangements",
+      id: "contact-arrangements",
+      panel: {
+        html: contactsHtml
+      }
+    }
+  ]
+}) }}

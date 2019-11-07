@@ -46,6 +46,10 @@ $govuk-assets-path: '/govuk/assets/';
   color: $govuk-error-colour!important;
 }
 
+.secondary-text {
+  color: $govuk-secondary-text-colour!important;
+}
+
 
 
 .moj-button-menu__toggle-button::after {

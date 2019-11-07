@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Review decisions and comment</h1>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decisions
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['practitioner-comment'] | nl2br | safe }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="decisions">
+              Change
+              <span class="govuk-visually-hidden"> decisions</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Their comments
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['offender-comment'] | nl2br | safe }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="summary">
+              Change
+              <span class="govuk-visually-hidden"> their comments</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+
+      <form class="form" action="/offender" method="post">
+
+        <input type="hidden" name="final-complete" value="true">
+
+        {{ govukButton ({
+          html: 'Save decisions and comment',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="/offender">back to task list</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

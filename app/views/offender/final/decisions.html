@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back',
+    href: '/offender'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="summary" method="post">
+
+        {{ govukTextarea ({
+          id: 'practitioner-comment',
+          name: 'practitioner-comment',
+          value: data['practitioner-comment'] if data['practitioner-comment'] else '',
+          label: {
+            html: 'Your decisions',
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: 'Record the key points from your conversations with the individual as you created their plan. Explain decisions you made, e.g. why you might not deal with a certain need at this time.'
+          }
+        }) }}
+
+        {{ govukButton ({
+          html: 'Continue',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="/offender">cancel</a></p>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

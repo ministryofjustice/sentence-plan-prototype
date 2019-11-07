@@ -15,9 +15,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="check-your-answers" method="post">
-
-        <h1 class="govuk-heading-l">Responsivity</h1>
+      <form class="form" action="about-them" method="post">
 
         {{ govukTextarea ({
           id: 'diversity',
@@ -25,27 +23,13 @@
           value: data['diversity'] if data['diversity'] else '',
           label: {
             html: 'How we will be responsive to needs',
-            classes: "govuk-label--m"
+            classes: "govuk-label--l",
+            isPageHeading: true
           },
           hint: {
             text: "Record how you will take account of diversity needs when creating the plan. For example: ethnicity, race, sexual orientation, gender, age or religion."
           }
         }) }}
-
-        {{ govukTextarea ({
-          id: 'offender-summary',
-          name: 'offender-summary',
-          value: data['offender-summary'] if data['offender-summary'] else '',
-          label: {
-            html: 'They need us to know',
-            classes: "govuk-label--m"
-          },
-          hint: {
-            text: "Add any other things they need us to know about them. Use their words."
-          }
-        }) }}
-
-        <input type="hidden" name="plan-status" value="draft">
 
         {{ govukButton ({
           html: 'Continue',

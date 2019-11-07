@@ -13,17 +13,16 @@ $(document).ready(function () {
 $(".form").attr("autocomplete", "off");
 $(".govuk-input").attr("autocomplete", "off");
 
-$(".closed").appendTo($(".closed-goals"));
-$('#js-toggle').click(
-  function(){
-    if ( $(this).is(':checked') )
-      $('.js-hidden').show();
-    else
-      $('.js-hidden').hide();
-  }
-);
+$('.js-hidden').hide();
+
+$('.js-show-hidden').click(function(e) {
+  e.preventDefault();
+  $('.js-hidden').show()
+});
 
 
+
+new MOJFrontend.AddAnother($('.moj-add-another'));
 
 
 new MOJFrontend.ButtonMenu({
@@ -72,7 +71,9 @@ if ($('#goal1-step1-intervention-type-container').length > 0) {
     source: topics,
     showAllValues: true
   })
-} else if ($('#goal1-step2-intervention-type-container').length > 0) {
+}
+
+if ($('#goal1-step2-intervention-type-container').length > 0) {
   element = document.querySelector('#goal1-step2-intervention-type-container')
   id = 'goal1-step2-intervention-type' // To match it to the existing <label>.
 
@@ -98,7 +99,9 @@ if ($('#goal2-step1-intervention-type-container').length > 0) {
     source: topics,
     showAllValues: true
   })
-} else if ($('#goal2-step2-intervention-type-container').length > 0) {
+}
+
+if ($('#goal2-step2-intervention-type-container').length > 0) {
   element = document.querySelector('#goal2-step2-intervention-type-container')
   id = 'goal2-step2-intervention-type' // To match it to the existing <label>.
 
