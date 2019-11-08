@@ -51,7 +51,7 @@
           <li class="app-task-list__item">
             <span class="app-task-list__task-name">
               <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                Add first objective
+                Add objective 1
               </h3>
             {% if data['objective-one-complete'] %}
               <a href="/offender/objective-one/check-your-answers" class="govuk-link govuk-link--no-visited-state">
@@ -75,7 +75,7 @@
           <li class="app-task-list__item">
             <span class="app-task-list__task-name">
               <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                Add second objective
+                Add objective 2
               </h3>
             {% if data['objective-two-complete'] %}
               <a href="/offender/objective-one/check-your-answers" class="govuk-link govuk-link--no-visited-state">
@@ -91,29 +91,24 @@
               </a>
             </span>
               <strong class="moj-badge moj-badge--grey app-task-list__task-completed">
-                Not started
+                Optional
               </strong>
             {% endif %}
           </li>
           {% endif %}
+          {% if not data['objective-one-complete'] %}
           <li class="app-task-list__item">
             <span class="app-task-list__task-name">
-              {% if data['objective-one-complete'] %}
-                <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                  Add third objective
-                </h3>
-                <span class="secondary-text">Add second objective first</span>
-              {% else %}
-                <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                  Add second objective
-                </h3>
-                <span class="secondary-text">Add first objective first</span>
-              {% endif %}
+              <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+                Add objective 2
+              </h3>
+              <span class="secondary-text">Add objective 1 first</span>
             </span>
             <strong class="moj-badge moj-badge--grey app-task-list__task-completed">
               Cannot start yet
             </strong>
           </li>
+          {% endif %}
         </ul>
       </li>
       <li>
@@ -146,7 +141,7 @@
                 {% endif %}
               {% else %}
                 <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                  Decisions and summary
+                  Decisions and comments
                 </h3>
                 <span class="secondary-text">Add at least one objective first</span>
               </span>

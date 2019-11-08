@@ -34,18 +34,18 @@
 
             <h3 class='govuk-heading-m'>
               MVP reference
-              <span class="version">v0.4</span>
+              <span class="version">v0.5</span>
             </h3>
             <p>Added/updated:</p>
             <ul class="govuk-list govuk-list--bullet">
-              <li>remove practitioner expectations</li>
-              <li>change ‘diversity’ to ‘responsivity’</li>
-              <li>remove ‘liaison arrangements’ from create plan flow and add as a new tab on active plan renamed to 'contact arrangements'</li>
+              <li>create plan now uses task list pattern (modified based on github backlog)</li>
+              <li>add actions uses add another pattern from MOJ Design System</li>
+              <li>active plan uses similar visual style as task list for displaying/linking objectives</li>
             </ul>
 
             <form action="/oasys" method="post" novalidate>
 
-              {{ govukCheckboxes({
+              {# {{ govukCheckboxes({
                 classes: "govuk-checkboxes--small",
                 idPrefix: 'unpaidwork',
                 name: 'unpaidwork',
@@ -55,7 +55,7 @@
                     value: 'yes'
                   }
                 ]
-              }) }}
+              }) }} #}
 
               {{ govukButton ({
                 text: 'View prototype',
@@ -94,6 +94,42 @@
           <span class="govuk-details__summary-text">Show all sprints</span>
         </summary>
 				<div class="govuk-details__text">
+
+
+          {# Start of prototype write up #}
+  				<div class="prototype-write-up">
+            {{ govukTag({
+              text: 'Alpha sprint 8',
+              classes: 'govuk-!-margin-bottom-4'
+            }) }}
+
+            <h3 class='govuk-heading-m'>
+              MVP reference
+              <span class="version">v0.4</span>
+            </h3>
+            <p>Added/updated:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>remove practitioner expectations</li>
+              <li>change ‘diversity’ to ‘responsivity’</li>
+              <li>remove ‘liaison arrangements’ from create plan flow and add as a new tab on active plan renamed to 'contact arrangements'</li>
+            </ul>
+
+           
+
+              {{ govukButton ({
+                text: 'View prototype',
+                href: 'https://sentence-plan-mvp-4.herokuapp.com/'
+              }) }} 
+
+              <p><a href="screens">View all screens</a></p>
+
+            </form>
+
+
+            {# <p class="govuk-!-margin-bottom-0"><a href="/offender/admin-plan">Create a mock plan</a></p> #}
+
+  				</div>
+  				{# End of prototype write up #}
 
           {# Start of prototype write up #}
   				<div class="prototype-write-up">
@@ -147,12 +183,8 @@
             <form action="https://sentence-plan-mvp-2.herokuapp.com/" method="post" novalidate>
 
               {{ govukButton ({
-                text: 'View prototype',
-                isStartButton: true,
-                classes: 'govuk-!-margin-bottom-4'
+                text: 'View prototype'
               }) }} 
-
-              <p><a href="screens">View all screens</a></p>
 
             </form>
 
@@ -180,9 +212,7 @@
             <form action="https://sentence-plan-mvp-1.herokuapp.com/" method="post" novalidate>
 
               {{ govukButton ({
-                text: 'View prototype',
-                isStartButton: true,
-                classes: 'govuk-!-margin-bottom-4'
+                text: 'View prototype'
               }) }} 
 
             </form>
@@ -210,9 +240,7 @@
             <form action="https://sentence-plan-sprint3.herokuapp.com" method="post" novalidate>
 
               {{ govukButton ({
-                text: 'View prototype',
-                isStartButton: true,
-                classes: 'govuk-!-margin-bottom-4'
+                text: 'View prototype'
               }) }}
 
             </form>
