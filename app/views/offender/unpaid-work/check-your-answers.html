@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% if data['goal1-added'] %}
+  {% block beforeContent %}
+    {{ govukBackLink ({
+      text: 'Back to draft plan',
+      href: '/offender'
+    }) }}
+  {% endblock %}
+{% endif %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <h1 class="govuk-heading-l">Review objective</h1>
+
+      <h2 class="govuk-heading-m">
+        Objective summary
+      </h2>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Objective
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Unpaid work court order
+          </dd>
+        </div>
+        {# <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Needs
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              {% for need in data['goal1-needs'] %}
+                <li>
+                  {{ need | replace(" – <span class='risk'>Risk of serious harm</span>", "") }}
+                </li>
+              {% endfor %}
+            </ul>
+          </dd>
+        </div> #}
+      </dl>
+
+
+
+
+
+      <h2 class="govuk-heading-m">
+        Action
+      </h2>
+      {% include "includes/unpaid-summary.html" %}
+
+  
+        
+
+      {# <form action="/offender" method="post" novalidate>
+        
+        <input type="hidden" name="goal1-added" value="true">
+        <input type="hidden" name="objective-one-complete" value="true">
+
+        {{ govukButton ({
+          html: 'Save objective',
+          classes: 'govuk-!-margin-bottom-3'
+        }) }}
+        <p>or <a href="../cancel-goal">cancel</a></p>
+
+      </form> #}
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% set goal = data['goal'] %}
+
+{% block beforeContent %}
+  {{ govukBackLink ({
+    text: 'Back to plan',
+    href: '/offender'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% if stepUpdated %}
+        {{ mojBanner({
+          type: 'success',
+          text: stepUpdated,
+          iconFallbackText: 'Success'
+        }) }} 
+      {% endif %}
+
+
+      <div class="moj-page-header-actions">
+        <div class="moj-page-header-actions__title">
+          <h1 class="govuk-heading-l">
+            <span class="govuk-caption-l">Objective details</span>
+            Unpaid work court order
+          </h1>
+        </div>
+
+        {# <div class="moj-page-header-actions__actions">
+
+          <div style="float: right;">
+
+            {{ mojButtonMenu({
+            items: [{
+              text: "Close objective",
+              href: 'goal-close?goal='+goal,
+              classes: "govuk-button--secondary"
+            }]
+            }) }}
+          </div> 
+
+        </div> #}
+      </div> 
+    </div>
+
+
+
+
+
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <h2 class="govuk-heading-m govuk-visually-hidden">
+        Actions
+      </h2>
+
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+        As agreed at Court, I will complete 100 hours of unpaid work over a 12 month period. I will make sure that I complete a minimum of 7 hours per week, as directed.
+      </h3>
+      <strong class="govuk-tag  govuk-!-margin-bottom-4 moj-tag--grey">In progress</strong>
+      {% include "includes/unpaid-summary.html" %}
+
+
+
+  
+      <aside class="app-related-items" role="complementary" style="border-width: 4px">
+        <h2 class="govuk-heading-s" id="subsection-title">
+          History
+        </h2>
+        <div class="timeline">
+          <ul>
+          {% if data[goal+'-closed'] %}
+            <li>
+              <h2 class="timeline__title">
+                Objective {{ data[goal+'-outcome'] | lower }} and closed
+              </h2>
+              <p class="timeline__meta">
+                <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
+                by Sarah Smith
+              </p>
+
+              {% if data[goal+'-comment'] %}<p>{{ data[goal+'-comment'] }}</p>{% endif %}
+
+            </li>
+          {% endif %}
+          {% if data[goal+'-step2-updated'] %}
+            <li>
+              <h2 class="timeline__title">
+                {{ data [goal+'-step2-status'] }}: 
+                {% if data[goal+'-step2-intervention'] == 'Yes' %}
+                  Intervention: {{ data[goal+'-step2-intervention-type'] }}
+                {% else %}
+                  {{ data[goal+'-step2-description'] }}
+                {% endif %}
+              </h2>
+              <p class="timeline__meta">
+                <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
+                by Sarah Smith
+              </p>
+
+              {% if data[goal+'-step2-status-comment'] %}<p>{{ data[goal+'-step2-status-comment'] }}</p>{% endif %}
+
+            </li>
+          {% endif %}
+          {% if data[goal+'-step1-updated'] %}
+            <li>
+              <h2 class="timeline__title">
+                {{ data [goal+'-step1-status'] }}: 
+                {% if data[goal+'-step1-intervention'] == 'Yes' %}
+                  Intervention: {{ data[goal+'-step1-intervention-type'] }}
+                {% else %}
+                  {{ data[goal+'-step1-description'] }}
+                {% endif %}
+              </h2>
+              <p class="timeline__meta">
+                <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("h:mm a") }}</time>
+                by Sarah Smith
+              </p>
+
+              {% if data[goal+'-step1-status-comment'] %}<p>{{ data[goal+'-step1-status-comment'] }}</p>{% endif %}
+
+            </li>
+          {% endif %}
+            <li>
+              <h2 class="timeline__title">Objective created</h2>
+              <p class="timeline__meta">
+                <time>{{ moment | date("D MMMM YYYY") }} at {{ moment | date("subtract", 4, "minutes") | date("h:mm a") }}</time>
+                by Sarah Smith
+              </p>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+
+
+  </div>
+{% endblock %}

@@ -52,9 +52,9 @@
           <li class="app-task-list__item">
             <span class="app-task-list__task-name">
               <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                Objective 1 &ndash; unpaid work
+                Objective 1 &ndash; unpaid work court order
               </h3>
-              <a href="#0" class="govuk-link govuk-link--no-visited-state">
+              <a href="/offender/unpaid-work/check-your-answers" class="govuk-link govuk-link--no-visited-state">
                 Review details
               </a>
             </span>
@@ -133,7 +133,7 @@
         <ul class="app-task-list__items">
           <li class="app-task-list__item">
             <span class="app-task-list__task-name">
-              {% if data['objective-one-complete'] %}
+              {% if data['objective-one-complete'] or data['unpaidwork'] == "yes" %}
                 <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
                   Decisions and comments
                 </h3>

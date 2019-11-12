@@ -1,0 +1,56 @@
+<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+{% if data['plan-status'] != 'saved' %}
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Description
+    </dt>
+    <dd class="govuk-summary-list__value">
+      As agreed at Court, I will complete 100 hours of unpaid work over a 12 month period. I will make sure that I complete a minimum of 7 hours per week, as directed.
+    </dd>  
+  </div>
+{% endif %}
+  
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Due date
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ whatever | date("add", 1, "year") | date("MMMM YYYY") }}
+    </dd>
+  </div>
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Motivation
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Agreed at court
+    </dd>
+  </div>
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Responsible
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Individual
+    </dd>
+  </div>
+
+
+  {% if data['plan-status'] == 'draft' %}
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Status
+    </dt>
+    <dd class="govuk-summary-list__value">
+      In progress
+    </dd>
+  </div>
+  {% endif %}
+</dl>
