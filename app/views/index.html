@@ -43,9 +43,11 @@
               <li>active plan uses similar visual style as task list for displaying/linking objectives</li>
             </ul>
 
+
+
             <form action="/oasys" method="post" novalidate>
 
-              {# {{ govukCheckboxes({
+              {{ govukCheckboxes({
                 classes: "govuk-checkboxes--small",
                 idPrefix: 'unpaidwork',
                 name: 'unpaidwork',
@@ -55,7 +57,7 @@
                     value: 'yes'
                   }
                 ]
-              }) }} #}
+              }) }}
 
               {{ govukButton ({
                 text: 'View prototype',

@@ -16,39 +16,26 @@
         }) }} 
       {% endif %}
 
+      {% if data['unpaidwork'] == 'yes' and data['plan-status'] != 'saved' %}
+        {{ mojBanner({
+          type: 'information',
+          text: 'An unpaid work objective has been added automatically based on information from OASys.',
+          iconFallbackText: 'Information'
+        }) }} 
+      {% endif %}
+
       <h1 class="govuk-visually-hidden">
         Offender plans: {{ offender.name }}
       </h1>
 
 
 
-        {# {% if not data['plan-status']%}
 
-          <p>There is no active plan.</p>
-          {{ govukButton ({
-            text: 'Start a new plan',
-            href: '/offender/create-plan/summary'
-          }) }}
-
-
-
-        {% elif data['plan-status'] == 'draft' %}
-
-
-          <p>There is a draft plan from {{ data | date("D MMMM YYYY") }}.</p>
-          {{ govukButton ({
-            text: 'View draft',
-            href: '/offender/create-plan/check-your-answers'
-          }) }} #}
-
-
-
-
-        {% if data['plan-status'] == 'saved' %}
-          {% include "includes/active-plan.html" %}
-        {% else %}
-          {% include "includes/draft-plan.html" %}
-        {% endif %}
+      {% if data['plan-status'] == 'saved' %}
+        {% include "includes/active-plan.html" %}
+      {% else %}
+        {% include "includes/draft-plan.html" %}
+      {% endif %}
 
 
       
