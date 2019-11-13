@@ -9,7 +9,7 @@
     <ol class="app-task-list">
       <li>
         <h2 class="app-task-list__section">
-          <span class="app-task-list__section-number">1. </span> About the plan
+          <span class="app-task-list__section-number">1. </span> Write about the individual
         </h2>
         <ul class="app-task-list__items">
           <li class="app-task-list__item">
@@ -45,7 +45,7 @@
           <span class="app-task-list__section-number">2. </span> Add objectives
         </h2>
         {{ govukInsetText ({
-          text: 'Each objective can have multiple actions to help the individual meet it.'
+          text: 'Each objective can have multiple actions.'
         }) }}
         <ul class="app-task-list__items">
         {% if data['unpaidwork'] %}
@@ -128,7 +128,7 @@
       </li>
       <li>
         <h2 class="app-task-list__section">
-          <span class="app-task-list__section-number">3. </span> Final information
+          <span class="app-task-list__section-number">3. </span> Enter final information
         </h2>
         <ul class="app-task-list__items">
           <li class="app-task-list__item">
@@ -139,7 +139,7 @@
                 </h3>
                 {% if data['final-complete'] %}
                   <a href="/offender/final/check-your-answers" class="govuk-link govuk-link--no-visited-state">
-                    Review answers
+                    Review information
                   </a>
                 </span>
                   <strong class="moj-badge app-task-list__task-completed">
