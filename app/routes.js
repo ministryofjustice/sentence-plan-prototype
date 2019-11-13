@@ -60,7 +60,7 @@ router.get('/startsteps', (req, res) => {
 })
 
 router.get('/offender/plan-saved', (req, res) => {
-  res.render('offender/index', { 'planSaved' : 'The plan has been started' });
+  res.render('offender/plan', { 'planSaved' : 'The plan has been started' });
 })
 
 router.get('/offender/step-updated', (req, res) => {

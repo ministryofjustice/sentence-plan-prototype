@@ -8,7 +8,7 @@
   {% block beforeContent %}
     {{ govukBackLink ({
       text: 'Back to draft plan',
-      href: '/offender'
+      href: '/offender/plan'
     }) }}
   {% endblock %}
 {% endif %}
@@ -104,7 +104,7 @@
         }) }}
       {% endif %}
 
-      <form action="/offender" method="post" novalidate>
+      <form action="/offender/plan" method="post" novalidate>
         
         <input type="hidden" name="goal1-added" value="true">
         <input type="hidden" name="objective-one-complete" value="true">

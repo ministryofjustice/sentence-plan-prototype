@@ -8,33 +8,36 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      {% if planSaved %}
-        {{ mojBanner({
-          type: 'success',
-          text: planSaved,
-          iconFallbackText: 'Success'
-        }) }} 
-      {% endif %}
-
-      {% if data['unpaidwork'] == 'yes' and data['plan-status'] != 'saved' %}
-        {{ mojBanner({
-          type: 'information',
-          text: 'An unpaid work objective has been added automatically based on information from OASys.',
-          iconFallbackText: 'Information'
-        }) }} 
-      {% endif %}
-
-      <h1 class="govuk-visually-hidden">
-        Offender plans: {{ offender.name }}
+      <h1 class="govuk-heading-l">
+        Status of plan
       </h1>
 
 
 
 
       {% if data['plan-status'] == 'saved' %}
-        {% include "includes/active-plan.html" %}
+        <p>There is an active plan.</p>
+
+        {{ govukButton ({
+          text: 'Update plan',
+          href: '/offender/plan'
+        }) }}
+      {% elif data['plan-status'] == 'draft' %}
+        <p>There is a draft plan.</p>
+
+        {{ govukButton ({
+          text: 'Continue',
+          href: '/offender/plan'
+        }) }}
       {% else %}
-        {% include "includes/draft-plan.html" %}
+        <form class="form" action="/offender/plan" method="post">
+          <p>There is no active plan.</p>
+          <input type="hidden" name="plan-status" value="draft">
+
+          {{ govukButton ({
+            html: 'Create a new plan'
+          }) }}
+        </form>
       {% endif %}
 
 

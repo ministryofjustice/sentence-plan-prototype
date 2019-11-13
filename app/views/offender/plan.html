@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block afterHeader %}
+  {% include "includes/key-details.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% if planSaved %}
+        {{ mojBanner({
+          type: 'success',
+          text: planSaved,
+          iconFallbackText: 'Success'
+        }) }} 
+      {% endif %}
+
+      {% if data['unpaidwork'] == 'yes' and data['plan-status'] != 'saved' %}
+        {{ mojBanner({
+          type: 'information',
+          text: 'An unpaid work objective has been added automatically based on information from OASys.',
+          iconFallbackText: 'Information'
+        }) }} 
+      {% endif %}
+
+      <h1 class="govuk-visually-hidden">
+        Offender plans: {{ offender.name }}
+      </h1>
+
+
+
+
+      {% if data['plan-status'] == 'saved' %}
+        {% include "includes/active-plan.html" %}
+      {% else %}
+        {% include "includes/draft-plan.html" %}
+      {% endif %}
+
+
+    </div>
+  </div>
+{% endblock %}
