@@ -47,15 +47,22 @@
         {{ govukInsetText ({
           text: 'Each objective can have multiple actions.'
         }) }}
-        <ul class="app-task-list__items">
+        {% if data['unpaidwork'] and data['objective-one-complete'] %}
+          <ul class="app-task-list__items govuk-!-margin-bottom-4">
+        {% elif data['objective-one-complete'] and data['objective-two-complete'] %}
+          <ul class="app-task-list__items govuk-!-margin-bottom-4">
+        {% else %}
+          <ul class="app-task-list__items">
+        {% endif %}
         {% if data['unpaidwork'] %}
           <li class="app-task-list__item">
             <span class="app-task-list__task-name">
               <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                Objective 1 &ndash; unpaid work court order
+                Objective 1
               </h3>
+              <p class="govuk-body-s">Unpaid work court order</p>
               <a href="/offender/unpaid-work/check-your-answers" class="govuk-link govuk-link--no-visited-state">
-                Review details
+                View details
               </a>
             </span>
             <strong class="moj-badge app-task-list__task-completed">
@@ -69,8 +76,9 @@
                 Add objective {{ "2" if data['unpaidwork'] == "yes" else "1" }}
               </h3>
             {% if data['objective-one-complete'] %}
+              <p class="govuk-body-s">{{ data['goal1-description'] }}</p>
               <a href="/offender/objective-one/check-your-answers" class="govuk-link govuk-link--no-visited-state">
-                Review answers
+                Edit objective
               </a>
             </span>
               <strong class="moj-badge app-task-list__task-completed">
@@ -93,15 +101,16 @@
                 Add objective {{ "3" if data['unpaidwork'] == "yes" else "2" }}
               </h3>
             {% if data['objective-two-complete'] %}
-              <a href="/offender/objective-one/check-your-answers" class="govuk-link govuk-link--no-visited-state">
-                Review answers
+              <p class="govuk-body-s">{{ data['goal2-description'] }}</p>
+              <a href="/offender/objective-two/check-your-answers" class="govuk-link govuk-link--no-visited-state">
+                Edit objective
               </a>
             </span>
               <strong class="moj-badge app-task-list__task-completed">
                 Completed
               </strong>
             {% else %}
-              <a href="#0" class="govuk-link govuk-link--no-visited-state">
+              <a href="/offender/objective-two/goal" class="govuk-link govuk-link--no-visited-state">
                 Add details
               </a>
             </span>
@@ -109,6 +118,21 @@
                 Optional
               </strong>
             {% endif %}
+          </li>
+          {% endif %}
+          {% if data['objective-two-complete'] %}
+          <li class="app-task-list__item">
+            <span class="app-task-list__task-name">
+              <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+                Add objective {{ "4" if data['unpaidwork'] == "yes" else "3" }}
+              </h3>
+              <a href="#0" class="govuk-link govuk-link--no-visited-state">
+                Add details
+              </a>
+            </span>
+            <strong class="moj-badge moj-badge--grey app-task-list__task-completed">
+              Optional
+            </strong>
           </li>
           {% endif %}
           {% if not data['objective-one-complete'] and data['unpaidwork'] != 'yes' %}
@@ -125,6 +149,19 @@
           </li>
           {% endif %}
         </ul>
+        {% if data['unpaidwork'] and data['objective-one-complete'] %}
+          {{ govukButton ({
+            text: 'Reorder objectives',
+            href: '#',
+            classes: 'govuk-button--secondary'
+          }) }}
+        {% elif data['objective-one-complete'] and data['objective-two-complete'] %}
+          {{ govukButton ({
+            text: 'Reorder objectives',
+            href: 'reorder-objectives',
+            classes: 'govuk-button--secondary'
+          }) }}
+        {% endif %}
       </li>
       <li>
         <h2 class="app-task-list__section">

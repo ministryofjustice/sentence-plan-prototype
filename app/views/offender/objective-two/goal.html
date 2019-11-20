@@ -7,7 +7,7 @@
 {% block beforeContent %}
   {{ govukBackLink ({
     text: 'Back',
-    href: 'check-your-answers'
+    href: '/offender/plan'
   }) }}
 {% endblock %}
 
@@ -18,6 +18,9 @@
       <form class="form" action="add-step" method="post">
 
         <h1 class="govuk-heading-l">Add an objective</h1>
+        {{ govukInsetText ({
+          html: 'You&rsquo;ll be able to add actions for this objective next.'
+        }) }}
 
         {{ govukCharacterCount({
           id: 'goal2-description',
@@ -29,7 +32,7 @@
             classes: "govuk-label--m"
           },
           hint: {
-            html: 'What does the individual need to achieve? You&rsquo;ll be able to add actions for this objective later.'
+            html: 'What does the individual need to achieve?'
           }
         }) }}
 
@@ -39,12 +42,13 @@
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h1 class="govuk-fieldset__heading">
-                Existing OASys needs related to this objective
+                Needs identified in OASys related to this objective
               </h1>
             </legend>
             <span class="govuk-hint">
                Select all that apply. 
             </span>
+
             <div class="govuk-checkboxes govuk-checkboxes--small">
               {% for need in offender.needs %}
                 <div class="govuk-checkboxes__item">

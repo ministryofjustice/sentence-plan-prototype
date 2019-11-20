@@ -28,19 +28,18 @@
   				{# Start of prototype write up #}
   				<div class="prototype-write-up">
             {{ govukTag({
-              text: 'Alpha sprint 8',
+              text: 'Alpha sprint 9',
               classes: 'govuk-!-margin-bottom-4'
             }) }}
 
             <h3 class='govuk-heading-m'>
               MVP reference
-              <span class="version">v0.5</span>
+              <span class="version">v0.6</span>
             </h3>
             <p>Added/updated:</p>
             <ul class="govuk-list govuk-list--bullet">
-              <li>create plan now uses task list pattern (modified based on github backlog)</li>
-              <li>add actions uses add another pattern from MOJ Design System</li>
-              <li>active plan uses similar visual style as task list for displaying/linking objectives</li>
+              <li>added reorder objectives back in to create plan flow</li>
+              <li>added objective description to task list</li>
             </ul>
 
 
@@ -96,6 +95,43 @@
           <span class="govuk-details__summary-text">Show all sprints</span>
         </summary>
 				<div class="govuk-details__text">
+
+
+          {# Start of prototype write up #}
+  				<div class="prototype-write-up">
+            {{ govukTag({
+              text: 'Alpha sprint 8',
+              classes: 'govuk-!-margin-bottom-4'
+            }) }}
+
+            <h3 class='govuk-heading-m'>
+              MVP reference
+              <span class="version">v0.5</span>
+            </h3>
+            <p>Added/updated:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>create plan now uses task list pattern (modified based on github backlog)</li>
+              <li>add actions uses add another pattern from MOJ Design System</li>
+              <li>active plan uses similar visual style as task list for displaying/linking objectives</li>
+            </ul>
+
+
+
+            <form action="https://sentence-plan-mvp-5.herokuapp.com/" method="post" novalidate>
+
+              {{ govukButton ({
+                text: 'View prototype',
+                isStartButton: true,
+                classes: 'govuk-!-margin-bottom-4'
+              }) }} 
+
+            </form>
+
+
+            {# <p class="govuk-!-margin-bottom-0"><a href="/offender/admin-plan">Create a mock plan</a></p> #}
+
+  				</div>
+  				{# End of prototype write up #}
 
 
           {# Start of prototype write up #}
